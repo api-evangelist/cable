@@ -1,0 +1,49 @@
+generated: '2026-07-18'
+method: searched
+source: openapi/cable-api-reference-openapi-original.yml, openapi/cable-customer-data-api-openapi-original.yml,
+  openapi/cable-transaction-data-api-openapi-original.yml
+docs: https://docs.cable.tech/api-documentation/api-reference/authentication/request-token
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+  model: >-
+    Two-legged token exchange. Cable issues each customer a long-lived refresh/auth token
+    (an API key). The client presents that key in the Authorization header to POST /auth/token,
+    receiving a short-lived scoped bearer access token (expiry 300-86400s, requested via
+    expiry_seconds). That access token is then sent as a Bearer token on subsequent API calls.
+    A new access token cannot be requested using an existing access token.
+scopes_model:
+  described: true
+  shape: "AccessTokenScope { organization_id, scopes[] }"
+  example_scopes:
+  - transactions:write
+  note: >-
+    Tokens are scoped to an organization_id plus a list of string scopes (e.g. transactions:write).
+    Scopes are conveyed in the token request/response body, not via an OAuth2 securityScheme, so no
+    separate scopes/ artifact is emitted; the scope surface is documented here.
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  note: refresh/auth token used to request an access token; also carries the bearer access token
+  sources:
+  - openapi/cable-api-reference-openapi-original.yml
+  - openapi/cable-transaction-data-api-openapi-original.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  note: short-lived scoped access token returned by POST /auth/token
+  sources:
+  - openapi/cable-api-reference-openapi-original.yml
+  - openapi/cable-transaction-data-api-openapi-original.yml
+- name: isValidAPIKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  note: API key auth on the Customer Data API (v1)
+  sources:
+  - openapi/cable-customer-data-api-openapi-original.yml
