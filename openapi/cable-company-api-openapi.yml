@@ -1,0 +1,489 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts company API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: company
+paths:
+  /v2/company:
+    get:
+      operationId: check-company-info
+      summary: Check if a company exists
+      tags:
+      - company
+      parameters:
+      - name: company_id
+        in: query
+        description: The unique identifier of the company
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Company exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company_checkCompanyInfo_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-company-info
+      summary: Add company information
+      description: Endpoint for adding new company information
+      tags:
+      - company
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Company added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Company data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Company already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompanyRequest'
+    put:
+      operationId: update-companies
+      summary: Update companies in batch
+      tags:
+      - company
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid company data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of company update payloads. Each payload must include the 'company_id' to identify the company and can include any other fields that need to be updated. The 'timestamp' field should represent the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompaniesRequest'
+    delete:
+      operationId: delete-company
+      summary: Submit a deletion request for a company and any related data
+      description: 'This operation will submit a request to delete the company and any
+
+        related data.
+
+
+        The deletion request will be processed by the system and
+
+        the data will be removed permanently from Cable''s system. Deletion
+
+        requests are not processed immediately and may take some time to
+
+        complete.
+
+
+        The status of the deletion request can be checked using the
+
+        deletion request ID and the status endpoint.
+
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+
+        '
+      tags:
+      - company
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company_deleteCompany_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company_id:
+                  type: string
+                  description: The unique identifier of the company
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+              - company_id
+              - reason
+components:
+  schemas:
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Company_deleteCompany_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    Company_checkCompanyInfo_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the company
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the company
+        organization_id:
+          type: string
+          description: The organization ID for which the company was found
+      title: Company_checkCompanyInfo_Response_200
+    CompanyAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
+    CompanyRegistrationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
+        value:
+          type: string
+          description: The registration number
+      required:
+      - type
+      - value
+      title: CompanyRegistrationNumber
+    Company:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: Unique external identifier of the company entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: When this company record was created or last modified in your system, in ISO 8601 format.
+        is_test_company:
+          type: boolean
+          default: false
+          description: If the company is a test company, this should be set to true
+        account_status:
+          $ref: '#/components/schemas/CompanyAccountStatus'
+          description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+        legal_name:
+          type: string
+          description: Legal name of the business
+        trading_name:
+          type: string
+          description: Trading name of the business
+        email:
+          type: string
+          description: Main contact email for the company
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyAddressesItems'
+        phone_number:
+          type: string
+          description: Main contact telephone number for the company
+        type:
+          type: string
+          description: Business entity type. eg. Sole Trader, Limited Company
+        registration_number:
+          $ref: '#/components/schemas/CompanyRegistrationNumber'
+        incorporation_date:
+          type: string
+          format: date
+          description: Date when the company was incorporated
+        incorporation_country:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        incorporation_state:
+          type: string
+          description: State where the company was incorporated (US only)
+        primary_operation_country:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        industry:
+          type: string
+          description: Nature of business
+        industry_classification:
+          $ref: '#/components/schemas/CompanyIndustryClassification'
+        source_of_wealth:
+          type: string
+          description: Source of wealth of the company
+        source_of_funds:
+          type: string
+          description: Source of initial deposit of the company
+        first_transaction_completed_at:
+          type: string
+          format: date-time
+          description: Original timestamp of when the person completed their first transaction
+        product_type:
+          type: string
+        registered_as_inactive:
+          type: boolean
+          description: If the company is registered as inactive, this should be set to true
+      required:
+      - company_id
+      - timestamp
+      - is_test_company
+      description: Request body for adding information about companies
+      title: Company
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
+    CompanyIndustryClassification:
+      type: object
+      properties:
+        code_type:
+          type: string
+          description: Type of industry classification code
+        code:
+          type: array
+          items:
+            type: string
+          description: Industry classification codes
+        description:
+          type: string
+          description: Description of the industry classification code
+      required:
+      - code_type
+      - code
+      title: CompanyIndustryClassification
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    CompanyAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: CompanyAccountStatus
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

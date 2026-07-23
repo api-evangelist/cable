@@ -1,0 +1,471 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts person API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: person
+paths:
+  /v2/person:
+    get:
+      operationId: check-person
+      summary: Check if a person exists
+      tags:
+      - person
+      parameters:
+      - name: person_id
+        in: query
+        description: The unique identifier of the person
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Person exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person_checkPerson_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-person-info
+      summary: Add person information
+      description: Endpoint for adding new person information
+      tags:
+      - person
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Person added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid person data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Person already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPersonRequest'
+    put:
+      operationId: update-persons
+      summary: Update person in batch
+      tags:
+      - person
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Persons updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid person data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of person update payloads. Each payload must include the 'person_id' to identify the person and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePersonRequest'
+    delete:
+      operationId: delete-person
+      summary: Submit a deletion request for a person and any related data
+      description: 'This operation will submit a request to delete the person and any
+
+        related data.
+
+
+        The deletion request will be processed by the system and
+
+        the data will be removed permanently from Cable''s system. Deletion
+
+        requests are not processed immediately and may take some time to
+
+        complete.
+
+
+        The status of the deletion request can be checked using the
+
+        deletion request ID and the status endpoint.
+
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+
+        '
+      tags:
+      - person
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person_deletePerson_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                person_id:
+                  type: string
+                  description: The unique identifier of the person
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+              - person_id
+              - reason
+components:
+  schemas:
+    Person_checkPerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the person
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the person
+        organization_id:
+          type: string
+          description: The organization ID for which the person was found
+      title: Person_checkPerson_Response_200
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    PersonAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
+    PersonNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+      - type
+      - value
+      title: PersonNationalIdentificationNumber
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    NewPersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: NewPersonRequest
+    Person_deletePerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Person_deletePerson_Response_200
+    Person:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: Unique external identifier of the person entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: When this person record was created or last modified in your system, in ISO 8601 format. For example, account opening date or KYC completion time.
+        is_test_user:
+          type: boolean
+          default: false
+          description: If the person is a test user, this should be set to true
+        is_retail_customer:
+          type: boolean
+          description: Indicates if the person is in the context of retail companies. If the value is false, fields is_beneficial_owner, is_director, is_account_owner and is_shareholder are required.
+        related_company_id:
+          type: string
+          description: Unique external identifier of the related company entity
+        is_beneficial_owner:
+          type: boolean
+          description: If the person is a beneficial owner of the related company, this should be set to true. If is_retail_customer is false, this field is required.
+        is_director:
+          type: boolean
+          description: If the person is a director of the related company, this should be set to true. If is_retail_customer is false, this field is required.
+        is_account_owner:
+          type: boolean
+          description: If the person is an account owner of the related company, this should be set to true. If is_retail_customer is false, this field is required.
+        is_sole_prop:
+          type: boolean
+          description: If the related company is a sole proprietorship (or sole trader if in the UK), this should be set to true.
+        is_shareholder:
+          type: boolean
+          description: If the person is a shareholder of the related company, this should be set to true. If is_retail_customer is false, this field is required.
+        is_significant_control_person:
+          type: boolean
+          description: If the person has significant control of the related company, this should be set to true
+        ownership_percentage:
+          type: number
+          format: double
+          description: If the person is a shareholder of the related company, this should be set to their ownership percentage, as a value between 0 and 1
+        account_status:
+          $ref: '#/components/schemas/PersonAccountStatus'
+          description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+        name:
+          type: string
+          description: The provided full name of the person
+        first_name:
+          type: string
+          description: The provided first name of the person
+        last_name:
+          type: string
+          description: The provided last name of the person
+        email:
+          type: string
+          description: Contact email for the person
+        address:
+          $ref: '#/components/schemas/Address'
+        phone_number:
+          type: string
+          description: Contact telephone number for the person
+        date_of_birth:
+          type: string
+          format: date
+        nationality:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        occupation:
+          type: string
+          description: Primary occupation of the individual
+        first_transaction_completed_at:
+          type: string
+          format: date-time
+          description: Original timestamp of when the person completed their first transaction
+        national_identification_number:
+          $ref: '#/components/schemas/PersonNationalIdentificationNumber'
+        product_type:
+          type: string
+      required:
+      - person_id
+      - timestamp
+      - is_test_user
+      - is_retail_customer
+      description: Request body for adding information about persons
+      title: Person
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

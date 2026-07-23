@@ -1,0 +1,363 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts identityVerification API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: identityVerification
+paths:
+  /v2/identity_verification:
+    get:
+      operationId: check-identity-verification
+      summary: Check if a identity verification exists
+      tags:
+      - identityVerification
+      parameters:
+      - name: verification_id
+        in: query
+        description: The unique identifier of the identity verification
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Identity verification exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity Verification_checkIdentityVerification_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Identity verification does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-identity-verification
+      summary: Add identity verification
+      description: 'Add IDV (Identity Verification) information for a person or company.
+
+
+        Note: Each API call represents a single verification event from one provider at a specific point in time. If you have multiple verification sources or multiple verification attempts, you must make separate API calls for each one.
+
+
+        For example:
+
+        - Document verification from Provider A requires one API call
+
+        - Database verification from Provider B requires another API call
+
+        - Re-verification after data update requires a new API call'
+      tags:
+      - identityVerification
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Identity verification added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Identity verification data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Identity verification already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewIdentityVerificationRequest'
+    put:
+      operationId: update-identity-verifications
+      summary: Update identity verification in batch
+      tags:
+      - identityVerification
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Identity verifications updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid identity verification data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Identity verification not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of identity verification update payloads. Each payload must include the 'verification_id' to identify the identity verification and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIdentityVerificationRequest'
+components:
+  schemas:
+    Identity Verification_checkIdentityVerification_Response_200:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: The unique identifier of the identity verification
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the identity verification
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the identity verification
+        organization_id:
+          type: string
+          description: The organization ID for which the identity verification was found
+      title: Identity Verification_checkIdentityVerification_Response_200
+    IdentityVerificationVerifiedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of data being verified for the person or company
+        outcome:
+          type: string
+          description: The result of the verification for this data being verified
+        value:
+          type: string
+          description: The actual data that was verified, such as a name or ID number.
+        is_matched_externally:
+          type: boolean
+          description: Specifies whether the data was verified by comparing it with an external source, such as a third-party verification provider, external database, or through documentary verification (e.g., matching documents against regulatory standards).
+        is_manually_verified:
+          type: boolean
+          description: Indicates whether the data was manually verified by an internal team or trusted individual. This is true when the verification process involves human intervention rather than an automated system, for example when verifying a document.
+      required:
+      - type
+      - outcome
+      title: IdentityVerificationVerifiedDataItems
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    IdentityVerificationVerificationType:
+      type: string
+      enum:
+      - DOCUMENT_MATCH
+      - DATABASE_MATCH
+      - MANUAL_VERIFICATION
+      title: IdentityVerificationVerificationType
+    NewIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: NewIdentityVerificationRequest
+    IdentityVerification:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: 'Unique identifier for an identity verification. This is the primary identifier for an identity verification and should be unique across all identity verifications. Updates to an identity verification should be made using this identifier.
+
+
+            This can reference:
+
+            - Your internal verification record ID
+
+            - The original provider''s verification ID (optionally with a prefix)
+
+            - Any unique identifier that allows traceability to the original data source'
+        timestamp:
+          type: string
+          format: date-time
+          description: When the identity verification completed, in ISO 8601 format. Use the timestamp from your verification provider's response.
+        related_company_id:
+          type: string
+          description: Unique identifier of the related company entity (used for business contexts). Only one of related_company_id and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: Unique identifier of the related person entity (used for retail contexts or when a person is the subject). Only one of related_company_id and related_person_id can be specified.
+        verification_provider:
+          type: string
+          description: Which verification provider verified those attributes for the person or company. If this is an internal process, mention the name of your company.
+        verification_overall_outcome:
+          type: string
+          description: Result of IDV screening returned from provider
+        verification_type:
+          $ref: '#/components/schemas/IdentityVerificationVerificationType'
+        verified_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationVerifiedDataItems'
+          description: 'Array of individual data points verified in this verification event only. Each item represents a specific piece of information (name, DOB, address, etc.) that was checked during this particular verification.
+
+
+            Do not include:
+
+            - Data points from other verification events
+
+            - Aggregated results from multiple verifications
+
+            - Data that wasn''t actually verified in this specific check
+
+
+            Example: If this verification only checked name and DOB, only include those two items in the array, even if other data points were verified in previous or separate verification events.'
+      required:
+      - verification_id
+      - timestamp
+      - verification_provider
+      - verified_data
+      description: 'Request body for adding IDV (Identity Verification) information for a person or company.
+
+
+        Note: Each API call represents a single verification event from one provider at a specific point in time. If you have multiple verification sources or multiple verification attempts, you must make separate API calls for each one.
+
+
+        For example:
+
+        - Document verification from Provider A requires one API call
+
+        - Database verification from Provider B requires another API call
+
+        - Re-verification after data update requires a new API call'
+      title: IdentityVerification
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

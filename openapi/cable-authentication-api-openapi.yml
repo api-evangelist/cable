@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts authentication API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: authentication
+paths:
+  /v2/auth/token:
+    post:
+      operationId: request-token
+      summary: Request a new access token
+      description: 'The Cable API uses API keys to authenticate requests. Make sure never to share your API keys - don’t put them in
+
+        repositories or leave them as human-readable in code, and always use HTTPS.
+
+
+        Request a new access token to authenticate requests to the API. The token will expire after the specified time.
+
+        To request an access token you must use the refresh / auth token provided to you by Cable.
+
+        You cannot request a new token with an existing access token.
+
+        '
+      tags:
+      - authentication
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAccessTokenResponse'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Token request parameters
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAccessTokenRequest'
+  /auth/token:
+    post:
+      operationId: request-token
+      summary: Request a new access token
+      description: Request a new access token to authenticate requests to the API. The token will expire after the specified time. To request an access token you must use the refresh / auth token provided to you by Cable. You cannot request a new token with an existing access token.
+      tags:
+      - authentication
+      parameters:
+      - name: Authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAccessTokenResponse'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Token request parameters
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAccessTokenRequest'
+components:
+  schemas:
+    AccessTokenScope:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The organization ID for which the token is requested. This is required.
+        scopes:
+          type: array
+          items:
+            type: string
+          description: The list of scopes that the token should have. For transaction data, the scope should be 'transactions:write'.
+      required:
+      - organization_id
+      - scopes
+      title: AccessTokenScope
+    NewAccessTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiry:
+          type: integer
+          format: int64
+          description: The expiration time in Unix time format.
+        organization_id:
+          type: string
+          description: The organization ID for which the token was requested.
+        organization_name:
+          type: string
+          description: The name of the organization for which the token was requested.
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+      - token
+      - expiry
+      - organization_id
+      - organization_name
+      title: NewAccessTokenResponse
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    NewAccessTokenRequest:
+      type: object
+      properties:
+        expiry_seconds:
+          type: integer
+          format: int64
+          description: The requested expiration time in seconds for the token. Must be between 300 (5 minutes) and 86400 (24 hours).
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+      - expiry_seconds
+      - scopes
+      title: NewAccessTokenRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

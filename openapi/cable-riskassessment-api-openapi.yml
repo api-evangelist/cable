@@ -1,0 +1,283 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts riskAssessment API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: riskAssessment
+paths:
+  /v2/risk_assessment:
+    get:
+      operationId: check-risk-assessment
+      summary: Check if a risk assessment exists
+      tags:
+      - riskAssessment
+      parameters:
+      - name: assessment_id
+        in: query
+        description: The unique identifier of the risk assessment
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Risk assessment exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Risk Assessment_checkRiskAssessment_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Risk assessment does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-risk-assessment
+      summary: Add risk assessment information
+      description: Endpoint for adding new customer risk assessment information
+      tags:
+      - riskAssessment
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Risk assessment added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Risk assessment data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Risk assessment already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Risk assessment data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRiskAssessmentRequest'
+    put:
+      operationId: update-risk-assessments
+      summary: Update risk assessment in batch
+      tags:
+      - riskAssessment
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Risk assessment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid risk assessment data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Risk assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of risk assessment update payloads. Each payload must include the 'assessment_id' to identify the identity verification and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRiskAsssessmentRequest'
+components:
+  schemas:
+    Risk Assessment_checkRiskAssessment_Response_200:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: The unique identifier of the risk assessment
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the risk assessment
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the risk assessment
+        organization_id:
+          type: string
+          description: The organization ID for which the risk assessment was found
+      title: Risk Assessment_checkRiskAssessment_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    RiskAssessment:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: Unique identifier for a risk assessment belonging to a risk assessment. This is the primary key for a risk assessment and should be unique across all risk assessments. Updates to a risk assessment should be made using this identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the risk assessment was performed, not when reported to Cable. Use ISO 8601 format.
+        related_company_id:
+          type: string
+          description: Unique identifier of the related company entity (used for business contexts). Only one of related_company_id and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: Unique identifier of the related person entity (used for retail contexts or when a person is the subject). Only one of related_company_id and related_person_id can be specified.
+        type:
+          type: string
+          description: Type of risk assessment (e.g., pre-onboarding risk rating, risk band, risk engine score)
+        outcome:
+          type: string
+          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
+      required:
+      - assessment_id
+      - timestamp
+      - type
+      - outcome
+      description: Request body for adding risk assessment information for a parent entity, applicable to both retail and business contexts
+      title: RiskAssessment
+    UpdateRiskAsssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: UpdateRiskAsssessmentRequest
+    NewRiskAssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: NewRiskAssessmentRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,330 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts transactionSuspiciousActivities API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: transactionSuspiciousActivities
+paths:
+  /v2/transaction_suspicious_activity:
+    get:
+      operationId: check-transaction-suspicious-activity
+      summary: Check if a transaction suspicious activity exists
+      tags:
+      - transactionSuspiciousActivities
+      parameters:
+      - name: suspicious_activity_id
+        in: query
+        description: The unique identifier of the transaction suspicious activity
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-suspicious-activity
+      summary: Add new transaction suspicious activities
+      tags:
+      - transactionSuspiciousActivities
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction suspicious activity added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction suspicious activity already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction suspicious activity data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionSuspiciousActivity'
+    put:
+      operationId: update-transaction-suspicious-activities
+      summary: Update transaction suspicious activities in batch
+      tags:
+      - transactionSuspiciousActivities
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction suspicious activity update payloads. Each payload must include the 'suspicious_activity_id' to identify the suspicious activity and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
+components:
+  schemas:
+    Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
+      title: NewTransactionSuspiciousActivity
+    UpdateTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionSuspiciousActivity'
+      description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionSuspiciousActivity
+    TransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction suspicious activity is test data, this should be set to true
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction in ISO 8601 format. Use the actual detection time, not the current timestamp.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time the transaction suspicious activity report was filed in ISO 8601 format. Use the actual filing time, not the current timestamp.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the suspicious activity was detected in your system, in ISO 8601 format.
+      required:
+      - suspicious_activity_id
+      - timestamp
+      title: TransactionSuspiciousActivity
+    NewTransactionSuspiciousActivityItems:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction suspicious activity is test data, this should be set to true
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction in ISO 8601 format. Use the actual detection time, not the current timestamp.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time the transaction suspicious activity report was filed in ISO 8601 format. Use the actual filing time, not the current timestamp.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the suspicious activity was detected in your system, in ISO 8601 format.
+      required:
+      - suspicious_activity_id
+      - detection_date
+      - timestamp
+      title: NewTransactionSuspiciousActivityItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

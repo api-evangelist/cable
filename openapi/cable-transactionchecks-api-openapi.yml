@@ -1,0 +1,351 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts transactionChecks API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: transactionChecks
+paths:
+  /v2/transaction_check:
+    get:
+      operationId: check-transaction-check
+      summary: Check if a transaction check exists
+      tags:
+      - transactionChecks
+      parameters:
+      - name: check_id
+        in: query
+        description: The unique identifier of the transaction check
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction check exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Checks_checkTransactionCheck_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-check
+      summary: Add new transaction check(s)
+      tags:
+      - transactionChecks
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction check added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction check already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction check data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionCheckRequest'
+    put:
+      operationId: update-transaction-checks
+      summary: Update transaction checks in batch
+      tags:
+      - transactionChecks
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction check updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction check update payloads. Each payload must include the 'check_id' to identify the transaction check and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionChecksRequest'
+components:
+  schemas:
+    NewTransactionCheckRequestItems:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a transaction check and should be unique across all transaction checks. Updates to a transaction check should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction check is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsStatus'
+        type:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction which the check is related to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the check relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this transaction check was performed in your system, in ISO 8601 format.
+      required:
+      - check_id
+      - status
+      - type
+      - timestamp
+      title: NewTransactionCheckRequestItems
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    TransactionCheck:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a transaction check and should be unique across all transaction checks. Updates to a transaction check should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction check is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/TransactionCheckStatus'
+        type:
+          $ref: '#/components/schemas/TransactionCheckType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction which the check is related to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the check relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this transaction check was performed in your system, in ISO 8601 format.
+      required:
+      - check_id
+      - timestamp
+      title: TransactionCheck
+    Transaction Checks_checkTransactionCheck_Response_200:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The unique identifier of the transaction check
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction check
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction check
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction check was found
+      title: Transaction Checks_checkTransactionCheck_Response_200
+    NewTransactionCheckRequestItemsStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: NewTransactionCheckRequestItemsStatus
+    UpdateTransactionChecksRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionCheck'
+      description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionChecksRequest
+    TransactionCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    TransactionCheckStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: TransactionCheckStatus
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    NewTransactionCheckRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
+      description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
+      title: NewTransactionCheckRequest
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

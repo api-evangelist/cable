@@ -1,0 +1,376 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts suspiciousActivities API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: suspiciousActivities
+paths:
+  /transaction_suspicious_activity:
+    get:
+      operationId: check-transaction-suspicious-activity
+      summary: Check if a transaction suspicious activity exists
+      tags:
+      - suspiciousActivities
+      parameters:
+      - name: suspicious_activity_id
+        in: query
+        description: The unique identifier of the transaction suspicious activity
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suspicious Activities_checkTransactionSuspiciousActivity_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-suspicious-activity
+      summary: Add new transaction suspicious activities
+      tags:
+      - suspiciousActivities
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction suspicious activity added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSuspiciousActivity'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction suspicious activity already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction suspicious activity data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionSuspiciousActivity'
+    put:
+      operationId: update-transaction-suspicious-activity
+      summary: Update an existing transaction suspicious activity
+      tags:
+      - suspiciousActivities
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSuspiciousActivity'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
+components:
+  schemas:
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
+    Suspicious Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    AdditionalProperties:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the additional property. This should be unique within the additional properties array.
+        value:
+          type: string
+          description: The value of the additional property.
+        type:
+          $ref: '#/components/schemas/AdditionalPropertiesType'
+          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+        description:
+          type: string
+          description: A description of the additional property. This should provide context for the value.
+      required:
+      - key
+      - value
+      - type
+      - description
+      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
+      title: AdditionalProperties
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
+      title: NewTransactionSuspiciousActivity
+    TransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new transaction suspicious activity, this field represents the detection time. When updating a transaction suspicious activity, this represents the time of the update.
+      required:
+      - suspicious_activity_id
+      - timestamp
+      title: TransactionSuspiciousActivity
+    UpdateTransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new transaction suspicious activity, this field represents the detection time. When updating a transaction suspicious activity, this represents the time of the update.
+      required:
+      - suspicious_activity_id
+      - timestamp
+      description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionSuspiciousActivity
+    NewTransactionSuspiciousActivityItems:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new transaction suspicious activity, this field represents the detection time. When updating a transaction suspicious activity, this represents the time of the update.
+      required:
+      - suspicious_activity_id
+      - detection_date
+      - timestamp
+      title: NewTransactionSuspiciousActivityItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

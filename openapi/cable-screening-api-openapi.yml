@@ -1,0 +1,711 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts screening API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: screening
+paths:
+  /v2/screening:
+    get:
+      operationId: check-screening
+      summary: Check if a screening exists
+      tags:
+      - screening
+      parameters:
+      - name: screening_id
+        in: query
+        description: The unique identifier of the screening
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Screening exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening_checkScreening_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Screening does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-screening
+      summary: Add new screening(s)
+      tags:
+      - screening
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Screening added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Screening already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Screening data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewScreeningRequest'
+    put:
+      operationId: update-screenings
+      summary: Update screenings in batch
+      tags:
+      - screening
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Screening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Screening not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of screening update payloads. Each payload must include the 'screening_id' to identify the screening and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScreeningsRequest'
+  /transaction_screening:
+    get:
+      operationId: check-transaction-screening
+      summary: Check if a transaction screening exists
+      tags:
+      - screening
+      parameters:
+      - name: screening_id
+        in: query
+        description: The unique identifier of the transaction screening
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction screening exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening_checkTransactionScreening_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction screening does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-screening
+      summary: Add new transaction screening(s)
+      tags:
+      - screening
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction screening added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionScreening'
+        '400':
+          description: Invalid transaction screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction screening already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction screening data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionScreeningRequest'
+    put:
+      operationId: update-transaction-screening
+      summary: Update an existing transaction screening
+      tags:
+      - screening
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction screening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionScreening'
+        '400':
+          description: Invalid transaction screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction screening not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionScreeningRequest'
+components:
+  schemas:
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Screening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for the screening. This is the primary key for a screening and should be unique across screenings.
+        type:
+          $ref: '#/components/schemas/ScreeningType'
+          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+        outcome:
+          $ref: '#/components/schemas/ScreeningOutcome'
+          description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+        outcome_details:
+          type: string
+          description: Further details on the reason of the screening outcome. For a transaction screening, it could be due to many reasons, so it could be relevant to include further details.
+        provider:
+          type: string
+          description: The provider that performed the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
+        timestamp:
+          type: string
+          format: date-time
+          description: When the screening was performed in your system, in ISO 8601 format.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the related transaction in case of a transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_person_id:
+          type: string
+          description: Unique identifier for the related person in case of a person and/or transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_company_id:
+          type: string
+          description: Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+      required:
+      - screening_id
+      - outcome
+      - timestamp
+      title: Screening
+    NewScreeningRequestItems:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for the screening. This is the primary key for a screening and should be unique across screenings.
+        type:
+          $ref: '#/components/schemas/NewScreeningRequestItemsType'
+          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+        outcome:
+          $ref: '#/components/schemas/NewScreeningRequestItemsOutcome'
+          description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+        outcome_details:
+          type: string
+          description: Further details on the reason of the screening outcome. For a transaction screening, it could be due to many reasons, so it could be relevant to include further details.
+        provider:
+          type: string
+          description: The provider that performed the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
+        timestamp:
+          type: string
+          format: date-time
+          description: When the screening was performed in your system, in ISO 8601 format.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the related transaction in case of a transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_person_id:
+          type: string
+          description: Unique identifier for the related person in case of a person and/or transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_company_id:
+          type: string
+          description: Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+      required:
+      - screening_id
+      - type
+      - outcome
+      - provider
+      - lists
+      - timestamp
+      title: NewScreeningRequestItems
+    NewTransactionScreeningRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionScreeningRequestItems'
+      description: Transaction screening data to add.
+      title: NewTransactionScreeningRequest
+    NewScreeningRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewScreeningRequestItems'
+      description: Screening data to add.
+      title: NewScreeningRequest
+    ScreeningOutcome:
+      type: string
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - FALSE_NEGATIVE
+      - FALSE_POSITIVE
+      - TRUE_NEGATIVE
+      - TRUE_POSITIVE
+      - SCREENED
+      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: ScreeningOutcome
+    UpdateTransactionScreeningRequest:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for a transaction screening. This is the primary key for a screening and should be unique across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction screening, this field represents the creation time. When updating a transaction screening, this represents the time of the update.
+      required:
+      - screening_id
+      - timestamp
+      description: Transaction screening data to update, referenced by 'sar_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionScreeningRequest
+    NewScreeningRequestItemsType:
+      type: string
+      enum:
+      - ADVERSE_MEDIA
+      - AML
+      - PEP
+      - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: NewScreeningRequestItemsType
+    ScreeningType:
+      type: string
+      enum:
+      - ADVERSE_MEDIA
+      - AML
+      - PEP
+      - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: ScreeningType
+    NewTransactionScreeningRequestItems:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for a transaction screening. This is the primary key for a screening and should be unique across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction screening, this field represents the creation time. When updating a transaction screening, this represents the time of the update.
+      required:
+      - screening_id
+      - type
+      - outcome
+      - provider
+      - lists
+      - timestamp
+      title: NewTransactionScreeningRequestItems
+    UpdateScreeningsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Screening'
+      description: Screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateScreeningsRequest
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
+    Screening_checkTransactionScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the transaction screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction screening
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction screening was found
+      title: Screening_checkTransactionScreening_Response_200
+    TransactionScreening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for a transaction screening. This is the primary key for a screening and should be unique across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction screening, this field represents the creation time. When updating a transaction screening, this represents the time of the update.
+      required:
+      - screening_id
+      - timestamp
+      title: TransactionScreening
+    AdditionalProperties:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the additional property. This should be unique within the additional properties array.
+        value:
+          type: string
+          description: The value of the additional property.
+        type:
+          $ref: '#/components/schemas/AdditionalPropertiesType'
+          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+        description:
+          type: string
+          description: A description of the additional property. This should provide context for the value.
+      required:
+      - key
+      - value
+      - type
+      - description
+      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
+      title: AdditionalProperties
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    Screening_checkScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the screening
+        organization_id:
+          type: string
+          description: The organization ID for which the screening was found
+      title: Screening_checkScreening_Response_200
+    NewScreeningRequestItemsOutcome:
+      type: string
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - FALSE_NEGATIVE
+      - FALSE_POSITIVE
+      - TRUE_NEGATIVE
+      - TRUE_POSITIVE
+      - SCREENED
+      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: NewScreeningRequestItemsOutcome
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,35 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts helper API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: helper
+paths:
+  /status:
+    get:
+      operationId: status-check
+      summary: Organization status check
+      description: Endpoint for organization status check purposes
+      tags:
+      - helper
+      parameters:
+      - name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

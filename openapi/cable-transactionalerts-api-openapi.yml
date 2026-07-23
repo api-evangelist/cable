@@ -1,0 +1,346 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts transactionAlerts API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: transactionAlerts
+paths:
+  /v2/transaction_alert:
+    get:
+      operationId: check-transaction-alert
+      summary: Check if a transaction alert exists
+      tags:
+      - transactionAlerts
+      parameters:
+      - name: alert_id
+        in: query
+        description: The unique identifier of the transaction alert
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction alert exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Alerts_checkTransactionAlert_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-alert
+      summary: Add new transaction alert(s)
+      tags:
+      - transactionAlerts
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction alert added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction alert already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction alert data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionAlertRequest'
+    put:
+      operationId: update-transaction-alerts
+      summary: Update transaction alerts in batch
+      tags:
+      - transactionAlerts
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction alert updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction alert update payloads. Each payload must include the 'alert_id' to identify the alert and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionAlertsRequest'
+components:
+  schemas:
+    TransactionAlertCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: TransactionAlertCheckType
+    NewTransactionAlertRequestItemsStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - CLOSED
+      title: NewTransactionAlertRequestItemsStatus
+    UpdateTransactionAlertsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionAlert'
+      description: Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionAlertsRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    NewTransactionAlertRequestItemsCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: NewTransactionAlertRequestItemsCheckType
+    TransactionAlertStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - CLOSED
+      title: TransactionAlertStatus
+    TransactionAlert:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert and should be unique across all transaction alerts. Updates to a transaction alert should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction alert is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/TransactionAlertStatus'
+        check_type:
+          $ref: '#/components/schemas/TransactionAlertCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the alert relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this alert was generated in your system, in ISO 8601 format.
+      required:
+      - alert_id
+      - timestamp
+      title: TransactionAlert
+    Transaction Alerts_checkTransactionAlert_Response_200:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: The unique identifier of the transaction alert
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction alert
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction alert
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction alert was found
+      title: Transaction Alerts_checkTransactionAlert_Response_200
+    NewTransactionAlertRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
+      description: Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the transaction check.
+      title: NewTransactionAlertRequest
+    NewTransactionAlertRequestItems:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert and should be unique across all transaction alerts. Updates to a transaction alert should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction alert is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsStatus'
+        check_type:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the alert relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this alert was generated in your system, in ISO 8601 format.
+      required:
+      - alert_id
+      - status
+      - timestamp
+      title: NewTransactionAlertRequestItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

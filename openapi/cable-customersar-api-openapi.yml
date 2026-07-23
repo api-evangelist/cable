@@ -1,0 +1,289 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts customerSar API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: customerSar
+paths:
+  /v2/customer_sar:
+    get:
+      operationId: check-customer-sar
+      summary: Check if a customer sar exists
+      tags:
+      - customerSar
+      parameters:
+      - name: sar_id
+        in: query
+        description: The unique identifier of the customer SAR
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Customer SAR exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSAR_checkCustomerSAR_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Customer SAR does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-customer-sar
+      summary: Add customer sar information
+      description: Endpoint for adding new customer sar
+      tags:
+      - customerSar
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Customer SAR added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid customer SAR data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Customer SAR already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerSARRequest'
+    put:
+      operationId: update-customer-sa-rs
+      summary: Update customer SAR in batch
+      tags:
+      - customerSar
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid customer SAR data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Customer SAR not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of customer SAR payloads. Each payload must include the 'sar_id' to identify the customer suspicious activity report and can include any other fields that need to be updated. The 'timestamp' field should represent the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerSARRequest'
+components:
+  schemas:
+    CustomerSAR:
+      type: object
+      properties:
+        sar_id:
+          type: string
+          description: Unique identifier for a suspicious activity report belonging to a customer suspicious activity report. This is the primary key for a customer suspicious activity report and should be unique across all customer suspicious activity reports. Updates to a customer suspicious activity report should be made using this identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this SAR was filed or updated in your system, in ISO 8601 format.
+        status:
+          $ref: '#/components/schemas/CustomerSarStatus'
+          description: The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it is not going to be filed.
+        sar_reason:
+          type: string
+          description: The reason for filing up a SAR for this person or company
+        related_company_id:
+          type: string
+          description: Unique identifier of the related company entity (used for business contexts). At least one of related_company_id and related_person_id should be specified.
+        related_person_id:
+          type: string
+          description: Unique identifier of the related person entity (used for retail contexts or when a person is the subject). At least only one of related_person_id and related_company_id should be specified.
+      required:
+      - sar_id
+      - timestamp
+      - status
+      description: Request body for adding SAR (Suspicious Activity Report) information for a person or company
+      title: CustomerSAR
+    NewCustomerSARRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerSAR'
+      title: NewCustomerSARRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    UpdateCustomerSARRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerSAR'
+      title: UpdateCustomerSARRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    CustomerSarStatus:
+      type: string
+      enum:
+      - PENDING
+      - FILED
+      - CANCELLED
+      description: The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it is not going to be filed.
+      title: CustomerSarStatus
+    CustomerSAR_checkCustomerSAR_Response_200:
+      type: object
+      properties:
+        sar_id:
+          type: string
+          description: The unique identifier of the customer SAR
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the customer SAR
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the customer SAR
+        organization_id:
+          type: string
+          description: The organization ID for which the customer SAR was found
+      title: CustomerSAR_checkCustomerSAR_Response_200
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

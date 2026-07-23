@@ -1,0 +1,1063 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts transactions API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: transactions
+paths:
+  /v2/transaction:
+    get:
+      operationId: check-transaction
+      summary: Check if a transaction exists
+      tags:
+      - transactions
+      parameters:
+      - name: tx_id
+        in: query
+        description: The unique identifier of the transaction
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_checkTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction
+      summary: Add a new transaction
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction data to add. Amount and currency are required for new transactions. At least one of sender_id or receiver_id must be provided with their respective country codes.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionRequest'
+    put:
+      operationId: update-transaction
+      summary: Update an existing transaction
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionRequest'
+    delete:
+      operationId: delete-transaction
+      summary: Submit a deletion request for a transaction and any related data
+      description: 'This operation will submit a request to delete the transaction and any
+
+        related data.
+
+
+        The deletion request will be processed by the system and
+
+        the data will be removed permanently from Cable''s system. Deletion
+
+        requests are not processed immediately and may take some time to
+
+        complete.
+
+
+        The status of the deletion request can be checked using the
+
+        deletion request ID and the status endpoint.
+
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+
+        '
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_deleteTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tx_id:
+                  type: string
+                  description: The unique identifier of the transaction
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+              - tx_id
+              - reason
+  /v2/transactions/batch:
+    post:
+      operationId: add-transactions-batch
+      summary: Add transactions in batch
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction payloads. Each transaction must have at least one of sender_id or receiver_id with their respective country codes.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchNewTransactionRequest'
+    put:
+      operationId: update-transactions-batch
+      summary: Update transactions in batch
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction update payloads. Each payload must include the 'tx_id' to identify the transaction and can include any other fields that need to be updated. The 'timestamp' field should represent the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateTransactionRequest'
+  /transaction:
+    get:
+      operationId: check-transaction
+      summary: Check if a transaction exists
+      tags:
+      - transactions
+      parameters:
+      - name: tx_id
+        in: query
+        description: The unique identifier of the transaction
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_checkTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction
+      summary: Add a new transaction
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Transaction added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction data to add. All fields are required except for 'amount_usd', which will be calculated using the latest exchange rate if not provided.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionRequest_2'
+    put:
+      operationId: update-transaction
+      summary: Update an existing transaction
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionRequest_2'
+  /transactions/batch:
+    post:
+      operationId: add-transactions-batch
+      summary: Add transactions in batch
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction payloads. Each payload must include all required fields except 'amount_usd'.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchNewTransactionRequest'
+    put:
+      operationId: update-transactions-batch
+      summary: Update transactions in batch
+      tags:
+      - transactions
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction update payloads. Each payload must include the 'tx_id' to identify the transaction and can include any other fields that need to be updated. The 'timestamp' field should represent the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateTransactionRequest'
+components:
+  schemas:
+    UpdateTransactionRequestMethod:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - GOOGLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - FEDNOW
+      - PROV_X_TRANSFER
+      - CARD
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    NewTransactionRequestMethod_2:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - PROV_X_TRANSFER
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
+    NewTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    UpdateTransactionRequestMethod_2:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - PROV_X_TRANSFER
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    BatchNewTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
+    UpdateTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
+    UpdateTransactionRequest_2:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
+        type:
+          $ref: '#/components/schemas/UpdateTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod_2'
+          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type: number
+          format: double
+          description: Transaction amount. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type: string
+          description: Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        receiver_id:
+          type: string
+          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        status:
+          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+      - timestamp
+      - tx_id
+      description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionRequest
+    Transactions_checkTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction was found
+      title: Transactions_checkTransaction_Response_200
+    Transactions_deleteTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Transactions_deleteTransaction_Response_200
+    UpdateTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestType
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction is test data, this should be set to true
+        type:
+          $ref: '#/components/schemas/UpdateTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod'
+          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are allowed for auth-only, declined, and pre-authorization transactions. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in your customer data sent to Cable. Required if receiver_id is not provided.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+        receiver_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+        status:
+          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+      - timestamp
+      - tx_id
+      description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionRequest
+    NewTransactionRequestMethod:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - GOOGLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - FEDNOW
+      - PROV_X_TRANSFER
+      - CARD
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
+    NewTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction is test data, this should be set to true
+        type:
+          $ref: '#/components/schemas/NewTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/NewTransactionRequestMethod'
+          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are allowed for auth-only, declined, and pre-authorization transactions. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in your customer data sent to Cable. Required if receiver_id is not provided.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+        receiver_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+        status:
+          $ref: '#/components/schemas/NewTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+      - timestamp
+      - tx_id
+      - type
+      - method
+      - amount
+      - currency
+      - status
+      description: 'Transaction data to add. Required fields include: timestamp, tx_id, type, method, amount, currency, and status.
+
+
+        Identity requirements:
+
+        - At least one of ''sender_id'' or ''receiver_id'' must be provided
+
+        - If ''sender_id'' is provided, ''sender_country'' is also required
+
+        - If ''receiver_id'' is provided, ''receiver_country'' is also required
+
+
+        Optional fields:
+
+        - ''amount_usd'': Will be automatically calculated using current exchange rates if not provided
+
+
+        The ''timestamp'' field represents the transaction creation time.
+
+        '
+      title: NewTransactionRequest
+    NewTransactionRequest_2:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
+        type:
+          $ref: '#/components/schemas/NewTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/NewTransactionRequestMethod_2'
+          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type: number
+          format: double
+          description: Transaction amount. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type: string
+          description: Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        receiver_id:
+          type: string
+          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        status:
+          $ref: '#/components/schemas/NewTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+      - timestamp
+      - tx_id
+      - type
+      - method
+      - amount
+      - currency
+      - sender_id
+      - sender_country
+      - receiver_country
+      - status
+      description: Transaction data to add. All fields are required except for 'amount_usd', which will be calculated using the latest exchange rate if not provided. The 'timestamp' field represents the creation time.
+      title: NewTransactionRequest
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

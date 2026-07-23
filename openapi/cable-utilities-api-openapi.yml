@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts utilities API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: utilities
+paths:
+  /v2/deletion_request:
+    get:
+      operationId: get-deletion-request
+      summary: Check the status of a deletion request
+      tags:
+      - utilities
+      parameters:
+      - name: deletion_request_id
+        in: query
+        description: The unique identifier of the deletion request
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Deletion request status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilities_getDeletionRequest_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Deletion request not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+components:
+  schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      description: The status of the deletion request
+      title: V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus
+    Utilities_getDeletionRequest_Response_200:
+      type: object
+      properties:
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+        resource_type:
+          type: string
+          description: The type of resource that was deleted
+        resource_id:
+          type: string
+          description: The unique identifier of the resource that was deleted
+        status:
+          $ref: '#/components/schemas/V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus'
+          description: The status of the deletion request
+      title: Utilities_getDeletionRequest_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,291 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts onboardingFlow API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: onboardingFlow
+paths:
+  /v2/onboarding_flow:
+    get:
+      operationId: check-onboarding-f-low
+      summary: Check if an onboarding flow exists
+      tags:
+      - onboardingFlow
+      parameters:
+      - name: onboarding_flow_id
+        in: query
+        description: The unique identifier of the onboarding flow
+        required: true
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Onboarding flow exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Onboarding Flow_checkOnboardingFLow_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-onboarding-flow
+      summary: Add onboarding flow information
+      description: Endpoint for adding new Onboarding Flow information
+      tags:
+      - onboardingFlow
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Onboarding flow added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid onboarding flow data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Onboarding flow already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOnboardingFlowRequest'
+    put:
+      operationId: update-onboarding-flows
+      summary: Update onboarding flow in batch
+      tags:
+      - onboardingFlow
+      parameters:
+      - name: Authorization
+        in: header
+        description: Bearer authentication
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Onboarding flows updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Onbnoarding flow data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Onboarding flow not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of onboarding flow update payloads. Each payload must include the 'onboarding_id' to identify the onboarding flow and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOnboardingFlowRequest'
+components:
+  schemas:
+    OnboardingFlow:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: Unique identifier for an onboarding flow belonging to an onboarding flow. This is the primary key for an onboarding flow and should be unique across all onboarding flows. Updates to an onboarding flow should be made using this identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this onboarding flow step occurred in your system, in ISO 8601 format.
+        related_company_id:
+          type: string
+          description: Unique identifier of the related company entity (used for business contexts). Only one of related_company_id and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: Unique identifier of the related person entity (used for retail contexts or when a person is the subject). Only one of related_company_id and related_person_id can be specified.
+        flow_name:
+          type: string
+          description: Latest onboarding flow that this entity has gone through, e.g. manual KYC, automated onboarding, Simplified Due Diligence, Enhanced Due Diligence
+        outcome:
+          type: string
+          description: Outcome for the latest onboarding flow that this entity has gone through, e.g. automated approval, manual approval, automated rejection, manual rejection, EDD required
+        outcome_reason:
+          $ref: '#/components/schemas/OnboardingFlowOutcomeReason'
+      required:
+      - onboarding_flow_id
+      - timestamp
+      - flow_name
+      - outcome
+      description: Request body for adding Onboarding Flow information for a parent entity, applicable to both retail and business contexts
+      title: OnboardingFlow
+    Onboarding Flow_checkOnboardingFLow_Response_200:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: The unique identifier of the onboarding flow
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the onboarding flow
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the onboarding flow
+        organization_id:
+          type: string
+          description: The organization ID for which the onboarding flow was found
+      title: Onboarding Flow_checkOnboardingFLow_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    OnboardingFlowOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: OnboardingFlowOutcomeReason
+    UpdateOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: UpdateOnboardingFlowRequest
+    NewOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: NewOnboardingFlowRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

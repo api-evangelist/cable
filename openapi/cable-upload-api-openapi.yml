@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: API Reference alerts upload API
+  version: 1.0.0
+servers:
+- url: https://api.cable.tech
+  description: Production
+tags:
+- name: upload
+paths:
+  /v1/upload/csv:
+    post:
+      operationId: upload-csv
+      summary: CSV file upload
+      tags:
+      - upload
+      parameters:
+      - name: x-api-key
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Operation success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Upload_uploadCSV_Response_200'
+      requestBody:
+        description: CSV file(s) to be uploaded
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+components:
+  schemas:
+    Upload_uploadCSV_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Upload_uploadCSV_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer
