@@ -1,0 +1,60 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  openapi/cable-api-reference-openapi-original.yml + https://docs.cable.tech/api-documentation/api-reference
+summary: >-
+  Cross-cutting request/response semantics for the Cable data-ingestion API, derived from the
+  OpenAPI and the published API documentation. The API is resource-oriented, JSON in / JSON out,
+  and uses standard HTTP verbs and status codes. Because Cable's analysis is time-dimensional and
+  the API is primarily an ingestion entry point, the resource model differs from a traditional
+  read-oriented REST API: most resources are written (POST/PUT) or existence-checked (GET by id).
+authentication:
+  style: bearer-token-via-token-exchange
+  detail: >-
+    Long-lived refresh/auth key -> POST /auth/token -> short-lived scoped bearer access token
+    presented in the Authorization header. See authentication/cable-authentication.yml.
+content_type: application/json
+idempotency:
+  supported: false
+  note: >-
+    No Idempotency-Key header or idempotency contract is documented or present in the OpenAPI.
+    Writes are POST (create) / PUT (update); a 409 (already exists) is returned when a resource
+    with the same id already exists, and GET check endpoints let clients test existence before
+    writing. No dedicated idempotency-key mechanism.
+pagination:
+  supported: false
+  note: >-
+    The ingestion API exposes existence-check GETs (by id) and batch write endpoints rather than
+    list/collection endpoints, so no cursor/offset pagination is present in the spec.
+batch:
+  supported: true
+  endpoints:
+  - POST /v2/transactions/batch
+  - PUT /v2/transactions/batch
+  note: Batch create/update variants exist for high-volume ingestion alongside single-resource writes.
+versioning:
+  scheme: uri-path
+  current: v2
+  also_present:
+  - v1 (Customer Data API)
+  note: >-
+    Version is carried in the URL path (/v2/..., /v1/...). The v2 API Reference is current; a v1.0
+    documentation version is also published. See lifecycle/cable-lifecycle.yml.
+error_envelope:
+  shape: "GeneralError { code: integer, message: string, errors[]: { field-level detail } }"
+  media_type: application/json
+  rfc9457: false
+  note: Custom JSON error envelope, not application/problem+json. See errors/cable-error-codes.yml.
+rate_limiting:
+  signaled: true
+  mechanism: HTTP 429 (Rate limit exceeded) returned on all endpoints
+  note: >-
+    A 429 response is documented on every operation, but no specific limit counts or rate-limit
+    response headers (e.g. X-RateLimit-*) are published.
+request_tracing:
+  documented: false
+cross_links:
+  authentication: authentication/cable-authentication.yml
+  errors: errors/cable-error-codes.yml
+  lifecycle: lifecycle/cable-lifecycle.yml
+  data_model: data-model/cable-data-model.yml

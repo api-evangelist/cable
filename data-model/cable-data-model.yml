@@ -1,0 +1,55 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cable-api-reference-openapi-original.yml
+note: >-
+  Entity-relationship graph derived from the Cable v2 API Reference OpenAPI, from id-reference
+  fields (tx_id, person_id, company_id, related_*_id, sender_id, receiver_id, organization_id).
+  Cable's model is a time-dimensional financial-crime data graph: an organization ingests
+  transactions and the customer/entity records and compliance artifacts that relate to them.
+entities:
+- name: organization
+  id_field: organization_id
+  note: Top-level tenant. Every ingested resource is scoped to an organization.
+- name: transaction
+  id_field: tx_id
+- name: transaction_check
+  id_field: check_id
+- name: transaction_alert
+  id_field: alert_id
+- name: transaction_suspicious_activity
+  id_field: suspicious_activity_id
+- name: screening
+  id_field: screening_id
+- name: risk_assessment
+  id_field: assessment_id
+- name: person
+  id_field: person_id
+- name: company
+  id_field: company_id
+- name: identity_verification
+  id_field: verification_id
+- name: onboarding_flow
+  id_field: onboarding_flow_id
+- name: customer_sar
+  id_field: sar_id
+- name: deletion_request
+  id_field: deletion_request_id
+relationships:
+- {from: transaction, to: organization, kind: belongs_to, via: organization_id}
+- {from: transaction, to: person_or_company, kind: has_one, via: sender_id}
+- {from: transaction, to: person_or_company, kind: has_one, via: receiver_id}
+- {from: transaction_check, to: transaction, kind: belongs_to, via: related_tx_id}
+- {from: transaction_alert, to: transaction_check, kind: belongs_to, via: related_check_id}
+- {from: transaction_alert, to: transaction, kind: has_many, via: related_tx_ids}
+- {from: transaction_suspicious_activity, to: transaction_alert, kind: belongs_to, via: related_alert_id}
+- {from: transaction_suspicious_activity, to: person, kind: has_one, via: related_person_id}
+- {from: transaction_suspicious_activity, to: company, kind: has_one, via: related_company_id}
+- {from: screening, to: person, kind: has_one, via: related_person_id}
+- {from: screening, to: company, kind: has_one, via: related_company_id}
+- {from: risk_assessment, to: person, kind: has_one, via: related_person_id}
+- {from: risk_assessment, to: company, kind: has_one, via: related_company_id}
+- {from: identity_verification, to: person, kind: has_one, via: related_person_id}
+- {from: onboarding_flow, to: person, kind: has_one, via: related_person_id}
+- {from: onboarding_flow, to: company, kind: has_one, via: related_company_id}
+- {from: customer_sar, to: person, kind: has_one, via: related_person_id}
+- {from: customer_sar, to: company, kind: has_one, via: related_company_id}

@@ -1,0 +1,25 @@
+generated: '2026-07-18'
+method: searched
+probe: true
+source: https://cable.tech/security
+url: https://cable.tech/security
+certifications:
+- SOC 2 Type I
+compliance_frameworks_supported:
+- US Bank Secrecy Act
+- UK Money Laundering Regulations
+- Bermuda Financial Crime Regulations
+- Ireland Criminal Justice Act
+- Reg E (EFTA)
+- Reg B (ECOA)
+- Reg Z (TILA)
+- UDAAP
+notes: >-
+  Cable states it is SOC 2 Type I certified on its security page. No ISO 27001, PCI DSS,
+  HIPAA, or FedRAMP certification is claimed, and GDPR is not asserted as a held certification.
+  The regulatory frameworks listed are the compliance frameworks Cable's product tests customer
+  activity against, not certifications held by Cable itself.
+evidence:
+- source: https://cable.tech/security
+  keywords:
+  - soc 2 type i

@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+status: published
+source: https://docs.cable.tech/llms.txt
+server:
+  name: cable-docs
+  description: >-
+    Cable publishes an official hosted MCP server for its documentation, advertised in its
+    llms.txt for AI client integration (Claude Code, Cursor, etc.). It exposes the Cable
+    knowledge base and API documentation to MCP-capable agents for retrieval/search. It is a
+    documentation MCP server, not a data-plane server for the Cable ingestion API itself.
+  transport: http
+  url: https://docs.cable.tech/_mcp/server
+  versioned_urls:
+  - https://docs.cable.tech/v-2-0/_mcp/server
+  - https://docs.cable.tech/product-updates/_mcp/server
+notes: >-
+  The Cable data-ingestion API (transactions, screening, risk assessment, etc.) is not itself
+  exposed as an MCP server; the operations in openapi/ could be forged into a candidate data-plane
+  MCP server as a follow-up. Tool names for the docs MCP server are not fabricated here.

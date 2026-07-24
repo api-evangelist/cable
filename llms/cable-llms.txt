@@ -1,0 +1,80 @@
+> For clean Markdown of any page, append .md to the page URL.
+> For a complete documentation index, see https://docs.cable.tech/v-2-0/llms.txt.
+> For AI client integration (Claude Code, Cursor, etc.), connect to the MCP server at https://docs.cable.tech/v-2-0/_mcp/server.
+
+# v2.0
+
+## Docs
+
+- [Knowledge Base](https://docs.cable.tech/knowledge-base/getting-started.md)
+- [Automated Testing Overview](https://docs.cable.tech/knowledge-base/overviews/automated-testing.md): Version 1.0 - January 2025
+- [Financial Crime Risk Assessment Overview](https://docs.cable.tech/knowledge-base/overviews/financial-crime-risk-assessment.md): Version 1.0 - January 2025
+- [Getting Started with Assurance](https://docs.cable.tech/knowledge-base/product-guides/getting-started-with-assurance.md): An introduction to Cable Assurance and how to use it to manage your financial crime controls and requirements
+- [Financial Crime Risk Assessment](https://docs.cable.tech/knowledge-base/product-guides/financial-crime-risk-assessment.md)
+- [Actions](https://docs.cable.tech/knowledge-base/product-guides/actions.md): The Actions page in Cable provides you with a single view of upcoming actions across your whole portfolio and specific partners.
+- [Documents Overview](https://docs.cable.tech/knowledge-base/product-guides/documents-beta/overview.md): Manage your own compliance documents, request documents from partners, and manage everything in one place.
+- [My Documents](https://docs.cable.tech/knowledge-base/product-guides/documents-beta/my-documents.md): Build and maintain your organization's compliance document collection
+- [Document Requests](https://docs.cable.tech/knowledge-base/product-guides/documents-beta/requests.md): Request documents from partners and respond to incoming requests
+- [Document Lists](https://docs.cable.tech/knowledge-base/product-guides/documents-beta/lists.md): Group templates and send bulk requests to multiple partners
+- [Migration from Legacy Documents](https://docs.cable.tech/knowledge-base/product-guides/documents-beta/migration.md): Transitioning from the previous Documents feature
+- [Analytics Overview](https://docs.cable.tech/knowledge-base/product-guides/analytics-beta/overview.md): Monitor your compliance program health with real-time dashboards and metrics.
+- [Executive Summary Dashboard](https://docs.cable.tech/knowledge-base/product-guides/analytics-beta/executive-summary.md): Monitor your compliance program health at a glance with key metrics and trends.
+- [Documents](https://docs.cable.tech/knowledge-base/product-guides/documents-legacy.md): The Documents page in Cable provides you with a single view of Document requests and received files across your whole portfolio or for a specific partner.
+- [Managing Partners and Users](https://docs.cable.tech/knowledge-base/product-guides/managing-partners-and-users.md): This guide is for Customers of Cable wishing to add a partner/downstream program in the Cable App.
+- [Company Profile](https://docs.cable.tech/knowledge-base/product-guides/company-profile.md): This guide is for Customers of Cable wishing to collect basic information about a partner/downstream program in the Cable App.
+- [Financial Crime Risk Assessment Methodology](https://docs.cable.tech/knowledge-base/methodologies/financial-crime-risk-assessment.md): Version 1.3 - March 2025
+- [Methodology for Automated Updates to the Financial Crime Risk Assessment](https://docs.cable.tech/knowledge-base/methodologies/automated-updates-to-the-financial-crime-risk-assessment.md): Version 1.0 - March 2025
+- [Third Party Financial Crime Risk Assessment Methodology](https://docs.cable.tech/knowledge-base/methodologies/third-party-financial-crime-risk-assessment.md): Version 1.1 - March 2025
+- [SFTP Data Integration](https://docs.cable.tech/knowledge-base/integrations/sftp-data-integration.md): Connect to Cable's SFTP server to securely deliver data files for Automated Assurance
+- [Enabling SSO with SAML](https://docs.cable.tech/knowledge-base/configuring-cable/enabling-sso-with-saml.md): Setup SSO authentication using SAML to manage access to your Cable App with your existing Identity Provider (available by Request)
+- [API Documentation](https://docs.cable.tech/api-documentation/getting-started.md)
+- [API Reference](https://docs.cable.tech/api-documentation/api-reference.md)
+
+## API Docs
+
+- API Reference > Authentication [Request a new access token](https://docs.cable.tech/api-documentation/api-reference/authentication/request-token.md)
+- API Reference > Transactions [Check if a transaction exists](https://docs.cable.tech/api-documentation/api-reference/transactions/check-transaction.md)
+- API Reference > Transactions [Add a new transaction](https://docs.cable.tech/api-documentation/api-reference/transactions/add-transaction.md)
+- API Reference > Transactions [Update an existing transaction](https://docs.cable.tech/api-documentation/api-reference/transactions/update-transaction.md)
+- API Reference > Transactions [Submit a deletion request for a transaction and any related data](https://docs.cable.tech/api-documentation/api-reference/transactions/delete-transaction.md)
+- API Reference > Transactions [Add transactions in batch](https://docs.cable.tech/api-documentation/api-reference/transactions/add-transactions-batch.md)
+- API Reference > Transactions [Update transactions in batch](https://docs.cable.tech/api-documentation/api-reference/transactions/update-transactions-batch.md)
+- API Reference > Transaction Checks [Check if a transaction check exists](https://docs.cable.tech/api-documentation/api-reference/transaction-checks/check-transaction-check.md)
+- API Reference > Transaction Checks [Add new transaction check(s)](https://docs.cable.tech/api-documentation/api-reference/transaction-checks/add-transaction-check.md)
+- API Reference > Transaction Checks [Update transaction checks in batch](https://docs.cable.tech/api-documentation/api-reference/transaction-checks/update-transaction-checks.md)
+- API Reference > Transaction Alerts [Check if a transaction alert exists](https://docs.cable.tech/api-documentation/api-reference/transaction-alerts/check-transaction-alert.md)
+- API Reference > Transaction Alerts [Add new transaction alert(s)](https://docs.cable.tech/api-documentation/api-reference/transaction-alerts/add-transaction-alert.md)
+- API Reference > Transaction Alerts [Update transaction alerts in batch](https://docs.cable.tech/api-documentation/api-reference/transaction-alerts/update-transaction-alerts.md)
+- API Reference > Transaction Suspicious Activities [Check if a transaction suspicious activity exists](https://docs.cable.tech/api-documentation/api-reference/transaction-suspicious-activities/check-transaction-suspicious-activity.md)
+- API Reference > Transaction Suspicious Activities [Add new transaction suspicious activities](https://docs.cable.tech/api-documentation/api-reference/transaction-suspicious-activities/add-transaction-suspicious-activity.md)
+- API Reference > Transaction Suspicious Activities [Update transaction suspicious activities in batch](https://docs.cable.tech/api-documentation/api-reference/transaction-suspicious-activities/update-transaction-suspicious-activities.md)
+- API Reference > Screening [Check if a screening exists](https://docs.cable.tech/api-documentation/api-reference/screening/check-screening.md)
+- API Reference > Screening [Add new screening(s)](https://docs.cable.tech/api-documentation/api-reference/screening/add-screening.md)
+- API Reference > Screening [Update screenings in batch](https://docs.cable.tech/api-documentation/api-reference/screening/update-screenings.md)
+- API Reference > Risk Assessment [Check if a risk assessment exists](https://docs.cable.tech/api-documentation/api-reference/risk-assessment/check-risk-assessment.md)
+- API Reference > Risk Assessment [Add risk assessment information](https://docs.cable.tech/api-documentation/api-reference/risk-assessment/add-risk-assessment.md)
+- API Reference > Risk Assessment [Update risk assessment in batch](https://docs.cable.tech/api-documentation/api-reference/risk-assessment/update-risk-assessments.md)
+- API Reference > Person [Check if a person exists](https://docs.cable.tech/api-documentation/api-reference/person/check-person.md)
+- API Reference > Person [Add person information](https://docs.cable.tech/api-documentation/api-reference/person/add-person-info.md)
+- API Reference > Person [Update person in batch](https://docs.cable.tech/api-documentation/api-reference/person/update-persons.md)
+- API Reference > Person [Submit a deletion request for a person and any related data](https://docs.cable.tech/api-documentation/api-reference/person/delete-person.md)
+- API Reference > Identity Verification [Check if a identity verification exists](https://docs.cable.tech/api-documentation/api-reference/identity-verification/check-identity-verification.md)
+- API Reference > Identity Verification [Add identity verification](https://docs.cable.tech/api-documentation/api-reference/identity-verification/add-identity-verification.md)
+- API Reference > Identity Verification [Update identity verification in batch](https://docs.cable.tech/api-documentation/api-reference/identity-verification/update-identity-verifications.md)
+- API Reference > Onboarding Flow [Check if an onboarding flow exists](https://docs.cable.tech/api-documentation/api-reference/onboarding-flow/check-onboarding-f-low.md)
+- API Reference > Onboarding Flow [Add onboarding flow information](https://docs.cable.tech/api-documentation/api-reference/onboarding-flow/add-onboarding-flow.md)
+- API Reference > Onboarding Flow [Update onboarding flow in batch](https://docs.cable.tech/api-documentation/api-reference/onboarding-flow/update-onboarding-flows.md)
+- API Reference > Company [Check if a company exists](https://docs.cable.tech/api-documentation/api-reference/company/check-company-info.md)
+- API Reference > Company [Add company information](https://docs.cable.tech/api-documentation/api-reference/company/add-company-info.md)
+- API Reference > Company [Update companies in batch](https://docs.cable.tech/api-documentation/api-reference/company/update-companies.md)
+- API Reference > Company [Submit a deletion request for a company and any related data](https://docs.cable.tech/api-documentation/api-reference/company/delete-company.md)
+- API Reference > Customer SAR [Check if a customer sar exists](https://docs.cable.tech/api-documentation/api-reference/customer-sar/check-customer-sar.md)
+- API Reference > Customer SAR [Add customer sar information](https://docs.cable.tech/api-documentation/api-reference/customer-sar/add-customer-sar.md)
+- API Reference > Customer SAR [Update customer SAR in batch](https://docs.cable.tech/api-documentation/api-reference/customer-sar/update-customer-sa-rs.md)
+- API Reference > Utilities [Check the status of a deletion request](https://docs.cable.tech/api-documentation/api-reference/utilities/get-deletion-request.md)
+
+## OpenAPI Specification
+
+The raw OpenAPI 3.1 specification for this API is available at:
+- [OpenAPI JSON](https://docs.cable.tech/openapi.json)
+- [OpenAPI YAML](https://docs.cable.tech/openapi.yaml)

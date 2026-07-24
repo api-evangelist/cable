@@ -1,0 +1,2013 @@
+openapi: 3.1.0
+info:
+  title: Transaction Data API
+  version: 1.0.0
+paths:
+  /auth/token:
+    post:
+      operationId: request-token
+      summary: Request a new access token
+      description: >-
+        Request a new access token to authenticate requests to the API. The token will expire after the specified time.
+        To request an access token you must use the refresh / auth token provided to you by Cable. You cannot request a
+        new token with an existing access token.
+      tags:
+        - authentication
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAccessTokenResponse'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Token request parameters
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAccessTokenRequest'
+  /transaction:
+    get:
+      operationId: check-transaction
+      summary: Check if a transaction exists
+      tags:
+        - transactions
+      parameters:
+        - name: tx_id
+          in: query
+          description: The unique identifier of the transaction
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_checkTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction
+      summary: Add a new transaction
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction data to add. All fields are required except for 'amount_usd', which will be calculated using the
+          latest exchange rate if not provided.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionRequest'
+    put:
+      operationId: update-transaction
+      summary: Update an existing transaction
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the
+          fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionRequest'
+  /transactions/batch:
+    post:
+      operationId: add-transactions-batch
+      summary: Add transactions in batch
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: An array of transaction payloads. Each payload must include all required fields except 'amount_usd'.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchNewTransactionRequest'
+    put:
+      operationId: update-transactions-batch
+      summary: Update transactions in batch
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction update payloads. Each payload must include the 'tx_id' to identify the transaction and
+          can include any other fields that need to be updated. The 'timestamp' field should represent the time of
+          update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateTransactionRequest'
+  /transaction_check:
+    get:
+      operationId: check-transaction-check
+      summary: Check if a transaction check exists
+      tags:
+        - checks
+      parameters:
+        - name: check_id
+          in: query
+          description: The unique identifier of the transaction check
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction check exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Checks_checkTransactionCheck_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-check
+      summary: Add new transaction check(s)
+      tags:
+        - checks
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction check added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionCheck'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction check already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction check data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionCheckRequest'
+    put:
+      operationId: update-transaction-check
+      summary: Update an existing transaction check
+      tags:
+        - checks
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction check updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionCheck'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time.
+          Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionCheckRequest'
+  /transaction_alert:
+    get:
+      operationId: check-transaction-alert
+      summary: Check if a transaction alert exists
+      tags:
+        - alerts
+      parameters:
+        - name: alert_id
+          in: query
+          description: The unique identifier of the transaction alert
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction alert exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alerts_checkTransactionAlert_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-alert
+      summary: Add new transaction alert(s)
+      tags:
+        - alerts
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction alert added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionAlert'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction alert already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction alert data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionAlertRequest'
+    put:
+      operationId: update-transaction-alert
+      summary: Update an existing transaction alert
+      tags:
+        - alerts
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction alert updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionAlert'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time.
+          Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionAlertRequest'
+  /transaction_suspicious_activity:
+    get:
+      operationId: check-transaction-suspicious-activity
+      summary: Check if a transaction suspicious activity exists
+      tags:
+        - suspiciousActivities
+      parameters:
+        - name: suspicious_activity_id
+          in: query
+          description: The unique identifier of the transaction suspicious activity
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suspicious Activities_checkTransactionSuspiciousActivity_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-suspicious-activity
+      summary: Add new transaction suspicious activities
+      tags:
+        - suspiciousActivities
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction suspicious activity added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSuspiciousActivity'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction suspicious activity already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction suspicious activity data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionSuspiciousActivity'
+    put:
+      operationId: update-transaction-suspicious-activity
+      summary: Update an existing transaction suspicious activity
+      tags:
+        - suspiciousActivities
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSuspiciousActivity'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field
+          represents the update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
+  /transaction_screening:
+    get:
+      operationId: check-transaction-screening
+      summary: Check if a transaction screening exists
+      tags:
+        - screening
+      parameters:
+        - name: screening_id
+          in: query
+          description: The unique identifier of the transaction screening
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction screening exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening_checkTransactionScreening_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction screening does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-screening
+      summary: Add new transaction screening(s)
+      tags:
+        - screening
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction screening added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionScreening'
+        '400':
+          description: Invalid transaction screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction screening already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction screening data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionScreeningRequest'
+    put:
+      operationId: update-transaction-screening
+      summary: Update an existing transaction screening
+      tags:
+        - screening
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction screening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionScreening'
+        '400':
+          description: Invalid transaction screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction screening not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the
+          update time. Only the fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionScreeningRequest'
+servers:
+  - url: https://transaction-api.cable.tech
+    description: Production server
+components:
+  schemas:
+    AccessTokenScope:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The organization ID for which the token is requested. This is required.
+        scopes:
+          type: array
+          items:
+            type: string
+          description: >-
+            The list of scopes that the token should have. For transaction data, the scope should be
+            'transactions:write'.
+      required:
+        - organization_id
+        - scopes
+      title: AccessTokenScope
+    NewAccessTokenRequest:
+      type: object
+      properties:
+        expiry_seconds:
+          type: integer
+          format: int64
+          description: >-
+            The requested expiration time in seconds for the token. Must be between 300 (5 minutes) and 86400 (24
+            hours).
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+        - expiry_seconds
+        - scopes
+      title: NewAccessTokenRequest
+    NewAccessTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiry:
+          type: integer
+          format: int64
+          description: The expiration time in Unix time format.
+        organization_id:
+          type: string
+          description: The organization ID for which the token was requested.
+        organization_name:
+          type: string
+          description: The name of the organization for which the token was requested.
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+        - token
+        - expiry
+        - organization_id
+        - organization_name
+      title: NewAccessTokenResponse
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+        - code
+        - message
+      title: GeneralError
+    Transactions_checkTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction was found
+      title: Transactions_checkTransaction_Response_200
+    NewTransactionRequestType:
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
+    NewTransactionRequestMethod:
+      type: string
+      enum:
+        - WIRE
+        - ACH
+        - SWIFT
+        - SEPA
+        - APPLE_PAY
+        - CHECK_DEPOSIT
+        - INTERNAL_TRANSFER
+        - RTP
+        - PROV_X_TRANSFER
+      description: >-
+        Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+        method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - SETTLED
+        - FAILED
+        - REJECTED
+        - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
+    NewTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event
+            occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: >-
+            Unique identifier for the transaction. This is the primary key for the transaction record and should be
+            unique across all transactions. Updates to a transaction should be made using this identifier.
+        type:
+          $ref: '#/components/schemas/NewTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/NewTransactionRequestMethod'
+          description: >-
+            Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+            method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type: number
+          format: double
+          description: Transaction amount. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: >-
+            Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open
+            Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type: string
+          description: >-
+            Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If
+            you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        receiver_id:
+          type: string
+          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        status:
+          $ref: '#/components/schemas/NewTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+        - timestamp
+        - tx_id
+        - type
+        - method
+        - amount
+        - currency
+        - sender_id
+        - sender_country
+        - receiver_country
+        - status
+      description: >-
+        Transaction data to add. All fields are required except for 'amount_usd', which will be calculated using the
+        latest exchange rate if not provided. The 'timestamp' field represents the creation time.
+      title: NewTransactionRequest
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+        - success
+        - write_count
+        - message
+        - organization_id
+      title: WriteOperationResponse
+    UpdateTransactionRequestType:
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestType
+    UpdateTransactionRequestMethod:
+      type: string
+      enum:
+        - WIRE
+        - ACH
+        - SWIFT
+        - SEPA
+        - APPLE_PAY
+        - CHECK_DEPOSIT
+        - INTERNAL_TRANSFER
+        - RTP
+        - PROV_X_TRANSFER
+      description: >-
+        Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+        method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    UpdateTransactionRequestStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - SETTLED
+        - FAILED
+        - REJECTED
+        - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event
+            occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: >-
+            Unique identifier for the transaction. This is the primary key for the transaction record and should be
+            unique across all transactions. Updates to a transaction should be made using this identifier.
+        type:
+          $ref: '#/components/schemas/UpdateTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod'
+          description: >-
+            Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+            method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type: number
+          format: double
+          description: Transaction amount. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: >-
+            Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open
+            Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type: string
+          description: >-
+            Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If
+            you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        receiver_id:
+          type: string
+          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code
+        status:
+          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+        - timestamp
+        - tx_id
+      description: >-
+        Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the
+        fields to be updated need to be included.
+      title: UpdateTransactionRequest
+    BatchNewTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    Checks_checkTransactionCheck_Response_200:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The unique identifier of the transaction check
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction check
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction check
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction check was found
+      title: Checks_checkTransactionCheck_Response_200
+    NewTransactionCheckRequestItemsStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - REQUESTED
+        - ASSIGNED
+        - FAILED
+      title: NewTransactionCheckRequestItemsStatus
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    AdditionalPropertiesType:
+      type: string
+      enum:
+        - STRING
+        - NUMBER
+        - BOOLEAN
+        - OBJECT
+        - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
+    AdditionalProperties:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the additional property. This should be unique within the additional properties array.
+        value:
+          type: string
+          description: The value of the additional property.
+        type:
+          $ref: '#/components/schemas/AdditionalPropertiesType'
+          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+        description:
+          type: string
+          description: A description of the additional property. This should provide context for the value.
+      required:
+        - key
+        - value
+        - type
+        - description
+      description: >-
+        Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious
+        activities.
+      title: AdditionalProperties
+    NewTransactionCheckRequestItems:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: >-
+            Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a
+            transaction check and should be unique across all transaction checks. Updates to a transaction check should
+            be made using this identifier.
+        status:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsStatus'
+        type:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction for which the check is related to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction check.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction check. This should be in ISO 8601 format. When adding a new transaction check,
+            this field represents the creation time. When updating a transaction check, this represents the time of the
+            update.
+      required:
+        - check_id
+        - status
+        - type
+        - timestamp
+      title: NewTransactionCheckRequestItems
+    NewTransactionCheckRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
+      description: >-
+        Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the
+        monitoring check to a transaction.
+      title: NewTransactionCheckRequest
+    TransactionCheckStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - REQUESTED
+        - ASSIGNED
+        - FAILED
+      title: TransactionCheckStatus
+    TransactionCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    TransactionCheck:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: >-
+            Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a
+            transaction check and should be unique across all transaction checks. Updates to a transaction check should
+            be made using this identifier.
+        status:
+          $ref: '#/components/schemas/TransactionCheckStatus'
+        type:
+          $ref: '#/components/schemas/TransactionCheckType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction for which the check is related to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction check.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction check. This should be in ISO 8601 format. When adding a new transaction check,
+            this field represents the creation time. When updating a transaction check, this represents the time of the
+            update.
+      required:
+        - check_id
+        - timestamp
+      title: TransactionCheck
+    UpdateTransactionCheckRequestStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - REQUESTED
+        - ASSIGNED
+        - FAILED
+      title: UpdateTransactionCheckRequestStatus
+    UpdateTransactionCheckRequestType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: UpdateTransactionCheckRequestType
+    UpdateTransactionCheckRequest:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: >-
+            Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a
+            transaction check and should be unique across all transaction checks. Updates to a transaction check should
+            be made using this identifier.
+        status:
+          $ref: '#/components/schemas/UpdateTransactionCheckRequestStatus'
+        type:
+          $ref: '#/components/schemas/UpdateTransactionCheckRequestType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction for which the check is related to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction check.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction check. This should be in ISO 8601 format. When adding a new transaction check,
+            this field represents the creation time. When updating a transaction check, this represents the time of the
+            update.
+      required:
+        - check_id
+        - timestamp
+      description: >-
+        Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the
+        update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionCheckRequest
+    Alerts_checkTransactionAlert_Response_200:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: The unique identifier of the transaction alert
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction alert
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction alert
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction alert was found
+      title: Alerts_checkTransactionAlert_Response_200
+    NewTransactionAlertRequestItemsStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - CLOSED
+      title: NewTransactionAlertRequestItemsStatus
+    NewTransactionAlertRequestItemsCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: NewTransactionAlertRequestItemsCheckType
+    NewTransactionAlertRequestItems:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: >-
+            Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert
+            and should be unique across all transaction alerts. Updates to a transaction alert should be made using this
+            identifier.
+        status:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsStatus'
+        check_type:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction alert.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction alert. This should be in ISO 8601 format. When adding a new transaction alert,
+            this field represents the creation time. When updating a transaction alert, this represents the time of the
+            update.
+      required:
+        - alert_id
+        - status
+        - timestamp
+      title: NewTransactionAlertRequestItems
+    NewTransactionAlertRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
+      description: >-
+        Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the
+        transaction check.
+      title: NewTransactionAlertRequest
+    TransactionAlertStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - CLOSED
+      title: TransactionAlertStatus
+    TransactionAlertCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: TransactionAlertCheckType
+    TransactionAlert:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: >-
+            Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert
+            and should be unique across all transaction alerts. Updates to a transaction alert should be made using this
+            identifier.
+        status:
+          $ref: '#/components/schemas/TransactionAlertStatus'
+        check_type:
+          $ref: '#/components/schemas/TransactionAlertCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction alert.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction alert. This should be in ISO 8601 format. When adding a new transaction alert,
+            this field represents the creation time. When updating a transaction alert, this represents the time of the
+            update.
+      required:
+        - alert_id
+        - timestamp
+      title: TransactionAlert
+    UpdateTransactionAlertRequestStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - CLOSED
+      title: UpdateTransactionAlertRequestStatus
+    UpdateTransactionAlertRequestCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: UpdateTransactionAlertRequestCheckType
+    UpdateTransactionAlertRequest:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: >-
+            Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert
+            and should be unique across all transaction alerts. Updates to a transaction alert should be made using this
+            identifier.
+        status:
+          $ref: '#/components/schemas/UpdateTransactionAlertRequestStatus'
+        check_type:
+          $ref: '#/components/schemas/UpdateTransactionAlertRequestCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction alert.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction alert. This should be in ISO 8601 format. When adding a new transaction alert,
+            this field represents the creation time. When updating a transaction alert, this represents the time of the
+            update.
+      required:
+        - alert_id
+        - timestamp
+      description: >-
+        Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time.
+        Only the fields to be updated need to be included.
+      title: UpdateTransactionAlertRequest
+    Suspicious Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
+    NewTransactionSuspiciousActivityItems:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a
+            transaction suspicious activity and should be unique across all transaction suspicious activities. Updates
+            to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new
+            transaction suspicious activity, this field represents the detection time. When updating a transaction
+            suspicious activity, this represents the time of the update.
+      required:
+        - suspicious_activity_id
+        - detection_date
+        - timestamp
+      title: NewTransactionSuspiciousActivityItems
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: >-
+        Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the
+        suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be
+        associated with a report.
+      title: NewTransactionSuspiciousActivity
+    TransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a
+            transaction suspicious activity and should be unique across all transaction suspicious activities. Updates
+            to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new
+            transaction suspicious activity, this field represents the detection time. When updating a transaction
+            suspicious activity, this represents the time of the update.
+      required:
+        - suspicious_activity_id
+        - timestamp
+      title: TransactionSuspiciousActivity
+    UpdateTransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a
+            transaction suspicious activity and should be unique across all transaction suspicious activities. Updates
+            to a transaction suspicious activity should be made using this identifier.
+        detection_date:
+          type: string
+          format: date-time
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new
+            transaction suspicious activity, this field represents the detection time. When updating a transaction
+            suspicious activity, this represents the time of the update.
+      required:
+        - suspicious_activity_id
+        - timestamp
+      description: >-
+        Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field
+        represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionSuspiciousActivity
+    Screening_checkTransactionScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the transaction screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction screening
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction screening was found
+      title: Screening_checkTransactionScreening_Response_200
+    NewTransactionScreeningRequestItems:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: >-
+            Unique identifier for a transaction screening. This is the primary key for a screening and should be unique
+            across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction
+            screening, this field represents the creation time. When updating a transaction screening, this represents
+            the time of the update.
+      required:
+        - screening_id
+        - type
+        - outcome
+        - provider
+        - lists
+        - timestamp
+      title: NewTransactionScreeningRequestItems
+    NewTransactionScreeningRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionScreeningRequestItems'
+      description: Transaction screening data to add.
+      title: NewTransactionScreeningRequest
+    TransactionScreening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: >-
+            Unique identifier for a transaction screening. This is the primary key for a screening and should be unique
+            across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction
+            screening, this field represents the creation time. When updating a transaction screening, this represents
+            the time of the update.
+      required:
+        - screening_id
+        - timestamp
+      title: TransactionScreening
+    UpdateTransactionScreeningRequest:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: >-
+            Unique identifier for a transaction screening. This is the primary key for a screening and should be unique
+            across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction
+            screening, this field represents the creation time. When updating a transaction screening, this represents
+            the time of the update.
+      required:
+        - screening_id
+        - timestamp
+      description: >-
+        Transaction screening data to update, referenced by 'sar_id'. The 'timestamp' field represents the update time.
+        Only the fields to be updated need to be included.
+      title: UpdateTransactionScreeningRequest
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

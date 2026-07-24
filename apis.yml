@@ -1,7 +1,15 @@
 aid: cable
 name: Cable
-description: Cable is a company surfaced as a portfolio company of anthemis, crv and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Cable is an automated compliance and financial-crime assurance platform for banks,
+  fintechs, and crypto companies. Based on transaction, customer, screening, risk-assessment,
+  and onboarding data you send it, Cable continuously tests 100% of activity against your
+  regulatory frameworks (US Bank Secrecy Act, UK Money Laundering Regulations, Reg E/B/Z,
+  UDAAP, and others) to detect any single instance of control failure or regulatory breach,
+  replacing manual dip-sampling. The Cable API is primarily a data-ingestion surface: a REST
+  entry point for transferring raw data from your systems into Cable's analysis environment,
+  with resource-oriented URLs, JSON request/response bodies, token-based authentication, and
+  standard HTTP verbs and status codes. Cable is backed by Anthemis and CRV.
 url: https://raw.githubusercontent.com/api-evangelist/cable/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -10,17 +18,303 @@ x-backed-by:
 - crv
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
+image: https://cable.tech/favicon.ico
 tags:
 - Company
-apis: []
+- Compliance
+- Financial Crime
+- RegTech
+- Anti-Money Laundering
+- Transaction Monitoring
+- Screening
+- Risk Assessment
+- Banking
+- Fintech
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: cable:cable-alerts-api
+  name: Cable alerts API
+  description: The alerts API from Cable — 1 operation(s) for alerts.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - alerts
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-alerts-api-openapi.yml
+- aid: cable:cable-authentication-api
+  name: Cable authentication API
+  description: The authentication API from Cable — 2 operation(s) for authentication.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-authentication-api-openapi.yml
+- aid: cable:cable-business-api
+  name: Cable business API
+  description: The business API from Cable — 9 operation(s) for business.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - business
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-business-api-openapi.yml
+- aid: cable:cable-checks-api
+  name: Cable checks API
+  description: The checks API from Cable — 1 operation(s) for checks.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - checks
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-checks-api-openapi.yml
+- aid: cable:cable-company-api
+  name: Cable company API
+  description: The company API from Cable — 1 operation(s) for company.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - company
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-company-api-openapi.yml
+- aid: cable:cable-customersar-api
+  name: Cable customerSar API
+  description: The customerSar API from Cable — 1 operation(s) for customersar.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - customerSar
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-customersar-api-openapi.yml
+- aid: cable:cable-helper-api
+  name: Cable helper API
+  description: The helper API from Cable — 1 operation(s) for helper.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - helper
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-helper-api-openapi.yml
+- aid: cable:cable-identityverification-api
+  name: Cable identityVerification API
+  description: The identityVerification API from Cable — 1 operation(s) for identityverification.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - identityVerification
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-identityverification-api-openapi.yml
+- aid: cable:cable-onboardingflow-api
+  name: Cable onboardingFlow API
+  description: The onboardingFlow API from Cable — 1 operation(s) for onboardingflow.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - onboardingFlow
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-onboardingflow-api-openapi.yml
+- aid: cable:cable-person-api
+  name: Cable person API
+  description: The person API from Cable — 1 operation(s) for person.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - person
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-person-api-openapi.yml
+- aid: cable:cable-retail-api
+  name: Cable retail API
+  description: The retail API from Cable — 8 operation(s) for retail.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - retail
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-retail-api-openapi.yml
+- aid: cable:cable-riskassessment-api
+  name: Cable riskAssessment API
+  description: The riskAssessment API from Cable — 1 operation(s) for riskassessment.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - riskAssessment
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-riskassessment-api-openapi.yml
+- aid: cable:cable-screening-api
+  name: Cable screening API
+  description: The screening API from Cable — 2 operation(s) for screening.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - screening
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-screening-api-openapi.yml
+- aid: cable:cable-suspiciousactivities-api
+  name: Cable suspiciousActivities API
+  description: The suspiciousActivities API from Cable — 1 operation(s) for suspiciousactivities.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - suspiciousActivities
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-suspiciousactivities-api-openapi.yml
+- aid: cable:cable-transactionalerts-api
+  name: Cable transactionAlerts API
+  description: The transactionAlerts API from Cable — 1 operation(s) for transactionalerts.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - transactionAlerts
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-transactionalerts-api-openapi.yml
+- aid: cable:cable-transactionchecks-api
+  name: Cable transactionChecks API
+  description: The transactionChecks API from Cable — 1 operation(s) for transactionchecks.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - transactionChecks
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-transactionchecks-api-openapi.yml
+- aid: cable:cable-transactions-api
+  name: Cable transactions API
+  description: The transactions API from Cable — 4 operation(s) for transactions.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-transactions-api-openapi.yml
+- aid: cable:cable-transactionsuspiciousactivities-api
+  name: Cable transactionSuspiciousActivities API
+  description: >-
+    The transactionSuspiciousActivities API from Cable — 1 operation(s) for transactionsuspiciousactivities.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - transactionSuspiciousActivities
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-transactionsuspiciousactivities-api-openapi.yml
+- aid: cable:cable-upload-api
+  name: Cable upload API
+  description: The upload API from Cable — 1 operation(s) for upload.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - upload
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-upload-api-openapi.yml
+- aid: cable:cable-utilities-api
+  name: Cable utilities API
+  description: The utilities API from Cable — 1 operation(s) for utilities.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-utilities-api-openapi.yml
 common:
+- type: VulnerabilityDisclosure
+  url: security/cable-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/cable-domain-security.yml
 - type: Website
   url: https://cable.tech/
+- type: DeveloperPortal
+  url: https://docs.cable.tech/
+- type: Documentation
+  url: https://docs.cable.tech/
+- type: APIReference
+  url: https://docs.cable.tech/api-documentation/api-reference
+- type: GettingStarted
+  url: https://docs.cable.tech/api-documentation/getting-started
+- type: HelpCenter
+  url: https://docs.cable.tech/knowledge-base/getting-started
+- type: Blog
+  url: https://cable.tech/resources
+- type: Login
+  url: https://app.cable.tech/home
+- type: TermsOfService
+  url: https://cable.tech/terms-of-service
+- type: PrivacyPolicy
+  url: https://cable.tech/privacy-policy
+- type: Security
+  url: https://cable.tech/responsible-disclosure-policy
+- type: ChangeLog
+  url: https://docs.cable.tech/product-updates
+- type: ChangeLog
+  url: changelog/cable-changelog.yml
+- type: Authentication
+  url: authentication/cable-authentication.yml
+- type: AgenticAccess
+  url: agentic-access/cable-agentic-access.yml
+- type: MCPServer
+  url: mcp/cable-mcp.yml
+- type: LLMsTxt
+  url: llms/cable-llms.txt
+- type: Conventions
+  url: conventions/cable-conventions.yml
+- type: ErrorCatalog
+  url: errors/cable-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/cable-lifecycle.yml
+- type: Conformance
+  url: conformance/cable-conformance.yml
+- type: Compliance
+  url: security/cable-trust-center.yml
+- type: TrustCenter
+  url: security/cable-trust-center.yml
+- type: DataModel
+  url: data-model/cable-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: Overlay
+  url: overlays/cable-api-reference-overlay.yaml
+- type: Overlay
+  url: overlays/cable-customer-data-api-overlay.yaml
+- type: Overlay
+  url: overlays/cable-transaction-data-api-overlay.yaml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

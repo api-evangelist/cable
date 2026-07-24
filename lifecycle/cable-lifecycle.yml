@@ -1,0 +1,29 @@
+generated: '2026-07-18'
+method: searched
+source: >-
+  https://docs.cable.tech/api-documentation/api-reference + https://docs.cable.tech/product-updates
+versioning:
+  scheme: uri-path
+  current: v2
+  versions:
+  - v2 (current API Reference / Transaction Data API)
+  - v1 (Customer Data API)
+  docs: https://docs.cable.tech/api-documentation/api-reference
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: >-
+    No formal deprecation policy or RFC 8594 Sunset/Deprecation header support is published, and
+    no operations are marked deprecated in the OpenAPI. v1 and v2 both remain documented.
+sla:
+  url: null
+  uptime_target: null
+status_page:
+  url: null
+  note: >-
+    No public status page was found. The Customer Data API exposes an unauthenticated GET /status
+    health helper, but this is an endpoint, not a hosted status page.
+changelog:
+  url: https://docs.cable.tech/product-updates
+  note: Dated product updates / changelog. See changelog/cable-changelog.yml.
+deprecated_operations: []

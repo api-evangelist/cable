@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: generated
+source: openapi/cable-api-reference-openapi-original.yml
+note: >-
+  Packaged Agent Skills for the Cable v2 data-ingestion API. Every step is grounded in a real
+  operationId present in openapi/cable-api-reference-openapi-original.yml. Cable does not publish
+  its own agent skills; these were generated from the OpenAPI plus the conventions/errors artifacts.
+skills:
+- file: cable-authenticate-and-ingest-transactions.md
+  name: Authenticate and ingest transactions
+  api: openapi/cable-api-reference-openapi-original.yml
+  operations: [request-token, add-transaction, add-transactions-batch, check-transaction, update-transaction]
+- file: cable-monitor-and-escalate.md
+  name: Ingest checks, alerts, and suspicious activity
+  api: openapi/cable-api-reference-openapi-original.yml
+  operations: [add-transaction-check, add-transaction-alert, add-transaction-suspicious-activity, add-customer-sar]
+- file: cable-onboard-customer-kyc.md
+  name: Ingest customer onboarding and KYC data
+  api: openapi/cable-api-reference-openapi-original.yml
+  operations: [add-person-info, add-company-info, add-identity-verification, add-onboarding-flow, add-screening, add-risk-assessment]

@@ -1,0 +1,37 @@
+generated: '2026-07-18'
+method: derived
+source: openapi/cable-api-reference-openapi-original.yml, openapi/cable-transaction-data-api-openapi-original.yml
+format: custom-json
+envelope:
+  media_type: application/json
+  schema: "GeneralError { code: integer, message: string, errors[]: { field-level detail } }"
+  rfc9457: false
+  note: >-
+    Cable returns a custom JSON error envelope (not application/problem+json). The integer `code`
+    mirrors the HTTP status; `message` is human-readable; `errors[]` carries per-field validation
+    detail on 400 responses.
+problems:
+- status: 400
+  title: Invalid data
+  meaning: Request body failed validation; see errors[] for field-level detail.
+  remediation: Correct the offending fields and resubmit.
+- status: 401
+  title: Unauthorized request
+  meaning: Missing, invalid, or expired access token / API key.
+  remediation: Request a fresh access token via POST /auth/token and retry.
+- status: 404
+  title: Resource not found
+  meaning: The referenced resource (transaction, person, company, etc.) does not exist.
+  remediation: Verify the id, or create the resource before referencing it.
+- status: 409
+  title: Resource already exists
+  meaning: A resource with the same id has already been ingested.
+  remediation: Use the update (PUT) operation instead of create (POST), or use the GET check endpoint first.
+- status: 429
+  title: Rate limit exceeded
+  meaning: Too many requests in the current window.
+  remediation: Back off and retry; batch endpoints reduce request volume for high-throughput ingestion.
+- status: 500
+  title: Server error
+  meaning: Unexpected server-side failure.
+  remediation: Retry with backoff; if persistent, contact Cable support (customers@cable.tech).

@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Cable Customer Data API (v1)
+  version: 1.0.0
+extends: openapi/cable-customer-data-api-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-18'
+    x-apievangelist-provider: cable
+    x-apievangelist-artifacts:
+      authentication: authentication/cable-authentication.yml
+      conventions: conventions/cable-conventions.yml
+      errors: errors/cable-error-codes.yml
+      lifecycle: lifecycle/cable-lifecycle.yml
+      data-model: data-model/cable-data-model.yml
+      agentic-access: agentic-access/cable-agentic-access.yml
+- target: $.info
+  update:
+    x-apievangelist-notes: >-
+      Cable data-ingestion API. Auth is a refresh-token -> scoped-bearer exchange (POST /auth/token);
+      errors use a custom GeneralError JSON envelope (not RFC 9457); no idempotency-key or pagination
+      contract; 429 signals rate limiting. Enhancements captured here without mutating the original spec.

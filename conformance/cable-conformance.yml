@@ -1,0 +1,40 @@
+generated: '2026-07-18'
+method: derived
+source: >-
+  openapi/cable-*-openapi-original.yml + https://cable.tech/security
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Auth is a custom refresh-token -> scoped-bearer exchange, not an OAuth2 securityScheme.
+- id: openid-connect
+  conforms: false
+- id: http-bearer
+  conforms: true
+  evidence: components.securitySchemes includes an http/bearer scheme (BearerAuth).
+- id: api-key
+  conforms: true
+  evidence: apiKey header schemes (Authorization, x-api-key) across the specs.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom application/json GeneralError envelope, not application/problem+json.
+- id: rfc8594-sunset
+  conforms: false
+  evidence: No Sunset/Deprecation header support documented.
+- id: openapi-3.1
+  conforms: true
+  evidence: All three specs are OpenAPI 3.1.0.
+- id: pagination
+  conforms: false
+  evidence: Ingestion API exposes existence-check and batch endpoints, no list pagination.
+- id: idempotency
+  conforms: false
+  evidence: No Idempotency-Key contract documented or in-spec.
+- id: soc2
+  conforms: true
+  evidence: Cable states SOC 2 Type I certification on https://cable.tech/security.
+compliance_program:
+  published: true
+  certifications:
+  - SOC 2 Type I
+  url: https://cable.tech/security
+  note: See security/cable-trust-center.yml for detail.

@@ -1,0 +1,3953 @@
+openapi: 3.1.0
+info:
+  title: API Reference
+  version: 1.0.0
+paths:
+  /v2/auth/token:
+    post:
+      operationId: request-token
+      summary: Request a new access token
+      description: |
+        The Cable API uses API keys to authenticate requests. Make sure never to share your API keys - don’t put them in
+        repositories or leave them as human-readable in code, and always use HTTPS.
+
+        Request a new access token to authenticate requests to the API. The token will expire after the specified time.
+        To request an access token you must use the refresh / auth token provided to you by Cable.
+        You cannot request a new token with an existing access token.
+      tags:
+        - authentication
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NewAccessTokenResponse'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Token request parameters
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewAccessTokenRequest'
+  /v2/transaction:
+    get:
+      operationId: check-transaction
+      summary: Check if a transaction exists
+      tags:
+        - transactions
+      parameters:
+        - name: tx_id
+          in: query
+          description: The unique identifier of the transaction
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_checkTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction
+      summary: Add a new transaction
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction data to add. Amount and currency are required for new transactions. At least one of sender_id or
+          receiver_id must be provided with their respective country codes.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionRequest'
+    put:
+      operationId: update-transaction
+      summary: Update an existing transaction
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the
+          fields to be updated need to be included.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionRequest'
+    delete:
+      operationId: delete-transaction
+      summary: Submit a deletion request for a transaction and any related data
+      description: |
+        This operation will submit a request to delete the transaction and any
+        related data.
+
+        The deletion request will be processed by the system and
+        the data will be removed permanently from Cable's system. Deletion
+        requests are not processed immediately and may take some time to
+        complete.
+
+        The status of the deletion request can be checked using the
+        deletion request ID and the status endpoint.
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transactions_deleteTransaction_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tx_id:
+                  type: string
+                  description: The unique identifier of the transaction
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+                - tx_id
+                - reason
+  /v2/transactions/batch:
+    post:
+      operationId: add-transactions-batch
+      summary: Add transactions in batch
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction payloads. Each transaction must have at least one of sender_id or receiver_id with
+          their respective country codes.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchNewTransactionRequest'
+    put:
+      operationId: update-transactions-batch
+      summary: Update transactions in batch
+      tags:
+        - transactions
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction update payloads. Each payload must include the 'tx_id' to identify the transaction and
+          can include any other fields that need to be updated. The 'timestamp' field should represent the time of
+          update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchUpdateTransactionRequest'
+  /v2/transaction_check:
+    get:
+      operationId: check-transaction-check
+      summary: Check if a transaction check exists
+      tags:
+        - transactionChecks
+      parameters:
+        - name: check_id
+          in: query
+          description: The unique identifier of the transaction check
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction check exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Checks_checkTransactionCheck_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-check
+      summary: Add new transaction check(s)
+      tags:
+        - transactionChecks
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction check added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction check already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction check data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionCheckRequest'
+    put:
+      operationId: update-transaction-checks
+      summary: Update transaction checks in batch
+      tags:
+        - transactionChecks
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction check updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction check data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction check not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction check update payloads. Each payload must include the 'check_id' to identify the
+          transaction check and can include any other fields that need to be updated. The 'timestamp' field represents
+          the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionChecksRequest'
+  /v2/transaction_alert:
+    get:
+      operationId: check-transaction-alert
+      summary: Check if a transaction alert exists
+      tags:
+        - transactionAlerts
+      parameters:
+        - name: alert_id
+          in: query
+          description: The unique identifier of the transaction alert
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction alert exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Alerts_checkTransactionAlert_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-alert
+      summary: Add new transaction alert(s)
+      tags:
+        - transactionAlerts
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction alert added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction alert already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction alert data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionAlertRequest'
+    put:
+      operationId: update-transaction-alerts
+      summary: Update transaction alerts in batch
+      tags:
+        - transactionAlerts
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction alert updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction alert data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction alert not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction alert update payloads. Each payload must include the 'alert_id' to identify the alert
+          and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionAlertsRequest'
+  /v2/transaction_suspicious_activity:
+    get:
+      operationId: check-transaction-suspicious-activity
+      summary: Check if a transaction suspicious activity exists
+      tags:
+        - transactionSuspiciousActivities
+      parameters:
+        - name: suspicious_activity_id
+          in: query
+          description: The unique identifier of the transaction suspicious activity
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-transaction-suspicious-activity
+      summary: Add new transaction suspicious activities
+      tags:
+        - transactionSuspiciousActivities
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Transaction suspicious activity added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Transaction suspicious activity already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Transaction suspicious activity data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTransactionSuspiciousActivity'
+    put:
+      operationId: update-transaction-suspicious-activities
+      summary: Update transaction suspicious activities in batch
+      tags:
+        - transactionSuspiciousActivities
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction suspicious activity updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid transaction suspicious activity data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Transaction suspicious activity not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of transaction suspicious activity update payloads. Each payload must include the
+          'suspicious_activity_id' to identify the suspicious activity and can include any other fields that need to be
+          updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
+  /v2/screening:
+    get:
+      operationId: check-screening
+      summary: Check if a screening exists
+      tags:
+        - screening
+      parameters:
+        - name: screening_id
+          in: query
+          description: The unique identifier of the screening
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Screening exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Screening_checkScreening_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Screening does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-screening
+      summary: Add new screening(s)
+      tags:
+        - screening
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Screening added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Screening already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Screening data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewScreeningRequest'
+    put:
+      operationId: update-screenings
+      summary: Update screenings in batch
+      tags:
+        - screening
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Screening updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid screening data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Screening not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of screening update payloads. Each payload must include the 'screening_id' to identify the screening
+          and can include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateScreeningsRequest'
+  /v2/risk_assessment:
+    get:
+      operationId: check-risk-assessment
+      summary: Check if a risk assessment exists
+      tags:
+        - riskAssessment
+      parameters:
+        - name: assessment_id
+          in: query
+          description: The unique identifier of the risk assessment
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Risk assessment exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Risk Assessment_checkRiskAssessment_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Risk assessment does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-risk-assessment
+      summary: Add risk assessment information
+      description: Endpoint for adding new customer risk assessment information
+      tags:
+        - riskAssessment
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Risk assessment added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Risk assessment data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Risk assessment already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: Risk assessment data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRiskAssessmentRequest'
+    put:
+      operationId: update-risk-assessments
+      summary: Update risk assessment in batch
+      tags:
+        - riskAssessment
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Risk assessment updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid risk assessment data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Risk assessment not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of risk assessment update payloads. Each payload must include the 'assessment_id' to identify the
+          identity verification and can include any other fields that need to be updated. The 'timestamp' field
+          represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRiskAsssessmentRequest'
+  /v2/person:
+    get:
+      operationId: check-person
+      summary: Check if a person exists
+      tags:
+        - person
+      parameters:
+        - name: person_id
+          in: query
+          description: The unique identifier of the person
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Person exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person_checkPerson_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-person-info
+      summary: Add person information
+      description: Endpoint for adding new person information
+      tags:
+        - person
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Person added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid person data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Person already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPersonRequest'
+    put:
+      operationId: update-persons
+      summary: Update person in batch
+      tags:
+        - person
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Persons updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid person data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of person update payloads. Each payload must include the 'person_id' to identify the person and can
+          include any other fields that need to be updated. The 'timestamp' field represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePersonRequest'
+    delete:
+      operationId: delete-person
+      summary: Submit a deletion request for a person and any related data
+      description: |
+        This operation will submit a request to delete the person and any
+        related data.
+
+        The deletion request will be processed by the system and
+        the data will be removed permanently from Cable's system. Deletion
+        requests are not processed immediately and may take some time to
+        complete.
+
+        The status of the deletion request can be checked using the
+        deletion request ID and the status endpoint.
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+      tags:
+        - person
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person_deletePerson_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                person_id:
+                  type: string
+                  description: The unique identifier of the person
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+                - person_id
+                - reason
+  /v2/identity_verification:
+    get:
+      operationId: check-identity-verification
+      summary: Check if a identity verification exists
+      tags:
+        - identityVerification
+      parameters:
+        - name: verification_id
+          in: query
+          description: The unique identifier of the identity verification
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Identity verification exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity Verification_checkIdentityVerification_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Identity verification does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-identity-verification
+      summary: Add identity verification
+      description: >-
+        Add IDV (Identity Verification) information for a person or company.
+
+
+        Note: Each API call represents a single verification event from one provider at a specific point in time. If you
+        have multiple verification sources or multiple verification attempts, you must make separate API calls for each
+        one.
+
+
+        For example:
+
+        - Document verification from Provider A requires one API call
+
+        - Database verification from Provider B requires another API call
+
+        - Re-verification after data update requires a new API call
+      tags:
+        - identityVerification
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Identity verification added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Identity verification data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Identity verification already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewIdentityVerificationRequest'
+    put:
+      operationId: update-identity-verifications
+      summary: Update identity verification in batch
+      tags:
+        - identityVerification
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Identity verifications updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid identity verification data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Identity verification not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of identity verification update payloads. Each payload must include the 'verification_id' to identify
+          the identity verification and can include any other fields that need to be updated. The 'timestamp' field
+          represents the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIdentityVerificationRequest'
+  /v2/onboarding_flow:
+    get:
+      operationId: check-onboarding-f-low
+      summary: Check if an onboarding flow exists
+      tags:
+        - onboardingFlow
+      parameters:
+        - name: onboarding_flow_id
+          in: query
+          description: The unique identifier of the onboarding flow
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Onboarding flow exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Onboarding Flow_checkOnboardingFLow_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-onboarding-flow
+      summary: Add onboarding flow information
+      description: Endpoint for adding new Onboarding Flow information
+      tags:
+        - onboardingFlow
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Onboarding flow added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid onboarding flow data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Onboarding flow already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewOnboardingFlowRequest'
+    put:
+      operationId: update-onboarding-flows
+      summary: Update onboarding flow in batch
+      tags:
+        - onboardingFlow
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Onboarding flows updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Onbnoarding flow data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Onboarding flow not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of onboarding flow update payloads. Each payload must include the 'onboarding_id' to identify the
+          onboarding flow and can include any other fields that need to be updated. The 'timestamp' field represents the
+          time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOnboardingFlowRequest'
+  /v2/company:
+    get:
+      operationId: check-company-info
+      summary: Check if a company exists
+      tags:
+        - company
+      parameters:
+        - name: company_id
+          in: query
+          description: The unique identifier of the company
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Company exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company_checkCompanyInfo_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-company-info
+      summary: Add company information
+      description: Endpoint for adding new company information
+      tags:
+        - company
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Company added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid Company data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Company already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompanyRequest'
+    put:
+      operationId: update-companies
+      summary: Update companies in batch
+      tags:
+        - company
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid company data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Company not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of company update payloads. Each payload must include the 'company_id' to identify the company and
+          can include any other fields that need to be updated. The 'timestamp' field should represent the time of
+          update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCompaniesRequest'
+    delete:
+      operationId: delete-company
+      summary: Submit a deletion request for a company and any related data
+      description: |
+        This operation will submit a request to delete the company and any
+        related data.
+
+        The deletion request will be processed by the system and
+        the data will be removed permanently from Cable's system. Deletion
+        requests are not processed immediately and may take some time to
+        complete.
+
+        The status of the deletion request can be checked using the
+        deletion request ID and the status endpoint.
+
+        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
+      tags:
+        - company
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion request submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company_deleteCompany_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Person does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                company_id:
+                  type: string
+                  description: The unique identifier of the company
+                reason:
+                  type: string
+                  description: The reason for deletion
+              required:
+                - company_id
+                - reason
+  /v2/customer_sar:
+    get:
+      operationId: check-customer-sar
+      summary: Check if a customer sar exists
+      tags:
+        - customerSar
+      parameters:
+        - name: sar_id
+          in: query
+          description: The unique identifier of the customer SAR
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer SAR exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSAR_checkCustomerSAR_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Customer SAR does not exist
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+    post:
+      operationId: add-customer-sar
+      summary: Add customer sar information
+      description: Endpoint for adding new customer sar
+      tags:
+        - customerSar
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Customer SAR added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid customer SAR data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '409':
+          description: Customer SAR already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCustomerSARRequest'
+    put:
+      operationId: update-customer-sa-rs
+      summary: Update customer SAR in batch
+      tags:
+        - customerSar
+      parameters:
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Batch processing result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WriteOperationResponse'
+        '400':
+          description: Invalid customer SAR data in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Customer SAR not found in batch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+      requestBody:
+        description: >-
+          An array of customer SAR payloads. Each payload must include the 'sar_id' to identify the customer suspicious
+          activity report and can include any other fields that need to be updated. The 'timestamp' field should
+          represent the time of update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCustomerSARRequest'
+  /v2/deletion_request:
+    get:
+      operationId: get-deletion-request
+      summary: Check the status of a deletion request
+      tags:
+        - utilities
+      parameters:
+        - name: deletion_request_id
+          in: query
+          description: The unique identifier of the deletion request
+          required: true
+          schema:
+            type: string
+        - name: Authorization
+          in: header
+          description: Bearer authentication
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Deletion request status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Utilities_getDeletionRequest_Response_200'
+        '401':
+          description: Unauthorized request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '404':
+          description: Deletion request not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralError'
+servers:
+  - url: https://api.cable.tech
+    description: Production
+components:
+  schemas:
+    AccessTokenScope:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The organization ID for which the token is requested. This is required.
+        scopes:
+          type: array
+          items:
+            type: string
+          description: >-
+            The list of scopes that the token should have. For transaction data, the scope should be
+            'transactions:write'.
+      required:
+        - organization_id
+        - scopes
+      title: AccessTokenScope
+    NewAccessTokenRequest:
+      type: object
+      properties:
+        expiry_seconds:
+          type: integer
+          format: int64
+          description: >-
+            The requested expiration time in seconds for the token. Must be between 300 (5 minutes) and 86400 (24
+            hours).
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+        - expiry_seconds
+        - scopes
+      title: NewAccessTokenRequest
+    NewAccessTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiry:
+          type: integer
+          format: int64
+          description: The expiration time in Unix time format.
+        organization_id:
+          type: string
+          description: The organization ID for which the token was requested.
+        organization_name:
+          type: string
+          description: The name of the organization for which the token was requested.
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+        - token
+        - expiry
+        - organization_id
+        - organization_name
+      title: NewAccessTokenResponse
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+        - code
+        - message
+      title: GeneralError
+    Transactions_checkTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction was found
+      title: Transactions_checkTransaction_Response_200
+    NewTransactionRequestType:
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
+    NewTransactionRequestMethod:
+      type: string
+      enum:
+        - WIRE
+        - ACH
+        - SWIFT
+        - SEPA
+        - APPLE_PAY
+        - GOOGLE_PAY
+        - CHECK_DEPOSIT
+        - INTERNAL_TRANSFER
+        - RTP
+        - FEDNOW
+        - PROV_X_TRANSFER
+        - CARD
+      description: >-
+        Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+        method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - SETTLED
+        - FAILED
+        - REJECTED
+        - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
+    NewTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event
+            occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: >-
+            Unique identifier for the transaction. This is the primary key for the transaction record and should be
+            unique across all transactions. Updates to a transaction should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction is test data, this should be set to true
+        type:
+          $ref: '#/components/schemas/NewTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/NewTransactionRequestMethod'
+          description: >-
+            Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+            method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type:
+            - number
+            - 'null'
+          format: double
+          description: >-
+            Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are
+            allowed for auth-only, declined, and pre-authorization transactions. Required when creating new
+            transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: >-
+            Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open
+            Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type:
+            - string
+            - 'null'
+          description: >-
+            Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in
+            your customer data sent to Cable. Required if receiver_id is not provided.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+        receiver_id:
+          type:
+            - string
+            - 'null'
+          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+        status:
+          $ref: '#/components/schemas/NewTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+        - timestamp
+        - tx_id
+        - type
+        - method
+        - amount
+        - currency
+        - status
+      description: |
+        Transaction data to add. Required fields include: timestamp, tx_id, type, method, amount, currency, and status.
+
+        Identity requirements:
+        - At least one of 'sender_id' or 'receiver_id' must be provided
+        - If 'sender_id' is provided, 'sender_country' is also required
+        - If 'receiver_id' is provided, 'receiver_country' is also required
+
+        Optional fields:
+        - 'amount_usd': Will be automatically calculated using current exchange rates if not provided
+
+        The 'timestamp' field represents the transaction creation time.
+      title: NewTransactionRequest
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+        - success
+        - write_count
+        - message
+        - organization_id
+      title: WriteOperationResponse
+    UpdateTransactionRequestType:
+      type: string
+      enum:
+        - DEPOSIT
+        - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestType
+    UpdateTransactionRequestMethod:
+      type: string
+      enum:
+        - WIRE
+        - ACH
+        - SWIFT
+        - SEPA
+        - APPLE_PAY
+        - GOOGLE_PAY
+        - CHECK_DEPOSIT
+        - INTERNAL_TRANSFER
+        - RTP
+        - FEDNOW
+        - PROV_X_TRANSFER
+        - CARD
+      description: >-
+        Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+        method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    UpdateTransactionRequestStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - SETTLED
+        - FAILED
+        - REJECTED
+        - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event
+            occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: >-
+            Unique identifier for the transaction. This is the primary key for the transaction record and should be
+            unique across all transactions. Updates to a transaction should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction is test data, this should be set to true
+        type:
+          $ref: '#/components/schemas/UpdateTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod'
+          description: >-
+            Payment method used for the transaction. Required when creating new transactions, optional for updates. Each
+            method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type:
+            - number
+            - 'null'
+          format: double
+          description: >-
+            Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are
+            allowed for auth-only, declined, and pre-authorization transactions. Required when creating new
+            transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: >-
+            Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open
+            Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type:
+            - string
+            - 'null'
+          description: >-
+            Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in
+            your customer data sent to Cable. Required if receiver_id is not provided.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+        receiver_id:
+          type:
+            - string
+            - 'null'
+          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+        status:
+          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+        - timestamp
+        - tx_id
+      description: >-
+        Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the
+        fields to be updated need to be included.
+      title: UpdateTransactionRequest
+    Transactions_deleteTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Transactions_deleteTransaction_Response_200
+    BatchNewTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    Transaction Checks_checkTransactionCheck_Response_200:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The unique identifier of the transaction check
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction check
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction check
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction check was found
+      title: Transaction Checks_checkTransactionCheck_Response_200
+    NewTransactionCheckRequestItemsStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - REQUESTED
+        - ASSIGNED
+        - FAILED
+      title: NewTransactionCheckRequestItemsStatus
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    NewTransactionCheckRequestItems:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: >-
+            Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a
+            transaction check and should be unique across all transaction checks. Updates to a transaction check should
+            be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction check is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsStatus'
+        type:
+          $ref: '#/components/schemas/NewTransactionCheckRequestItemsType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction which the check is related to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the check relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this transaction check was performed in your system, in ISO 8601 format.
+      required:
+        - check_id
+        - status
+        - type
+        - timestamp
+      title: NewTransactionCheckRequestItems
+    NewTransactionCheckRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
+      description: >-
+        Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the
+        monitoring check to a transaction.
+      title: NewTransactionCheckRequest
+    TransactionCheckStatus:
+      type: string
+      enum:
+        - PENDING
+        - COMPLETED
+        - REQUESTED
+        - ASSIGNED
+        - FAILED
+      title: TransactionCheckStatus
+    TransactionCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    TransactionCheck:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: >-
+            Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a
+            transaction check and should be unique across all transaction checks. Updates to a transaction check should
+            be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction check is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/TransactionCheckStatus'
+        type:
+          $ref: '#/components/schemas/TransactionCheckType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction which the check is related to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the check relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this transaction check was performed in your system, in ISO 8601 format.
+      required:
+        - check_id
+        - timestamp
+      title: TransactionCheck
+    UpdateTransactionChecksRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionCheck'
+      description: >-
+        Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the
+        update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionChecksRequest
+    Transaction Alerts_checkTransactionAlert_Response_200:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: The unique identifier of the transaction alert
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction alert
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction alert
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction alert was found
+      title: Transaction Alerts_checkTransactionAlert_Response_200
+    NewTransactionAlertRequestItemsStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - CLOSED
+      title: NewTransactionAlertRequestItemsStatus
+    NewTransactionAlertRequestItemsCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: NewTransactionAlertRequestItemsCheckType
+    NewTransactionAlertRequestItems:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: >-
+            Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert
+            and should be unique across all transaction alerts. Updates to a transaction alert should be made using this
+            identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction alert is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsStatus'
+        check_type:
+          $ref: '#/components/schemas/NewTransactionAlertRequestItemsCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the alert relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this alert was generated in your system, in ISO 8601 format.
+      required:
+        - alert_id
+        - status
+        - timestamp
+      title: NewTransactionAlertRequestItems
+    NewTransactionAlertRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
+      description: >-
+        Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the
+        transaction check.
+      title: NewTransactionAlertRequest
+    TransactionAlertStatus:
+      type: string
+      enum:
+        - CREATED
+        - PENDING
+        - CLOSED
+      title: TransactionAlertStatus
+    TransactionAlertCheckType:
+      type: string
+      enum:
+        - INLINE_MONITORING
+        - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: TransactionAlertCheckType
+    TransactionAlert:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: >-
+            Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert
+            and should be unique across all transaction alerts. Updates to a transaction alert should be made using this
+            identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction alert is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/TransactionAlertStatus'
+        check_type:
+          $ref: '#/components/schemas/TransactionAlertCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the alert relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this alert was generated in your system, in ISO 8601 format.
+      required:
+        - alert_id
+        - timestamp
+      title: TransactionAlert
+    UpdateTransactionAlertsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionAlert'
+      description: >-
+        Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time.
+        Only the fields to be updated need to be included.
+      title: UpdateTransactionAlertsRequest
+    Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
+    NewTransactionSuspiciousActivityItems:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a
+            transaction suspicious activity and should be unique across all transaction suspicious activities. Updates
+            to a transaction suspicious activity should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction suspicious activity is test data, this should be set to true
+        detection_date:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp at which suspicious activity was detected on a transaction in ISO 8601 format. Use the actual
+            detection time, not the current timestamp.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: >-
+            The time the transaction suspicious activity report was filed in ISO 8601 format. Use the actual filing
+            time, not the current timestamp.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the suspicious activity was detected in your system, in ISO 8601 format.
+      required:
+        - suspicious_activity_id
+        - detection_date
+        - timestamp
+      title: NewTransactionSuspiciousActivityItems
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: >-
+        Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the
+        suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be
+        associated with a report.
+      title: NewTransactionSuspiciousActivity
+    TransactionSuspiciousActivity:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a
+            transaction suspicious activity and should be unique across all transaction suspicious activities. Updates
+            to a transaction suspicious activity should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction suspicious activity is test data, this should be set to true
+        detection_date:
+          type: string
+          format: date-time
+          description: >-
+            Timestamp at which suspicious activity was detected on a transaction in ISO 8601 format. Use the actual
+            detection time, not the current timestamp.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
+          type: string
+          format: date-time
+          description: >-
+            The time the transaction suspicious activity report was filed in ISO 8601 format. Use the actual filing
+            time, not the current timestamp.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
+          type: string
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the suspicious activity was detected in your system, in ISO 8601 format.
+      required:
+        - suspicious_activity_id
+        - timestamp
+      title: TransactionSuspiciousActivity
+    UpdateTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionSuspiciousActivity'
+      description: >-
+        Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field
+        represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionSuspiciousActivity
+    Screening_checkScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the screening
+        organization_id:
+          type: string
+          description: The organization ID for which the screening was found
+      title: Screening_checkScreening_Response_200
+    NewScreeningRequestItemsType:
+      type: string
+      enum:
+        - ADVERSE_MEDIA
+        - AML
+        - PEP
+        - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: NewScreeningRequestItemsType
+    NewScreeningRequestItemsOutcome:
+      type: string
+      enum:
+        - POSITIVE
+        - NEGATIVE
+        - FALSE_NEGATIVE
+        - FALSE_POSITIVE
+        - TRUE_NEGATIVE
+        - TRUE_POSITIVE
+        - SCREENED
+      description: >-
+        The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should
+        only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: NewScreeningRequestItemsOutcome
+    NewScreeningRequestItems:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: >-
+            Unique identifier for the screening. This is the primary key for a screening and should be unique across
+            screenings.
+        type:
+          $ref: '#/components/schemas/NewScreeningRequestItemsType'
+          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+        outcome:
+          $ref: '#/components/schemas/NewScreeningRequestItemsOutcome'
+          description: >-
+            The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED"
+            should only be used when the outcome is not available but there is the confirmation that the screening has
+            been done.
+        outcome_details:
+          type: string
+          description: >-
+            Further details on the reason of the screening outcome. For a transaction screening, it could be due to many
+            reasons, so it could be relevant to include further details.
+        provider:
+          type: string
+          description: The provider that performed the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
+        timestamp:
+          type: string
+          format: date-time
+          description: When the screening was performed in your system, in ISO 8601 format.
+        related_tx_id:
+          type: string
+          description: >-
+            Unique identifier for the related transaction in case of a transaction screening. Only one of
+            `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier for the related person in case of a person and/or transaction screening. Only one of
+            `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`,
+            `related_person_id` or `related_company_id` should be provided.
+      required:
+        - screening_id
+        - type
+        - outcome
+        - provider
+        - lists
+        - timestamp
+      title: NewScreeningRequestItems
+    NewScreeningRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewScreeningRequestItems'
+      description: Screening data to add.
+      title: NewScreeningRequest
+    ScreeningType:
+      type: string
+      enum:
+        - ADVERSE_MEDIA
+        - AML
+        - PEP
+        - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: ScreeningType
+    ScreeningOutcome:
+      type: string
+      enum:
+        - POSITIVE
+        - NEGATIVE
+        - FALSE_NEGATIVE
+        - FALSE_POSITIVE
+        - TRUE_NEGATIVE
+        - TRUE_POSITIVE
+        - SCREENED
+      description: >-
+        The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should
+        only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: ScreeningOutcome
+    Screening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: >-
+            Unique identifier for the screening. This is the primary key for a screening and should be unique across
+            screenings.
+        type:
+          $ref: '#/components/schemas/ScreeningType'
+          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+        outcome:
+          $ref: '#/components/schemas/ScreeningOutcome'
+          description: >-
+            The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED"
+            should only be used when the outcome is not available but there is the confirmation that the screening has
+            been done.
+        outcome_details:
+          type: string
+          description: >-
+            Further details on the reason of the screening outcome. For a transaction screening, it could be due to many
+            reasons, so it could be relevant to include further details.
+        provider:
+          type: string
+          description: The provider that performed the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
+        timestamp:
+          type: string
+          format: date-time
+          description: When the screening was performed in your system, in ISO 8601 format.
+        related_tx_id:
+          type: string
+          description: >-
+            Unique identifier for the related transaction in case of a transaction screening. Only one of
+            `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier for the related person in case of a person and/or transaction screening. Only one of
+            `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`,
+            `related_person_id` or `related_company_id` should be provided.
+      required:
+        - screening_id
+        - outcome
+        - timestamp
+      title: Screening
+    UpdateScreeningsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Screening'
+      description: >-
+        Screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only
+        the fields to be updated need to be included.
+      title: UpdateScreeningsRequest
+    Risk Assessment_checkRiskAssessment_Response_200:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: The unique identifier of the risk assessment
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the risk assessment
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the risk assessment
+        organization_id:
+          type: string
+          description: The organization ID for which the risk assessment was found
+      title: Risk Assessment_checkRiskAssessment_Response_200
+    RiskAssessment:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: >-
+            Unique identifier for a risk assessment belonging to a risk assessment. This is the primary key for a risk
+            assessment and should be unique across all risk assessments. Updates to a risk assessment should be made
+            using this identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When the risk assessment was performed, not when reported to Cable. Use ISO 8601 format.
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier of the related company entity (used for business contexts). Only one of related_company_id
+            and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier of the related person entity (used for retail contexts or when a person is the subject).
+            Only one of related_company_id and related_person_id can be specified.
+        type:
+          type: string
+          description: Type of risk assessment (e.g., pre-onboarding risk rating, risk band, risk engine score)
+        outcome:
+          type: string
+          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
+      required:
+        - assessment_id
+        - timestamp
+        - type
+        - outcome
+      description: >-
+        Request body for adding risk assessment information for a parent entity, applicable to both retail and business
+        contexts
+      title: RiskAssessment
+    NewRiskAssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: NewRiskAssessmentRequest
+    UpdateRiskAsssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: UpdateRiskAsssessmentRequest
+    Person_checkPerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the person
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the person
+        organization_id:
+          type: string
+          description: The organization ID for which the person was found
+      title: Person_checkPerson_Response_200
+    PersonAccountStatus:
+      type: string
+      enum:
+        - APPROVED
+        - BLOCKED
+        - CLOSED
+        - PENDING
+        - REJECTED
+      description: >-
+        The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand
+        what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    PersonNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+        - type
+        - value
+      title: PersonNationalIdentificationNumber
+    Person:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: Unique external identifier of the person entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When this person record was created or last modified in your system, in ISO 8601 format. For example,
+            account opening date or KYC completion time.
+        is_test_user:
+          type: boolean
+          default: false
+          description: If the person is a test user, this should be set to true
+        is_retail_customer:
+          type: boolean
+          description: >-
+            Indicates if the person is in the context of retail companies. If the value is false, fields
+            is_beneficial_owner, is_director, is_account_owner and is_shareholder are required.
+        related_company_id:
+          type: string
+          description: Unique external identifier of the related company entity
+        is_beneficial_owner:
+          type: boolean
+          description: >-
+            If the person is a beneficial owner of the related company, this should be set to true. If
+            is_retail_customer is false, this field is required.
+        is_director:
+          type: boolean
+          description: >-
+            If the person is a director of the related company, this should be set to true. If is_retail_customer is
+            false, this field is required.
+        is_account_owner:
+          type: boolean
+          description: >-
+            If the person is an account owner of the related company, this should be set to true. If is_retail_customer
+            is false, this field is required.
+        is_sole_prop:
+          type: boolean
+          description: If the related company is a sole proprietorship (or sole trader if in the UK), this should be set to true.
+        is_shareholder:
+          type: boolean
+          description: >-
+            If the person is a shareholder of the related company, this should be set to true. If is_retail_customer is
+            false, this field is required.
+        is_significant_control_person:
+          type: boolean
+          description: If the person has significant control of the related company, this should be set to true
+        ownership_percentage:
+          type: number
+          format: double
+          description: >-
+            If the person is a shareholder of the related company, this should be set to their ownership percentage, as
+            a value between 0 and 1
+        account_status:
+          $ref: '#/components/schemas/PersonAccountStatus'
+          description: >-
+            The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to
+            understand what account statuses mean at Cable, and how to use them
+        name:
+          type: string
+          description: The provided full name of the person
+        first_name:
+          type: string
+          description: The provided first name of the person
+        last_name:
+          type: string
+          description: The provided last name of the person
+        email:
+          type: string
+          description: Contact email for the person
+        address:
+          $ref: '#/components/schemas/Address'
+        phone_number:
+          type: string
+          description: Contact telephone number for the person
+        date_of_birth:
+          type: string
+          format: date
+        nationality:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        occupation:
+          type: string
+          description: Primary occupation of the individual
+        first_transaction_completed_at:
+          type: string
+          format: date-time
+          description: Original timestamp of when the person completed their first transaction
+        national_identification_number:
+          $ref: '#/components/schemas/PersonNationalIdentificationNumber'
+        product_type:
+          type: string
+      required:
+        - person_id
+        - timestamp
+        - is_test_user
+        - is_retail_customer
+      description: Request body for adding information about persons
+      title: Person
+    NewPersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: NewPersonRequest
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+    Person_deletePerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Person_deletePerson_Response_200
+    Identity Verification_checkIdentityVerification_Response_200:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: The unique identifier of the identity verification
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the identity verification
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the identity verification
+        organization_id:
+          type: string
+          description: The organization ID for which the identity verification was found
+      title: Identity Verification_checkIdentityVerification_Response_200
+    IdentityVerificationVerificationType:
+      type: string
+      enum:
+        - DOCUMENT_MATCH
+        - DATABASE_MATCH
+        - MANUAL_VERIFICATION
+      title: IdentityVerificationVerificationType
+    IdentityVerificationVerifiedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of data being verified for the person or company
+        outcome:
+          type: string
+          description: The result of the verification for this data being verified
+        value:
+          type: string
+          description: The actual data that was verified, such as a name or ID number.
+        is_matched_externally:
+          type: boolean
+          description: >-
+            Specifies whether the data was verified by comparing it with an external source, such as a third-party
+            verification provider, external database, or through documentary verification (e.g., matching documents
+            against regulatory standards).
+        is_manually_verified:
+          type: boolean
+          description: >-
+            Indicates whether the data was manually verified by an internal team or trusted individual. This is true
+            when the verification process involves human intervention rather than an automated system, for example when
+            verifying a document.
+      required:
+        - type
+        - outcome
+      title: IdentityVerificationVerifiedDataItems
+    IdentityVerification:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: >-
+            Unique identifier for an identity verification. This is the primary identifier for an identity verification
+            and should be unique across all identity verifications. Updates to an identity verification should be made
+            using this identifier.
+
+
+            This can reference:
+
+            - Your internal verification record ID
+
+            - The original provider's verification ID (optionally with a prefix)
+
+            - Any unique identifier that allows traceability to the original data source
+        timestamp:
+          type: string
+          format: date-time
+          description: >-
+            When the identity verification completed, in ISO 8601 format. Use the timestamp from your verification
+            provider's response.
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier of the related company entity (used for business contexts). Only one of related_company_id
+            and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier of the related person entity (used for retail contexts or when a person is the subject).
+            Only one of related_company_id and related_person_id can be specified.
+        verification_provider:
+          type: string
+          description: >-
+            Which verification provider verified those attributes for the person or company. If this is an internal
+            process, mention the name of your company.
+        verification_overall_outcome:
+          type: string
+          description: Result of IDV screening returned from provider
+        verification_type:
+          $ref: '#/components/schemas/IdentityVerificationVerificationType'
+        verified_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IdentityVerificationVerifiedDataItems'
+          description: >-
+            Array of individual data points verified in this verification event only. Each item represents a specific
+            piece of information (name, DOB, address, etc.) that was checked during this particular verification.
+
+
+            Do not include:
+
+            - Data points from other verification events
+
+            - Aggregated results from multiple verifications
+
+            - Data that wasn't actually verified in this specific check
+
+
+            Example: If this verification only checked name and DOB, only include those two items in the array, even if
+            other data points were verified in previous or separate verification events.
+      required:
+        - verification_id
+        - timestamp
+        - verification_provider
+        - verified_data
+      description: >-
+        Request body for adding IDV (Identity Verification) information for a person or company.
+
+
+        Note: Each API call represents a single verification event from one provider at a specific point in time. If you
+        have multiple verification sources or multiple verification attempts, you must make separate API calls for each
+        one.
+
+
+        For example:
+
+        - Document verification from Provider A requires one API call
+
+        - Database verification from Provider B requires another API call
+
+        - Re-verification after data update requires a new API call
+      title: IdentityVerification
+    NewIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: NewIdentityVerificationRequest
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
+    Onboarding Flow_checkOnboardingFLow_Response_200:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: The unique identifier of the onboarding flow
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the onboarding flow
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the onboarding flow
+        organization_id:
+          type: string
+          description: The organization ID for which the onboarding flow was found
+      title: Onboarding Flow_checkOnboardingFLow_Response_200
+    OnboardingFlowOutcomeReason:
+      oneOf:
+        - type: string
+        - type: object
+          additionalProperties:
+            description: Any type
+      title: OnboardingFlowOutcomeReason
+    OnboardingFlow:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: >-
+            Unique identifier for an onboarding flow belonging to an onboarding flow. This is the primary key for an
+            onboarding flow and should be unique across all onboarding flows. Updates to an onboarding flow should be
+            made using this identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this onboarding flow step occurred in your system, in ISO 8601 format.
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier of the related company entity (used for business contexts). Only one of related_company_id
+            and related_person_id can be specified.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier of the related person entity (used for retail contexts or when a person is the subject).
+            Only one of related_company_id and related_person_id can be specified.
+        flow_name:
+          type: string
+          description: >-
+            Latest onboarding flow that this entity has gone through, e.g. manual KYC, automated onboarding, Simplified
+            Due Diligence, Enhanced Due Diligence
+        outcome:
+          type: string
+          description: >-
+            Outcome for the latest onboarding flow that this entity has gone through, e.g. automated approval, manual
+            approval, automated rejection, manual rejection, EDD required
+        outcome_reason:
+          $ref: '#/components/schemas/OnboardingFlowOutcomeReason'
+      required:
+        - onboarding_flow_id
+        - timestamp
+        - flow_name
+        - outcome
+      description: >-
+        Request body for adding Onboarding Flow information for a parent entity, applicable to both retail and business
+        contexts
+      title: OnboardingFlow
+    NewOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: NewOnboardingFlowRequest
+    UpdateOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: UpdateOnboardingFlowRequest
+    Company_checkCompanyInfo_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the company
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the company
+        organization_id:
+          type: string
+          description: The organization ID for which the company was found
+      title: Company_checkCompanyInfo_Response_200
+    CompanyAccountStatus:
+      type: string
+      enum:
+        - APPROVED
+        - BLOCKED
+        - CLOSED
+        - PENDING
+        - REJECTED
+      description: >-
+        The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account
+        Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: CompanyAccountStatus
+    CompanyAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
+    CompanyRegistrationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
+        value:
+          type: string
+          description: The registration number
+      required:
+        - type
+        - value
+      title: CompanyRegistrationNumber
+    CompanyIndustryClassification:
+      type: object
+      properties:
+        code_type:
+          type: string
+          description: Type of industry classification code
+        code:
+          type: array
+          items:
+            type: string
+          description: Industry classification codes
+        description:
+          type: string
+          description: Description of the industry classification code
+      required:
+        - code_type
+        - code
+      title: CompanyIndustryClassification
+    Company:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: Unique external identifier of the company entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: When this company record was created or last modified in your system, in ISO 8601 format.
+        is_test_company:
+          type: boolean
+          default: false
+          description: If the company is a test company, this should be set to true
+        account_status:
+          $ref: '#/components/schemas/CompanyAccountStatus'
+          description: >-
+            The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account
+            Statuses" to understand what account statuses mean at Cable, and how to use them
+        legal_name:
+          type: string
+          description: Legal name of the business
+        trading_name:
+          type: string
+          description: Trading name of the business
+        email:
+          type: string
+          description: Main contact email for the company
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyAddressesItems'
+        phone_number:
+          type: string
+          description: Main contact telephone number for the company
+        type:
+          type: string
+          description: Business entity type. eg. Sole Trader, Limited Company
+        registration_number:
+          $ref: '#/components/schemas/CompanyRegistrationNumber'
+        incorporation_date:
+          type: string
+          format: date
+          description: Date when the company was incorporated
+        incorporation_country:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        incorporation_state:
+          type: string
+          description: State where the company was incorporated (US only)
+        primary_operation_country:
+          type: string
+          description: 2 or 3 Character ISO 3166 Country Code (https://w.wiki/4rY)
+        industry:
+          type: string
+          description: Nature of business
+        industry_classification:
+          $ref: '#/components/schemas/CompanyIndustryClassification'
+        source_of_wealth:
+          type: string
+          description: Source of wealth of the company
+        source_of_funds:
+          type: string
+          description: Source of initial deposit of the company
+        first_transaction_completed_at:
+          type: string
+          format: date-time
+          description: Original timestamp of when the person completed their first transaction
+        product_type:
+          type: string
+        registered_as_inactive:
+          type: boolean
+          description: If the company is registered as inactive, this should be set to true
+      required:
+        - company_id
+        - timestamp
+        - is_test_company
+      description: Request body for adding information about companies
+      title: Company
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
+    Company_deleteCompany_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
+    CustomerSAR_checkCustomerSAR_Response_200:
+      type: object
+      properties:
+        sar_id:
+          type: string
+          description: The unique identifier of the customer SAR
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the customer SAR
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the customer SAR
+        organization_id:
+          type: string
+          description: The organization ID for which the customer SAR was found
+      title: CustomerSAR_checkCustomerSAR_Response_200
+    CustomerSarStatus:
+      type: string
+      enum:
+        - PENDING
+        - FILED
+        - CANCELLED
+      description: >-
+        The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the
+        appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it
+        is not going to be filed.
+      title: CustomerSarStatus
+    CustomerSAR:
+      type: object
+      properties:
+        sar_id:
+          type: string
+          description: >-
+            Unique identifier for a suspicious activity report belonging to a customer suspicious activity report. This
+            is the primary key for a customer suspicious activity report and should be unique across all customer
+            suspicious activity reports. Updates to a customer suspicious activity report should be made using this
+            identifier.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this SAR was filed or updated in your system, in ISO 8601 format.
+        status:
+          $ref: '#/components/schemas/CustomerSarStatus'
+          description: >-
+            The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the
+            appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that
+            it is not going to be filed.
+        sar_reason:
+          type: string
+          description: The reason for filing up a SAR for this person or company
+        related_company_id:
+          type: string
+          description: >-
+            Unique identifier of the related company entity (used for business contexts). At least one of
+            related_company_id and related_person_id should be specified.
+        related_person_id:
+          type: string
+          description: >-
+            Unique identifier of the related person entity (used for retail contexts or when a person is the subject).
+            At least only one of related_person_id and related_company_id should be specified.
+      required:
+        - sar_id
+        - timestamp
+        - status
+      description: Request body for adding SAR (Suspicious Activity Report) information for a person or company
+      title: CustomerSAR
+    NewCustomerSARRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerSAR'
+      title: NewCustomerSARRequest
+    UpdateCustomerSARRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerSAR'
+      title: UpdateCustomerSARRequest
+    V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+        - pending
+        - processing
+        - completed
+      description: The status of the deletion request
+      title: V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus
+    Utilities_getDeletionRequest_Response_200:
+      type: object
+      properties:
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+        resource_type:
+          type: string
+          description: The type of resource that was deleted
+        resource_id:
+          type: string
+          description: The unique identifier of the resource that was deleted
+        status:
+          $ref: '#/components/schemas/V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus'
+          description: The status of the deletion request
+      title: Utilities_getDeletionRequest_Response_200
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    BearerAuth:
+      type: http
+      scheme: bearer

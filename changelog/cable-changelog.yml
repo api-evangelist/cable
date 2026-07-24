@@ -1,0 +1,20 @@
+generated: '2026-07-18'
+method: searched
+source: https://docs.cable.tech/product-updates
+scheme: dated-product-updates
+note: >-
+  Cable publishes a dated Product Updates changelog on its documentation site (hosted on Fern).
+  Entries are addressed as /product-updates/<year>/<month>/<day>. Only the recent window is
+  captured here; the live page is the source of truth.
+entries:
+- date: '2026-05-01'
+  url: https://docs.cable.tech/product-updates/2026/5/1
+  highlights:
+  - Paper Trails overhaul — faster list (filtering/sorting/pagination at scale), new search bar,
+    homepage widgets surfacing Paper Trails metrics, and consistent workspace scoping across
+    parent/child organizations.
+  - Analytics graduated out of beta to a core part of Cable.
+- date: '2024-08-07'
+  url: https://docs.cable.tech/product-updates/2024/8/7
+  highlights:
+  - Product update (see live page for detail).
