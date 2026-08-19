@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a transaction alert exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/transaction_alert",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction alert"
+              }
+            ]
+          },
+          "docs": "Check if a transaction alert exists"
+        },
+        {
+          "info": {
+            "name": "Add new transaction alert(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/transaction_alert",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new transaction alert(s)"
+        },
+        {
+          "info": {
+            "name": "Update an existing transaction alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/transaction_alert",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing transaction alert"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

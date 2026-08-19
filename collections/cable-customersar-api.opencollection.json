@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts customerSar API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "customerSar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a customer sar exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/customer_sar",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sar_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the customer SAR"
+              }
+            ]
+          },
+          "docs": "Check if a customer sar exists"
+        },
+        {
+          "info": {
+            "name": "Add customer sar information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/customer_sar",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint for adding new customer sar"
+        },
+        {
+          "info": {
+            "name": "Update customer SAR in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/customer_sar",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update customer SAR in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

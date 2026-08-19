@@ -1,0 +1,888 @@
+{
+  "item": [
+    {
+      "id": "ed838d99-503f-41c5-937e-31ef57c89648",
+      "name": "retail",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ca4fa4c-b804-4226-9870-0e9bdb517996",
+          "name": "Add screening check information",
+          "request": {
+            "name": "Add screening check information",
+            "description": {
+              "content": "Retail endpoint for adding new screening check information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "screening_check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"screening_id\": \"<string>\",\n      \"screening_type\": \"<string>\",\n      \"screening_outcome\": \"<string>\",\n      \"screening_provider\": \"<string>\",\n      \"screening_lists\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"screening_id\": \"<string>\",\n      \"screening_type\": \"<string>\",\n      \"screening_outcome\": \"<string>\",\n      \"screening_provider\": \"<string>\",\n      \"screening_lists\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee37538a-c398-4fed-8a55-6f2b0b17300f",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "screening_check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"2015-03-18T17:03:32.958Z\",\n    \"data\": {\n      \"screening_id\": \"string\",\n      \"screening_type\": \"string\",\n      \"screening_outcome\": \"string\",\n      \"screening_provider\": \"string\",\n      \"screening_lists\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"1973-10-10T04:55:45.513Z\",\n    \"data\": {\n      \"screening_id\": \"string\",\n      \"screening_type\": \"string\",\n      \"screening_outcome\": \"string\",\n      \"screening_provider\": \"string\",\n      \"screening_lists\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5dfbdec9-a502-4696-bdde-7954a169ab78",
+          "name": "Add SAR information",
+          "request": {
+            "name": "Add SAR information",
+            "description": {
+              "content": "Retail endpoint for adding new SAR information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "sar_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"status\": \"<string>\",\n      \"value\": \"<string>\",\n      \"cause\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"status\": \"<string>\",\n      \"value\": \"<string>\",\n      \"cause\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9b9c7bdc-36e2-469c-8cd5-7a4f3b02634e",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "sar_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1980-05-02T09:49:14.140Z\",\n    \"data\": {\n      \"status\": \"submitted\",\n      \"value\": \"string\",\n      \"cause\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"1995-10-18T17:14:15.881Z\",\n    \"data\": {\n      \"status\": \"cancelled\",\n      \"value\": \"string\",\n      \"cause\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f8565a2-a857-47cc-9b78-b864748cfa23",
+          "name": "Add risk assessment information",
+          "request": {
+            "name": "Add risk assessment information",
+            "description": {
+              "content": "Retail endpoint for adding new customer risk assessment information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "risk_assessment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"type\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"type\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d25ab935-258c-47ec-9758-167b4c1281d3",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"2024-05-26T22:58:29.678Z\",\n    \"data\": {\n      \"type\": \"string\",\n      \"outcome\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"1978-11-25T02:34:21.429Z\",\n    \"data\": {\n      \"type\": \"string\",\n      \"outcome\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24dc63de-5b72-49c8-995c-2fafa8005d42",
+          "name": "Add person information",
+          "request": {
+            "name": "Add person information",
+            "description": {
+              "content": "Retail endpoint for adding new person information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "person_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"county\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phone_number\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"nationality\": \"<string>\",\n      \"occupation\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"national_identification_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"product_type\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"county\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phone_number\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"nationality\": \"<string>\",\n      \"occupation\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"national_identification_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"product_type\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee720a68-1c6f-474e-aacb-c559c725dd15",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "person_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"1962-01-07T00:07:08.272Z\",\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"lines\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"county\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      },\n      \"phone_number\": \"string\",\n      \"date_of_birth\": \"1952-11-13\",\n      \"nationality\": \"string\",\n      \"occupation\": \"string\",\n      \"first_transaction_completed_at\": \"2019-03-13T08:21:33.173Z\",\n      \"national_identification_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"product_type\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"1982-05-19T05:20:56.470Z\",\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"lines\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"county\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      },\n      \"phone_number\": \"string\",\n      \"date_of_birth\": \"1994-05-31\",\n      \"nationality\": \"string\",\n      \"occupation\": \"string\",\n      \"first_transaction_completed_at\": \"2009-11-10T11:20:03.220Z\",\n      \"national_identification_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"product_type\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d015c1b6-c58f-4694-9e86-a8e4f5cd0bb8",
+          "name": "Add onboarding flow information",
+          "request": {
+            "name": "Add onboarding flow information",
+            "description": {
+              "content": "Retail endpoint for adding new Onboarding Flow information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "onboarding_flow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"flow_name\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"outcome_reason\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"flow_name\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"outcome_reason\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c31dc001-d2b8-4b0d-9b65-8aa31c6da5ae",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "onboarding_flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1975-09-08T01:24:48.013Z\",\n    \"data\": {\n      \"flow_name\": \"string\",\n      \"outcome\": \"string\",\n      \"outcome_reason\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"1982-09-21T06:33:56.699Z\",\n    \"data\": {\n      \"flow_name\": \"string\",\n      \"outcome\": \"string\",\n      \"outcome_reason\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee5fe945-5dc7-4f9e-81b6-d667db09b90a",
+          "name": "Add IDV information",
+          "request": {
+            "name": "Add IDV information",
+            "description": {
+              "content": "Retail endpoint for adding new IDV information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "idv_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"verification_type\": \"<string>\",\n      \"verification_outcome\": \"<string>\",\n      \"verification_provider\": \"<string>\",\n      \"document_type\": \"<string>\",\n      \"document_number\": \"<string>\",\n      \"document_expiry_date\": \"<dateTime>\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"is_live_selfie\": \"<boolean>\",\n      \"externally_verified_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"verification_type\": \"<string>\",\n      \"verification_outcome\": \"<string>\",\n      \"verification_provider\": \"<string>\",\n      \"document_type\": \"<string>\",\n      \"document_number\": \"<string>\",\n      \"document_expiry_date\": \"<dateTime>\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"is_live_selfie\": \"<boolean>\",\n      \"externally_verified_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b872ce5c-a725-4b0e-bf77-d79f4c604bf7",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "idv_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1975-04-05T11:30:18.290Z\",\n    \"data\": {\n      \"verification_type\": \"string\",\n      \"verification_outcome\": \"string\",\n      \"verification_provider\": \"string\",\n      \"document_type\": \"string\",\n      \"document_number\": \"string\",\n      \"document_expiry_date\": \"1984-03-27T19:07:23.464Z\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"is_live_selfie\": true,\n      \"externally_verified_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": true,\n          \"provider\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": false,\n          \"provider\": \"string\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"2009-04-02T00:17:44.132Z\",\n    \"data\": {\n      \"verification_type\": \"string\",\n      \"verification_outcome\": \"string\",\n      \"verification_provider\": \"string\",\n      \"document_type\": \"string\",\n      \"document_number\": \"string\",\n      \"document_expiry_date\": \"1972-10-30T17:02:33.933Z\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"is_live_selfie\": false,\n      \"externally_verified_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": true,\n          \"provider\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": true,\n          \"provider\": \"string\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb9203be-66ee-4d9e-9ef3-e3ea7844843c",
+          "name": "Add account status information",
+          "request": {
+            "name": "Add account status information",
+            "description": {
+              "content": "Retail endpoint for adding new account status information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "account_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"account_status\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"account_status\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd3043ab-f746-4db8-96a7-7ab23cac37b0",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "account_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1979-11-12T16:33:03.906Z\",\n    \"data\": {\n      \"account_status\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"2024-06-13T12:23:23.268Z\",\n    \"data\": {\n      \"account_status\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59b98f8f-ded0-490f-8d22-7fb04cc64031",
+          "name": "Add access information",
+          "request": {
+            "name": "Add access information",
+            "description": {
+              "content": "Retail endpoint for adding new access information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "retail",
+                "access_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"ip\": \"<string>\",\n      \"device_id\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"ip\": \"<string>\",\n      \"device_id\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0654a536-a642-4a09-bcb8-c3eda3cd763b",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "retail",
+                    "access_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1985-07-07T11:59:23.361Z\",\n    \"data\": {\n      \"ip\": \"string\",\n      \"device_id\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  },\n  {\n    \"timestamp\": \"1974-08-30T08:42:23.616Z\",\n    \"data\": {\n      \"ip\": \"string\",\n      \"device_id\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1da7bf27-0d54-42f9-8162-bf50b12e0e70",
+    "name": "API Reference alerts retail API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

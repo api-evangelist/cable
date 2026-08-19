@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts identityVerification API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "identityVerification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a identity verification exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/identity_verification",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the identity verification"
+              }
+            ]
+          },
+          "docs": "Check if a identity verification exists"
+        },
+        {
+          "info": {
+            "name": "Add identity verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/identity_verification",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add IDV (Identity Verification) information for a person or company.\n\nNote: Each API call represents a single verification event from one provider at a specific point in time. If you have multiple verification sources or multiple verification attempts, you must make separate API calls for each one.\n\nFor example:\n- Document verification from Provider A requires one API call\n- Database verification from Provider B requires another API call\n- Re-verification after data update requires a new API cal"
+        },
+        {
+          "info": {
+            "name": "Update identity verification in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/identity_verification",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update identity verification in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

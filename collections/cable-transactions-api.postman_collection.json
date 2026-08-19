@@ -1,0 +1,3542 @@
+{
+  "item": [
+    {
+      "id": "03bc19a1-dcd2-4355-91c0-a5ca60daacd1",
+      "name": "transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4d3df34a-6cc1-4642-8e98-59e793686615",
+          "name": "Check if a transaction exists",
+          "request": {
+            "name": "Check if a transaction exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tx_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47367632-f476-46d8-907b-ae19b045de6a",
+              "name": "Transaction exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tx_id\": \"string\",\n  \"first_seen\": \"1957-11-10T22:55:44.793Z\",\n  \"last_seen\": \"2010-08-22T20:57:04.580Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00cf89f6-612e-418d-8a25-91434aa16c7e",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91655327-ad4d-4a2c-9d90-eaf6d33eabc1",
+              "name": "Transaction does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "786a1fe2-e070-445b-9495-67ac07e5e41a",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d541fab7-20e5-4fa4-8ec1-9fbf2bc84b82",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44275255-4033-49db-b20b-6a39ccbc2fe3",
+          "name": "Add a new transaction",
+          "request": {
+            "name": "Add a new transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"method\": \"<string>\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"<string>\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f529005-d3d8-48cf-976a-bdc9548cadc6",
+              "name": "Transaction added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03b7ef39-7cbe-4eb4-89b1-9ffff8f473d0",
+              "name": "Invalid transaction data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f87a756-21aa-4d32-8f60-f7129acd923b",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41041e4e-a644-4901-a0a1-180e5bfdc368",
+              "name": "Transaction already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6ef1e90-5962-4f1a-a9ba-ce99694c33fd",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1659c7c-de0f-4baa-b869-ca8e87ea606a",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"WITHDRAWAL\",\n  \"method\": \"PROV_X_TRANSFER\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"status\": \"SETTLED\",\n  \"is_test\": false,\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49e7343c-b8b9-4492-be90-863907e952f2",
+          "name": "Update an existing transaction",
+          "request": {
+            "name": "Update an existing transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"<string>\",\n  \"method\": \"<string>\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee0f82b1-5114-4b4c-aecc-b690e4f98a75",
+              "name": "Transaction updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4270ed9f-683e-4ee1-ae5a-9b7b6164c057",
+              "name": "Invalid transaction data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a666f11e-215a-4be2-9042-d212f8d79d10",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4d5d245-c1ee-4749-bea1-bb059b4914f6",
+              "name": "Transaction not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a07a2a46-3c34-422b-9919-b479e6d63f66",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32f97820-c514-439f-aa22-f2e5c400586c",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"is_test\": false,\n  \"type\": \"DEPOSIT\",\n  \"method\": \"ACH\",\n  \"amount\": \"<number,null-double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string,null>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string,null>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"FAILED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46a38168-7892-4be2-81e8-b07ccdaf64a2",
+          "name": "Submit a deletion request for a transaction and any related data",
+          "request": {
+            "name": "Submit a deletion request for a transaction and any related data",
+            "description": {
+              "content": "This operation will submit a request to delete the transaction and any\nrelated data.\n\nThe deletion request will be processed by the system and\nthe data will be removed permanently from Cable's system. Deletion\nrequests are not processed immediately and may take some time to\ncomplete.\n\nThe status of the deletion request can be checked using the\ndeletion request ID and the status endpoint.\n\n<Warning>This operation is not intended for regular use and should be used with caution.</Warning>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7a0afe9-de7a-47fe-a831-215f4ca16492",
+              "name": "Deletion request submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tx_id\": \"string\",\n  \"deletion_request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af046c69-c14e-4bba-8b06-67705d1c006d",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cd50f1da-e19b-4d3f-894a-e6a0bff446ec",
+              "name": "Person does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0fb0f3a-d18e-4f91-924d-3f4c9840ace2",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7820c2c1-65ef-47d4-90a3-e290b087b767",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tx_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1df97711-8689-4e09-b556-adb373859ff8",
+          "name": "Add transactions in batch",
+          "request": {
+            "name": "Add transactions in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transactions",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"status\": \"<string>\",\n    \"is_test\": false,\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"status\": \"<string>\",\n    \"is_test\": false,\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9af7611-1148-48d9-be98-0e0d6bdfa7f2",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc468de3-ac5a-467d-84b2-1738493aa243",
+              "name": "Invalid transaction data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf9440bd-6d45-4f4a-91c3-95416d87fe76",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe3341f9-da4f-4265-9ab4-97770aef0a75",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e880103d-4fad-4522-9e60-f26fc5787426",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7977f56a-4cb4-49a6-97ed-02bd63aae5ee",
+          "name": "Update transactions in batch",
+          "request": {
+            "name": "Update transactions in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transactions",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"is_test\": false,\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\",\n    \"status\": \"<string>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"is_test\": false,\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\",\n    \"status\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "097adfaa-259f-4ad8-8af5-d8f080e5bf2e",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a9e851b0-0ed0-4469-98ae-8ee0e0d9badb",
+              "name": "Invalid transaction data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0729d916-e0b1-4208-85d3-1d3eb25d500d",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8af267c-8e88-4e19-b868-c8ac3504ef2c",
+              "name": "Transaction not found in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "807e131e-fe7e-4f26-958a-5d2ea52931c2",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29fab4ba-64a3-4f13-b085-e96c780a3e85",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a59a03c6-8dd4-4c2e-8cb2-57a9e488ed63",
+          "name": "Check if a transaction exists",
+          "request": {
+            "name": "Check if a transaction exists",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tx_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the transaction"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01f992c3-1672-46c6-88b2-271a1b84d01c",
+              "name": "Transaction exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tx_id\": \"string\",\n  \"first_seen\": \"1957-11-10T22:55:44.793Z\",\n  \"last_seen\": \"2010-08-22T20:57:04.580Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e9a10a8-ceb6-427e-bb3d-0f03b5d3feb8",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39e7d0b1-a463-49e6-8613-57fc2a52b397",
+              "name": "Transaction does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "685b4585-02ec-46b1-896c-3f7fd880ed79",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e4e9403-34e8-4330-b9e2-99632bd05da9",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tx_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c5cc000-94ee-4469-824b-45b031cdafa5",
+          "name": "Add a new transaction",
+          "request": {
+            "name": "Add a new transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"method\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"<string>\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c0915c20-9356-484c-82ba-7a0115c5641a",
+              "name": "Transaction added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "effcb225-e88a-40ed-9ea1-61d6f01b0073",
+              "name": "Invalid transaction data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c371bc53-7c3c-46b4-aee8-ae521da86c52",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3788d1cc-0c53-4d1b-bae9-e09246f0d725",
+              "name": "Transaction already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8364c3b5-44b1-4f9a-b144-8b03b2fc17f5",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd09e083-a239-459c-a161-440cbd670caa",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"RTP\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"SETTLED\",\n  \"amount_usd\": \"<double>\",\n  \"receiver_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6c89878-ab40-49f9-a168-190c9743d85f",
+          "name": "Update an existing transaction",
+          "request": {
+            "name": "Update an existing transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"<string>\",\n  \"method\": \"<string>\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4839769-91ff-41cf-95be-276b8bbd687a",
+              "name": "Transaction updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b32d99bf-3953-4dfb-9ed3-6ad7e24ede10",
+              "name": "Invalid transaction data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "850ce736-2f0d-4ba7-92bc-b19b612efb80",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb985b42-6235-4d9d-8d2b-25011403c038",
+              "name": "Transaction not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "279341f3-f058-4653-b862-51e7c64195fb",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "473ce3b4-0600-49d5-b939-dcb49ee70d9c",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"timestamp\": \"<dateTime>\",\n  \"tx_id\": \"<string>\",\n  \"type\": \"DEPOSIT\",\n  \"method\": \"SEPA\",\n  \"amount\": \"<double>\",\n  \"currency\": \"<iso-4217>\",\n  \"amount_usd\": \"<double>\",\n  \"sender_id\": \"<string>\",\n  \"sender_country\": \"<iso-3166-1>\",\n  \"receiver_id\": \"<string>\",\n  \"receiver_country\": \"<iso-3166-1>\",\n  \"status\": \"REFUNDED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f5edb8c-0605-4854-a41e-eb390e04a2cf",
+          "name": "Add transactions in batch",
+          "request": {
+            "name": "Add transactions in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"status\": \"<string>\",\n    \"is_test\": false,\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"status\": \"<string>\",\n    \"is_test\": false,\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3585fcea-2019-4c2c-8ed0-b9ffa0e3a59c",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f46dc20a-9473-4ef2-8b52-e2bf965f6f62",
+              "name": "Invalid transaction data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d6608f0-5fb1-441e-94d9-423ad42a5f73",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25f80fc0-3542-4f18-a9d9-07ed301f8a17",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d16a0030-99a6-4622-bfb8-6aef7a387f91",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-07-13T03:29:08.011Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"WIRE\",\n    \"amount\": 4026.0914264621197,\n    \"currency\": \"string\",\n    \"status\": \"REFUNDED\",\n    \"is_test\": false,\n    \"amount_usd\": 9615.247004851528,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  },\n  {\n    \"timestamp\": \"1963-10-20T03:49:38.312Z\",\n    \"tx_id\": \"string\",\n    \"type\": \"DEPOSIT\",\n    \"method\": \"INTERNAL_TRANSFER\",\n    \"amount\": 4275.145170555288,\n    \"currency\": \"string\",\n    \"status\": \"REJECTED\",\n    \"is_test\": false,\n    \"amount_usd\": 3433.581074326968,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40e1f835-3fb1-4e9b-9b34-bbf3cd13709c",
+          "name": "Update transactions in batch",
+          "request": {
+            "name": "Update transactions in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"is_test\": false,\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\",\n    \"status\": \"<string>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"tx_id\": \"<string>\",\n    \"is_test\": false,\n    \"type\": \"<string>\",\n    \"method\": \"<string>\",\n    \"amount\": \"<number,null-double>\",\n    \"currency\": \"<iso-4217>\",\n    \"amount_usd\": \"<double>\",\n    \"sender_id\": \"<string,null>\",\n    \"sender_country\": \"<iso-3166-1>\",\n    \"receiver_id\": \"<string,null>\",\n    \"receiver_country\": \"<iso-3166-1>\",\n    \"status\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e987d8b-f8fc-4f26-99fc-4b1aebe130b4",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 1277,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1427129a-1139-450f-8d8c-07fc634b2134",
+              "name": "Invalid transaction data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30cde356-b5c8-40b4-9eed-ea8329430739",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fdbc041-cffc-4408-9a38-4c569b3b99b1",
+              "name": "Transaction not found in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "807b542f-a1b4-4eac-a767-3c48c1736eed",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ef2923e-6598-493d-a3b3-9c42bbfff948",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1993-07-11T12:13:19.541Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"ACH\",\n    \"amount\": 3360.050428995106,\n    \"currency\": \"string\",\n    \"amount_usd\": 5797.97982065492,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"PENDING\"\n  },\n  {\n    \"timestamp\": \"1992-10-01T01:00:30.738Z\",\n    \"tx_id\": \"string\",\n    \"is_test\": false,\n    \"type\": \"WITHDRAWAL\",\n    \"method\": \"RTP\",\n    \"amount\": 7082.9007486691635,\n    \"currency\": \"string\",\n    \"amount_usd\": 9006.58076594181,\n    \"sender_id\": \"string\",\n    \"sender_country\": \"string\",\n    \"receiver_id\": \"string\",\n    \"receiver_country\": \"string\",\n    \"status\": \"FAILED\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5038,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "62ad8a62-a77b-4fa8-a5f8-34a929fe981b",
+    "name": "API Reference alerts transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

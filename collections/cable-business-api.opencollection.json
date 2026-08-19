@@ -1,0 +1,207 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts business API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "business",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add screening check information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/screening_check",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new screening check information"
+        },
+        {
+          "info": {
+            "name": "Add SAR information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/sar_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new SAR (Suspicious Activity Report) information"
+        },
+        {
+          "info": {
+            "name": "Add customer risk assessment information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/risk_assessment",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new customer risk assessment information"
+        },
+        {
+          "info": {
+            "name": "Add person information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/person_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new person information"
+        },
+        {
+          "info": {
+            "name": "Add onboarding flow information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/onboarding_flow",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new Onboarding Flow information"
+        },
+        {
+          "info": {
+            "name": "Add IDV information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/idv_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new IDV (Identity Verification) information"
+        },
+        {
+          "info": {
+            "name": "Add company information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/company_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new company information"
+        },
+        {
+          "info": {
+            "name": "Add account status information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/account_status",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new account status information"
+        },
+        {
+          "info": {
+            "name": "Add access information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/business/access_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Business endpoint for adding new access information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

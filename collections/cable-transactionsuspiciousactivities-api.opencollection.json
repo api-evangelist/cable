@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts transactionSuspiciousActivities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transactionSuspiciousActivities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a transaction suspicious activity exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/transaction_suspicious_activity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "suspicious_activity_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction suspicious activity"
+              }
+            ]
+          },
+          "docs": "Check if a transaction suspicious activity exists"
+        },
+        {
+          "info": {
+            "name": "Add new transaction suspicious activities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/transaction_suspicious_activity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new transaction suspicious activities"
+        },
+        {
+          "info": {
+            "name": "Update transaction suspicious activities in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/transaction_suspicious_activity",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update transaction suspicious activities in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts transactions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a transaction exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tx_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction"
+              }
+            ]
+          },
+          "docs": "Check if a transaction exists"
+        },
+        {
+          "info": {
+            "name": "Add a new transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new transaction"
+        },
+        {
+          "info": {
+            "name": "Update an existing transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing transaction"
+        },
+        {
+          "info": {
+            "name": "Submit a deletion request for a transaction and any related data",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cable.tech/v2/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation will submit a request to delete the transaction and any\nrelated data.\n\nThe deletion request will be processed by the system and\nthe data will be removed permanently from Cable's system. Deletion\nrequests are not processed immediately and may take some time to\ncomplete.\n\nThe status of the deletion request can be checked using the\ndeletion request ID and the status endpoint.\n\n<Warning>This operation is not intended for regular use and should be used with caution.</Warning>\n"
+        },
+        {
+          "info": {
+            "name": "Add transactions in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/transactions/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add transactions in batch"
+        },
+        {
+          "info": {
+            "name": "Update transactions in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/transactions/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update transactions in batch"
+        },
+        {
+          "info": {
+            "name": "Check if a transaction exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "tx_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction"
+              }
+            ]
+          },
+          "docs": "Check if a transaction exists"
+        },
+        {
+          "info": {
+            "name": "Add a new transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a new transaction"
+        },
+        {
+          "info": {
+            "name": "Update an existing transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/transaction",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing transaction"
+        },
+        {
+          "info": {
+            "name": "Add transactions in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/transactions/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add transactions in batch"
+        },
+        {
+          "info": {
+            "name": "Update transactions in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/transactions/batch",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update transactions in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

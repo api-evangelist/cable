@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts helper API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "helper",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Organization status check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/status",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Endpoint for organization status check purposes"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

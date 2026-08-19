@@ -1,0 +1,1301 @@
+{
+  "item": [
+    {
+      "id": "b707aeb3-60d3-4592-840a-c4058da93d19",
+      "name": "person",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23ba5eab-af49-469a-93f0-f22ec087a02b",
+          "name": "Check if a person exists",
+          "request": {
+            "name": "Check if a person exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "person_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the person"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65dcddb7-3fc2-4620-808f-58d3dd4e22dc",
+              "name": "Person exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "person_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"person_id\": \"string\",\n  \"first_seen\": \"1971-04-01T00:25:49.843Z\",\n  \"last_seen\": \"2014-03-06T17:43:34.699Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "758c755b-99a1-4614-be63-aa8a528b6fd9",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "person_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d526ed0-c47b-4c24-a487-c359b8590e65",
+              "name": "Person does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "person_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57042126-eeab-40c9-a0c3-20564d9872c2",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "person_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9af0e97d-0b16-49b6-9ee8-6002abf87ec1",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "person_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b1f4f86-d854-430c-ab08-eb215cf5f10e",
+          "name": "Add person information",
+          "request": {
+            "name": "Add person information",
+            "description": {
+              "content": "Endpoint for adding new person information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"person_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": \"<boolean>\",\n    \"related_company_id\": \"<string>\",\n    \"is_beneficial_owner\": \"<boolean>\",\n    \"is_director\": \"<boolean>\",\n    \"is_account_owner\": \"<boolean>\",\n    \"is_sole_prop\": \"<boolean>\",\n    \"is_shareholder\": \"<boolean>\",\n    \"is_significant_control_person\": \"<boolean>\",\n    \"ownership_percentage\": \"<double>\",\n    \"account_status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"lines\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"county\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone_number\": \"<string>\",\n    \"date_of_birth\": \"<date>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"national_identification_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"product_type\": \"<string>\"\n  },\n  {\n    \"person_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": \"<boolean>\",\n    \"related_company_id\": \"<string>\",\n    \"is_beneficial_owner\": \"<boolean>\",\n    \"is_director\": \"<boolean>\",\n    \"is_account_owner\": \"<boolean>\",\n    \"is_sole_prop\": \"<boolean>\",\n    \"is_shareholder\": \"<boolean>\",\n    \"is_significant_control_person\": \"<boolean>\",\n    \"ownership_percentage\": \"<double>\",\n    \"account_status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"lines\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"county\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone_number\": \"<string>\",\n    \"date_of_birth\": \"<date>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"national_identification_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"product_type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c90f550-4151-4737-9029-2441990a0a95",
+              "name": "Person added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 2377,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1514c96-287b-4fef-95bf-0414ccac4c27",
+              "name": "Invalid person data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4eeaa97-fb69-4089-a9ed-e321d5d0d00c",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e60643ce-cc29-497b-9715-93f0a6befb8d",
+              "name": "Person already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8d0a4b2-210f-4536-b462-2c81bdadddde",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ac7695d-ea95-4d01-9774-c4ba214270be",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1978-11-16T16:43:09.084Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": true,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 5034.488245853099,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2024-07-29\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2012-04-13T06:19:03.395Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1948-01-18T22:14:34.744Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 2321.8805024551193,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1997-12-27\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"2017-03-05T22:00:41.619Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2498437e-37d1-49f8-aa74-373d361b1b0f",
+          "name": "Update person in batch",
+          "request": {
+            "name": "Update person in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "person"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"person_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": \"<boolean>\",\n    \"related_company_id\": \"<string>\",\n    \"is_beneficial_owner\": \"<boolean>\",\n    \"is_director\": \"<boolean>\",\n    \"is_account_owner\": \"<boolean>\",\n    \"is_sole_prop\": \"<boolean>\",\n    \"is_shareholder\": \"<boolean>\",\n    \"is_significant_control_person\": \"<boolean>\",\n    \"ownership_percentage\": \"<double>\",\n    \"account_status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"lines\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"county\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone_number\": \"<string>\",\n    \"date_of_birth\": \"<date>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"national_identification_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"product_type\": \"<string>\"\n  },\n  {\n    \"person_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": \"<boolean>\",\n    \"related_company_id\": \"<string>\",\n    \"is_beneficial_owner\": \"<boolean>\",\n    \"is_director\": \"<boolean>\",\n    \"is_account_owner\": \"<boolean>\",\n    \"is_sole_prop\": \"<boolean>\",\n    \"is_shareholder\": \"<boolean>\",\n    \"is_significant_control_person\": \"<boolean>\",\n    \"ownership_percentage\": \"<double>\",\n    \"account_status\": \"<string>\",\n    \"name\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"address\": {\n      \"lines\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"county\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"phone_number\": \"<string>\",\n    \"date_of_birth\": \"<date>\",\n    \"nationality\": \"<string>\",\n    \"occupation\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"national_identification_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"product_type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3539c55c-9400-4d97-9bf8-a153191cab9c",
+              "name": "Persons updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 2377,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "448fb436-fc53-42f0-9163-42cbafdea971",
+              "name": "Invalid person data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3b68e80-620a-4be0-93c7-5132c34f294e",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55080974-db10-40b9-952f-b9efa69e2079",
+              "name": "Person not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1b86e48-a4c1-49ac-a110-311b570cbb5d",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "560f7fa8-0f18-4624-afaa-27ce6e69ea6e",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"1956-09-29T03:49:12.383Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": false,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": true,\n    \"is_director\": false,\n    \"is_account_owner\": true,\n    \"is_sole_prop\": true,\n    \"is_shareholder\": true,\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 4172.947384651019,\n    \"account_status\": \"BLOCKED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"1977-01-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1948-04-25T12:58:47.470Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  },\n  {\n    \"person_id\": \"string\",\n    \"timestamp\": \"2019-06-23T20:26:40.180Z\",\n    \"is_test_user\": false,\n    \"is_retail_customer\": true,\n    \"related_company_id\": \"string\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_sole_prop\": false,\n    \"is_shareholder\": false,\n    \"is_significant_control_person\": true,\n    \"ownership_percentage\": 8253.131156445601,\n    \"account_status\": \"CLOSED\",\n    \"name\": \"string\",\n    \"first_name\": \"string\",\n    \"last_name\": \"string\",\n    \"email\": \"string\",\n    \"address\": {\n      \"lines\": [\n        \"string\",\n        \"string\"\n      ],\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"county\": \"string\",\n      \"postal_code\": \"string\",\n      \"country\": \"string\"\n    },\n    \"phone_number\": \"string\",\n    \"date_of_birth\": \"2016-11-13\",\n    \"nationality\": \"string\",\n    \"occupation\": \"string\",\n    \"first_transaction_completed_at\": \"1968-07-12T06:57:12.515Z\",\n    \"national_identification_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"product_type\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "317bf3c0-966c-4d03-abeb-74507a43f052",
+          "name": "Submit a deletion request for a person and any related data",
+          "request": {
+            "name": "Submit a deletion request for a person and any related data",
+            "description": {
+              "content": "This operation will submit a request to delete the person and any\nrelated data.\n\nThe deletion request will be processed by the system and\nthe data will be removed permanently from Cable's system. Deletion\nrequests are not processed immediately and may take some time to\ncomplete.\n\nThe status of the deletion request can be checked using the\ndeletion request ID and the status endpoint.\n\n<Warning>This operation is not intended for regular use and should be used with caution.</Warning>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "person"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "feeae6d2-d46a-46d3-a274-0577103d68fd",
+              "name": "Deletion request submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"person_id\": \"string\",\n  \"deletion_request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0746249-b1fd-4d61-ad41-b6754bb25e79",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40188859-6c28-4cc3-bbde-0c0a9ab64f60",
+              "name": "Person does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "533c9a07-a982-42a6-bede-f5d6c0ee07f3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7afc65d2-02c0-4141-b703-2f6631ddc2cf",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "person"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8629,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff0c1a59-dd05-45f7-b00b-6503b40367ef",
+    "name": "API Reference alerts person API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

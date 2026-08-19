@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts company API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "company",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a company exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/company",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "company_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the company"
+              }
+            ]
+          },
+          "docs": "Check if a company exists"
+        },
+        {
+          "info": {
+            "name": "Add company information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/company",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint for adding new company information"
+        },
+        {
+          "info": {
+            "name": "Update companies in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/company",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update companies in batch"
+        },
+        {
+          "info": {
+            "name": "Submit a deletion request for a company and any related data",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.cable.tech/v2/company",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This operation will submit a request to delete the company and any\nrelated data.\n\nThe deletion request will be processed by the system and\nthe data will be removed permanently from Cable's system. Deletion\nrequests are not processed immediately and may take some time to\ncomplete.\n\nThe status of the deletion request can be checked using the\ndeletion request ID and the status endpoint.\n\n<Warning>This operation is not intended for regular use and should be used with caution.</Warning>\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

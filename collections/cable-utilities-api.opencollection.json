@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts utilities API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check the status of a deletion request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/deletion_request",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "deletion_request_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the deletion request"
+              }
+            ]
+          },
+          "docs": "Check the status of a deletion request"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

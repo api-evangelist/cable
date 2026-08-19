@@ -1,0 +1,1002 @@
+{
+  "item": [
+    {
+      "id": "0b660968-2918-4dce-825e-10c709bfb641",
+      "name": "identityVerification",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d0b775ee-0a48-4946-a239-e1f40c035c9a",
+          "name": "Check if a identity verification exists",
+          "request": {
+            "name": "Check if a identity verification exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "identity_verification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "verification_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the identity verification"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6e6ff81-1e67-4efc-88db-c7864db5e3b4",
+              "name": "Identity verification exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verification_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verification_id\": \"string\",\n  \"first_seen\": \"1959-02-06T00:21:05.708Z\",\n  \"last_seen\": \"1973-11-21T15:07:19.600Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25a52fca-8281-46e1-949e-d8abf58fb66c",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verification_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52418d24-e9b0-485c-925f-bc3126a9510e",
+              "name": "Identity verification does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verification_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2a8cf0c-4bfe-4faa-af53-8179d7aa15fc",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verification_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a1fd681-ba57-40ab-9663-83966eaac1f6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "verification_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7aab431b-fde8-4e96-a8ef-3f8f33f14991",
+          "name": "Add identity verification",
+          "request": {
+            "name": "Add identity verification",
+            "description": {
+              "content": "Add IDV (Identity Verification) information for a person or company.\n\nNote: Each API call represents a single verification event from one provider at a specific point in time. If you have multiple verification sources or multiple verification attempts, you must make separate API calls for each one.\n\nFor example:\n- Document verification from Provider A requires one API call\n- Database verification from Provider B requires another API call\n- Re-verification after data update requires a new API call",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "identity_verification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"verification_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"verification_provider\": \"<string>\",\n    \"verified_data\": [\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      }\n    ],\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"verification_overall_outcome\": \"<string>\",\n    \"verification_type\": \"<string>\"\n  },\n  {\n    \"verification_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"verification_provider\": \"<string>\",\n    \"verified_data\": [\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      }\n    ],\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"verification_overall_outcome\": \"<string>\",\n    \"verification_type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6c681657-0ced-45e7-b325-34ba2dd09a47",
+              "name": "Identity verification added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4191,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "144f16fd-3c7f-42f8-b99d-eef261316203",
+              "name": "Invalid Identity verification data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ec1062-1e41-40a8-90d4-930bde2edac2",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b56ec969-f4a2-4c73-a5a7-7d9b39152fee",
+              "name": "Identity verification already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d8f36b9-2eb7-4b47-9cbc-9879c5f56ebf",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c73da3e6-5af0-4fc4-b584-f3b451bc2c48",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1974-01-23T06:53:00.779Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1978-05-20T12:05:26.678Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": false,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DATABASE_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1068e50b-f2e6-4d0a-92ba-10fca038d88d",
+          "name": "Update identity verification in batch",
+          "request": {
+            "name": "Update identity verification in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "identity_verification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"verification_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"verification_provider\": \"<string>\",\n    \"verified_data\": [\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      }\n    ],\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"verification_overall_outcome\": \"<string>\",\n    \"verification_type\": \"<string>\"\n  },\n  {\n    \"verification_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"verification_provider\": \"<string>\",\n    \"verified_data\": [\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      },\n      {\n        \"type\": \"<string>\",\n        \"outcome\": \"<string>\",\n        \"value\": \"<string>\",\n        \"is_matched_externally\": \"<boolean>\",\n        \"is_manually_verified\": \"<boolean>\"\n      }\n    ],\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"verification_overall_outcome\": \"<string>\",\n    \"verification_type\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd5023b6-1791-4d58-8f7a-8103690c26ef",
+              "name": "Identity verifications updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4191,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01d462a5-11b1-4c63-8464-c9cb62133a2b",
+              "name": "Invalid identity verification data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc93ced3-189c-4571-8aae-47349ff87c6f",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1a06528-c4d8-4771-8938-6283fce67fa5",
+              "name": "Identity verification not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d12ef8c1-b9d5-4c84-978c-2e86f97f15a1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b687886-b5a4-4254-8767-d9f01e8f7dc9",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "identity_verification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"1981-11-01T01:15:21.456Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"MANUAL_VERIFICATION\"\n  },\n  {\n    \"verification_id\": \"string\",\n    \"timestamp\": \"2014-07-25T06:49:39.068Z\",\n    \"verification_provider\": \"string\",\n    \"verified_data\": [\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": false\n      },\n      {\n        \"type\": \"string\",\n        \"outcome\": \"string\",\n        \"value\": \"string\",\n        \"is_matched_externally\": true,\n        \"is_manually_verified\": true\n      }\n    ],\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"verification_overall_outcome\": \"string\",\n    \"verification_type\": \"DOCUMENT_MATCH\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9457,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5c67ff83-4c72-418b-a45e-ded4e048a4f2",
+    "name": "API Reference alerts identityVerification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

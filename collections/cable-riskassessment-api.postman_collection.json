@@ -1,0 +1,1002 @@
+{
+  "item": [
+    {
+      "id": "d179a5a6-9239-415b-a9c6-03dcf900af8f",
+      "name": "riskAssessment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "508f4ec7-da9f-4adc-887a-41b5837544cd",
+          "name": "Check if a risk assessment exists",
+          "request": {
+            "name": "Check if a risk assessment exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "risk_assessment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assessment_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the risk assessment"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbc4a84c-bfaf-4d74-810c-1108224f472b",
+              "name": "Risk assessment exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assessment_id\": \"string\",\n  \"first_seen\": \"1986-02-06T21:16:51.429Z\",\n  \"last_seen\": \"1985-06-04T16:15:08.614Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff5bc909-d5c0-4455-8abd-c6299fa80096",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e184932-6fc4-47c7-a27b-f38e8bd548d3",
+              "name": "Risk assessment does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d65d1b5-8aca-429c-a340-e8d775ef6c44",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e8b50a7-d231-486f-acf4-f4f9e143a5a4",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assessment_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d431df4-95c7-4e73-8598-3c7bade914eb",
+          "name": "Add risk assessment information",
+          "request": {
+            "name": "Add risk assessment information",
+            "description": {
+              "content": "Endpoint for adding new customer risk assessment information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "risk_assessment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"assessment_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  },\n  {\n    \"assessment_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "772ce12d-6f64-46c4-b5ae-5dd756369a99",
+              "name": "Risk assessment added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4159,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e2c03d7-0e3b-4604-9eca-472af439bb26",
+              "name": "Invalid Risk assessment data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b220f6c8-dbbe-4ff1-856c-07150dc15d1f",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08ee1280-fe44-4d7d-a12e-c7c1aaa44a79",
+              "name": "Risk assessment already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfae748e-4b2a-40dc-bdc5-5856025a2848",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f521a4fc-f3a0-45b9-8398-4d9cc3500780",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1960-05-16T00:25:28.596Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"2008-01-15T04:35:45.201Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8f20c89-d5ca-4412-8ed3-13084e5db905",
+          "name": "Update risk assessment in batch",
+          "request": {
+            "name": "Update risk assessment in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "risk_assessment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"assessment_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  },\n  {\n    \"assessment_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cb13a8a-fdf8-4df9-b39e-5f8c0a4730d1",
+              "name": "Risk assessment updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4159,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0197ccf-67a0-472d-ae41-f9b25c6ed1cb",
+              "name": "Invalid risk assessment data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a38944e-6423-41ac-a9b0-6a9911fa67dc",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d250534-606c-403a-bdc9-d22aff5c59c7",
+              "name": "Risk assessment not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23d48003-41d8-4521-a828-b06e71d90dd6",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d50e2b7e-9a02-4d23-af4b-484ae081e3d4",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1967-06-27T09:37:40.678Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"assessment_id\": \"string\",\n    \"timestamp\": \"1979-06-22T01:28:46.855Z\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8217,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1a41225a-8f00-45c5-9f2c-0e386d66eb9f",
+    "name": "API Reference alerts riskAssessment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

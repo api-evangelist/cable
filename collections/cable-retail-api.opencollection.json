@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts retail API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "retail",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add screening check information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/screening_check",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new screening check information"
+        },
+        {
+          "info": {
+            "name": "Add SAR information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/sar_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new SAR information"
+        },
+        {
+          "info": {
+            "name": "Add risk assessment information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/risk_assessment",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new customer risk assessment information"
+        },
+        {
+          "info": {
+            "name": "Add person information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/person_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new person information"
+        },
+        {
+          "info": {
+            "name": "Add onboarding flow information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/onboarding_flow",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new Onboarding Flow information"
+        },
+        {
+          "info": {
+            "name": "Add IDV information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/idv_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new IDV information"
+        },
+        {
+          "info": {
+            "name": "Add account status information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/account_status",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new account status information"
+        },
+        {
+          "info": {
+            "name": "Add access information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v1/retail/access_info",
+            "headers": [
+              {
+                "name": "x-api-key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retail endpoint for adding new access information"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

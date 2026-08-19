@@ -1,0 +1,1946 @@
+{
+  "item": [
+    {
+      "id": "99fe09e1-4587-4456-8bba-3ee02ecb0d8c",
+      "name": "screening",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e26c2e8-8124-45d8-a39f-c47b7079fc2a",
+          "name": "Check if a screening exists",
+          "request": {
+            "name": "Check if a screening exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "screening_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the screening"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f697e8d7-7299-494d-91b6-99407f8bd150",
+              "name": "Screening exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"screening_id\": \"string\",\n  \"first_seen\": \"1980-09-16T04:57:41.560Z\",\n  \"last_seen\": \"1966-12-15T11:14:31.797Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8728e1e-01f9-4def-912d-245b39b0844f",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fea4f6ff-f8af-4c9f-a624-7783b0475446",
+              "name": "Screening does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ca04528-2330-4218-8c7a-9dca45cddce1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccd14f03-fa0c-465a-a1a8-df0b5ba2f252",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1542b218-ba75-41f1-b602-c55a54e0016b",
+          "name": "Add new screening(s)",
+          "request": {
+            "name": "Add new screening(s)",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"screening_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timestamp\": \"<dateTime>\",\n    \"outcome_details\": \"<string>\",\n    \"related_tx_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"related_company_id\": \"<string>\"\n  },\n  {\n    \"screening_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timestamp\": \"<dateTime>\",\n    \"outcome_details\": \"<string>\",\n    \"related_tx_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"related_company_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "40ee48d7-0a04-43e0-8734-26d8dde2797e",
+              "name": "Screening added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 8595,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2400134b-035c-4037-a12e-d8c609097f55",
+              "name": "Invalid Screening data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74bfcfe1-c244-44bc-86db-ebba8f958e74",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c740c6c2-5b15-4c42-9174-8d3c9288bb41",
+              "name": "Screening already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94c20865-b541-4e45-8487-c53a2b5794a3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a13b07e-e31d-4287-9c17-59ec4e42689b",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"AML\",\n    \"outcome\": \"POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1973-05-01T15:37:09.581Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"PEP\",\n    \"outcome\": \"TRUE_POSITIVE\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"2020-06-24T21:13:10.797Z\",\n    \"outcome_details\": \"string\",\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4984f68-8e19-4304-b69a-db9829be79d2",
+          "name": "Update screenings in batch",
+          "request": {
+            "name": "Update screenings in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"screening_id\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome_details\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"related_tx_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"related_company_id\": \"<string>\"\n  },\n  {\n    \"screening_id\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"type\": \"<string>\",\n    \"outcome_details\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"related_tx_id\": \"<string>\",\n    \"related_person_id\": \"<string>\",\n    \"related_company_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35b744ef-b6af-49ac-89cb-06fb31138c75",
+              "name": "Screening updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 8595,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d23e6e4f-494b-4673-bece-732d27f53f1a",
+              "name": "Invalid screening data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87c3ad80-758a-4848-b463-b320c1b9c61d",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6478e579-64f7-4f70-9e3b-d06dbb3c8f9c",
+              "name": "Screening not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bdc100d-9162-47b3-9a94-b31ae006776e",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93145466-98e1-4d0f-8d01-36c96ea2a659",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"FALSE_NEGATIVE\",\n    \"timestamp\": \"1983-02-22T16:25:22.860Z\",\n    \"type\": \"PEP\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  },\n  {\n    \"screening_id\": \"string\",\n    \"outcome\": \"POSITIVE\",\n    \"timestamp\": \"1989-11-02T03:57:08.525Z\",\n    \"type\": \"AML\",\n    \"outcome_details\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_tx_id\": \"string\",\n    \"related_person_id\": \"string\",\n    \"related_company_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15404120-da80-46c0-8a49-20e7e4890971",
+          "name": "Check if a transaction screening exists",
+          "request": {
+            "name": "Check if a transaction screening exists",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "screening_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the transaction screening"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9880f45-d90a-4fbf-bd8a-714facd1ed06",
+              "name": "Transaction screening exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"screening_id\": \"string\",\n  \"first_seen\": \"1991-05-18T04:24:07.790Z\",\n  \"last_seen\": \"1971-11-06T00:40:33.837Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bf33bb2-2581-4bb9-95d9-547859047930",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33a7f693-22b5-44a8-a6e3-32e091a6c4a3",
+              "name": "Transaction screening does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00955753-2637-46bb-80be-e05657797f74",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4698f87-3bfa-497d-93b4-92f6cb7c7704",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "screening_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7ffb328-464b-4cfa-8f3f-6fbb2e568e09",
+          "name": "Add new transaction screening(s)",
+          "request": {
+            "name": "Add new transaction screening(s)",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"screening_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timestamp\": \"<dateTime>\",\n    \"related_tx_id\": \"<string>\",\n    \"additional_properties\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"outcome\": \"<string>\",\n    \"provider\": \"<string>\",\n    \"lists\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"timestamp\": \"<dateTime>\",\n    \"related_tx_id\": \"<string>\",\n    \"additional_properties\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f448226-14b4-4faa-8432-5e035e293142",
+              "name": "Transaction screening added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"screening_id\": \"string\",\n  \"timestamp\": \"1980-01-14T17:15:19.337Z\",\n  \"type\": \"string\",\n  \"outcome\": \"string\",\n  \"provider\": \"string\",\n  \"lists\": [\n    \"string\",\n    \"string\"\n  ],\n  \"related_tx_id\": \"string\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"STRING\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14cdf10d-7db5-405a-ab07-aeeb25db5602",
+              "name": "Invalid transaction screening data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1e7ccf7-5d77-44fa-8094-906c8c0e33bc",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "faa822d8-4f7d-4eb7-b9c8-4dc4d9dd1d6a",
+              "name": "Transaction screening already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d32c3d7-1cb5-4f3c-bd36-c472a5d93ffa",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af708397-0ff0-4ade-9d1e-7d647703cc41",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1966-02-13T15:38:41.784Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"screening_id\": \"string\",\n    \"type\": \"string\",\n    \"outcome\": \"string\",\n    \"provider\": \"string\",\n    \"lists\": [\n      \"string\",\n      \"string\"\n    ],\n    \"timestamp\": \"1974-12-01T13:54:37.303Z\",\n    \"related_tx_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"STRING\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39a7e8b2-789b-4896-a4a1-0e5889c6cc8a",
+          "name": "Update an existing transaction screening",
+          "request": {
+            "name": "Update an existing transaction screening",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_screening"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c6e87a3-6014-4911-b769-3533ee12edad",
+              "name": "Transaction screening updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"screening_id\": \"string\",\n  \"timestamp\": \"1980-01-14T17:15:19.337Z\",\n  \"type\": \"string\",\n  \"outcome\": \"string\",\n  \"provider\": \"string\",\n  \"lists\": [\n    \"string\",\n    \"string\"\n  ],\n  \"related_tx_id\": \"string\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"STRING\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f33be56e-5d31-469a-b056-cfb755e44429",
+              "name": "Invalid transaction screening data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94106b0a-27df-4b6d-b7fa-b3a6adc6d8f2",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dfcb9f7d-3749-4adc-bf0c-f17acb06dea0",
+              "name": "Transaction screening not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bca9445-fcfb-45bf-b086-b385537ee3e1",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "918344a2-bf19-4590-9e80-f46ee77328c2",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_screening"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"screening_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"type\": \"<string>\",\n  \"outcome\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"lists\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_tx_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"NUMBER\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6976,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "322a22a8-9431-4b4a-a8eb-0efb644357d7",
+    "name": "API Reference alerts screening API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

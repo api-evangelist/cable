@@ -1,0 +1,1002 @@
+{
+  "item": [
+    {
+      "id": "f540d137-c6b1-48f5-b2c4-510ec8196244",
+      "name": "customerSar",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "46f0b7d0-ca51-4b4d-b0a6-107ef3b9bd8a",
+          "name": "Check if a customer sar exists",
+          "request": {
+            "name": "Check if a customer sar exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "customer_sar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sar_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the customer SAR"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d944754a-eca5-4bb2-8051-57134dc99156",
+              "name": "Customer SAR exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sar_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sar_id\": \"string\",\n  \"first_seen\": \"1972-06-28T15:31:13.745Z\",\n  \"last_seen\": \"1988-01-16T16:16:42.330Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a8e0bcb-e65b-4c63-8200-ce4f07b70d4e",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sar_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3183fece-b9e6-4cd7-842a-f65d1ffcf0c9",
+              "name": "Customer SAR does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sar_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb484915-f255-42c9-a0b6-49265db78e6b",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sar_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acd80929-93fd-41f9-911f-bea0abb32e1f",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sar_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "99c5332a-f98d-4f1a-b255-aa0368d06778",
+          "name": "Add customer sar information",
+          "request": {
+            "name": "Add customer sar information",
+            "description": {
+              "content": "Endpoint for adding new customer sar",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "customer_sar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sar_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"sar_reason\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  },\n  {\n    \"sar_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"sar_reason\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99d95a77-0b9c-4156-8b4d-09444c0ef7e5",
+              "name": "Customer SAR added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4930,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05a05e9d-b2e3-47a6-b367-2238855f4a8e",
+              "name": "Invalid customer SAR data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2b6b10b-293c-40b4-8828-58adffa40932",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32882654-0864-494a-88a8-ded22ea50e20",
+              "name": "Customer SAR already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d4e5a99-b0db-4cb3-9495-a565f2d2793a",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bd023e7-f899-42f4-a99f-704d1d22e545",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2006-12-18T00:13:41.486Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2002-07-17T22:46:28.198Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57ce1a37-32b2-4a00-8b98-50b66c691cce",
+          "name": "Update customer SAR in batch",
+          "request": {
+            "name": "Update customer SAR in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "customer_sar"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"sar_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"sar_reason\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  },\n  {\n    \"sar_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"status\": \"<string>\",\n    \"sar_reason\": \"<string>\",\n    \"related_company_id\": \"<string>\",\n    \"related_person_id\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2483217e-af73-4514-947f-ed94b6d2da6e",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 4930,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55dee277-787d-4bc3-a173-2569070ebb5a",
+              "name": "Invalid customer SAR data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0669fce-85a1-4f31-8bcb-0beb226f490a",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00c0d5d6-7919-4c56-a8a5-6b01d3f16d85",
+              "name": "Customer SAR not found in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2512568-8bf3-4671-b017-6a53c1b7f1b3",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3889382b-ec19-4cc8-90ad-787ef1eb5a08",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "customer_sar"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"1988-07-12T08:05:50.898Z\",\n    \"status\": \"PENDING\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  },\n  {\n    \"sar_id\": \"string\",\n    \"timestamp\": \"2003-08-25T01:51:41.292Z\",\n    \"status\": \"CANCELLED\",\n    \"sar_reason\": \"string\",\n    \"related_company_id\": \"string\",\n    \"related_person_id\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9452,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "807f3111-9fde-4986-83b3-50288d9d5a19",
+    "name": "API Reference alerts customerSar API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

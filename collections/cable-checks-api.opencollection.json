@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts checks API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "checks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a transaction check exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/transaction_check",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "check_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction check"
+              }
+            ]
+          },
+          "docs": "Check if a transaction check exists"
+        },
+        {
+          "info": {
+            "name": "Add new transaction check(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/transaction_check",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new transaction check(s)"
+        },
+        {
+          "info": {
+            "name": "Update an existing transaction check",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/transaction_check",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing transaction check"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

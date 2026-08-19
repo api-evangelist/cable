@@ -1,0 +1,1301 @@
+{
+  "item": [
+    {
+      "id": "93d8f855-06b4-4f70-8879-4108913ac6e8",
+      "name": "company",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecf30a05-cd05-4b0e-b0ff-9180d9bba43d",
+          "name": "Check if a company exists",
+          "request": {
+            "name": "Check if a company exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "company_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the company"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5cf90a12-84cb-493e-9b2f-d1be694a00d4",
+              "name": "Company exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"company_id\": \"string\",\n  \"first_seen\": \"1959-10-26T23:42:08.896Z\",\n  \"last_seen\": \"1977-06-13T12:20:37.013Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb4ec8c7-fc86-4a5e-86cc-eea30fd68238",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cf904f4-aa9f-4d74-bf9b-17ba0ace3d19",
+              "name": "Company does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b837ed07-dbd8-4f67-b9e6-d466bc3b1465",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab5a77a7-7811-4236-84cc-c543ea0e6af7",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8ac23fa-e73b-46e3-9a8b-90f98e31f876",
+          "name": "Add company information",
+          "request": {
+            "name": "Add company information",
+            "description": {
+              "content": "Endpoint for adding new company information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"company_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"account_status\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"trading_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"addresses\": [\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"phone_number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"registration_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"incorporation_date\": \"<date>\",\n    \"incorporation_country\": \"<string>\",\n    \"incorporation_state\": \"<string>\",\n    \"primary_operation_country\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"industry_classification\": {\n      \"code_type\": \"<string>\",\n      \"code\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\"\n    },\n    \"source_of_wealth\": \"<string>\",\n    \"source_of_funds\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"product_type\": \"<string>\",\n    \"registered_as_inactive\": \"<boolean>\"\n  },\n  {\n    \"company_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"account_status\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"trading_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"addresses\": [\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"phone_number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"registration_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"incorporation_date\": \"<date>\",\n    \"incorporation_country\": \"<string>\",\n    \"incorporation_state\": \"<string>\",\n    \"primary_operation_country\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"industry_classification\": {\n      \"code_type\": \"<string>\",\n      \"code\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\"\n    },\n    \"source_of_wealth\": \"<string>\",\n    \"source_of_funds\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"product_type\": \"<string>\",\n    \"registered_as_inactive\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "937975c3-1eb8-4c98-af92-a91d2da38e48",
+              "name": "Company added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 7115,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e47f1fb-bc0e-49c0-8aa2-1637f85e9f4f",
+              "name": "Invalid Company data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b4e908a-7902-4988-a6d8-a2b7b341fd7e",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eafe7ad0-ea90-4257-a7b1-39d4a2bd75ad",
+              "name": "Company already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3254b45-6057-442a-b3d8-c5a77cc7b821",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c01ce0dc-6fab-4ab0-a0f8-e208abe4d057",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1966-12-30T08:04:17.147Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"2024-03-12\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1962-03-19T12:56:56.670Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1984-09-04T04:08:06.014Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1947-08-07\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1965-09-16T18:46:44.585Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95bc3c3d-7469-4c23-97c9-15e0aefe338c",
+          "name": "Update companies in batch",
+          "request": {
+            "name": "Update companies in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"company_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"account_status\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"trading_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"addresses\": [\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"phone_number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"registration_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"incorporation_date\": \"<date>\",\n    \"incorporation_country\": \"<string>\",\n    \"incorporation_state\": \"<string>\",\n    \"primary_operation_country\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"industry_classification\": {\n      \"code_type\": \"<string>\",\n      \"code\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\"\n    },\n    \"source_of_wealth\": \"<string>\",\n    \"source_of_funds\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"product_type\": \"<string>\",\n    \"registered_as_inactive\": \"<boolean>\"\n  },\n  {\n    \"company_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"account_status\": \"<string>\",\n    \"legal_name\": \"<string>\",\n    \"trading_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"addresses\": [\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      },\n      {\n        \"type\": \"<string>\",\n        \"address\": {\n          \"lines\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"city\": \"<string>\",\n          \"state\": \"<string>\",\n          \"county\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"country\": \"<string>\"\n        }\n      }\n    ],\n    \"phone_number\": \"<string>\",\n    \"type\": \"<string>\",\n    \"registration_number\": {\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"incorporation_date\": \"<date>\",\n    \"incorporation_country\": \"<string>\",\n    \"incorporation_state\": \"<string>\",\n    \"primary_operation_country\": \"<string>\",\n    \"industry\": \"<string>\",\n    \"industry_classification\": {\n      \"code_type\": \"<string>\",\n      \"code\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"description\": \"<string>\"\n    },\n    \"source_of_wealth\": \"<string>\",\n    \"source_of_funds\": \"<string>\",\n    \"first_transaction_completed_at\": \"<dateTime>\",\n    \"product_type\": \"<string>\",\n    \"registered_as_inactive\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "693ff83e-3c4d-467c-9cb2-8ffa5f8b9882",
+              "name": "Batch processing result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"write_count\": 7115,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1be34654-de86-417a-805e-2d89445569ec",
+              "name": "Invalid company data in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7275ec81-9dad-444b-8796-be8d2fbae16c",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c805b40-816e-4e88-821c-48ca3c11f6ee",
+              "name": "Company not found in batch",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51e5358e-78b9-42f6-a53c-5db2a96c5fb7",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18b8bb69-055d-45c1-a0ba-69f24573c693",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"1949-10-22T17:26:26.973Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"CLOSED\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1995-01-13\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"1979-01-03T18:52:26.048Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": false\n  },\n  {\n    \"company_id\": \"string\",\n    \"timestamp\": \"2011-10-05T05:21:25.719Z\",\n    \"is_test_company\": false,\n    \"account_status\": \"PENDING\",\n    \"legal_name\": \"string\",\n    \"trading_name\": \"string\",\n    \"email\": \"string\",\n    \"addresses\": [\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"address\": {\n          \"lines\": [\n            \"string\",\n            \"string\"\n          ],\n          \"city\": \"string\",\n          \"state\": \"string\",\n          \"county\": \"string\",\n          \"postal_code\": \"string\",\n          \"country\": \"string\"\n        }\n      }\n    ],\n    \"phone_number\": \"string\",\n    \"type\": \"string\",\n    \"registration_number\": {\n      \"type\": \"string\",\n      \"value\": \"string\"\n    },\n    \"incorporation_date\": \"1957-03-19\",\n    \"incorporation_country\": \"string\",\n    \"incorporation_state\": \"string\",\n    \"primary_operation_country\": \"string\",\n    \"industry\": \"string\",\n    \"industry_classification\": {\n      \"code_type\": \"string\",\n      \"code\": [\n        \"string\",\n        \"string\"\n      ],\n      \"description\": \"string\"\n    },\n    \"source_of_wealth\": \"string\",\n    \"source_of_funds\": \"string\",\n    \"first_transaction_completed_at\": \"2014-06-04T21:15:22.730Z\",\n    \"product_type\": \"string\",\n    \"registered_as_inactive\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2740ab5e-0f52-4ec2-ac86-573435cdfbf0",
+          "name": "Submit a deletion request for a company and any related data",
+          "request": {
+            "name": "Submit a deletion request for a company and any related data",
+            "description": {
+              "content": "This operation will submit a request to delete the company and any\nrelated data.\n\nThe deletion request will be processed by the system and\nthe data will be removed permanently from Cable's system. Deletion\nrequests are not processed immediately and may take some time to\ncomplete.\n\nThe status of the deletion request can be checked using the\ndeletion request ID and the status endpoint.\n\n<Warning>This operation is not intended for regular use and should be used with caution.</Warning>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "company"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f4bb869a-c920-475e-b8d6-8a945f2197a9",
+              "name": "Deletion request submitted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"company_id\": \"string\",\n  \"deletion_request_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c1e5754-af98-4a54-93f5-ee9683b539eb",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e82d9bf-5414-4072-b96a-590e7ce829f3",
+              "name": "Person does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2729173-1ce9-4e5b-899b-ed7ffe82e0db",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc706bbc-f338-42a9-8b85-c67fad90bc34",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "company"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_id\": \"<string>\",\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 5634,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3d962a95-e124-4f7c-980f-de2fdff0e7e3",
+    "name": "API Reference alerts company API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

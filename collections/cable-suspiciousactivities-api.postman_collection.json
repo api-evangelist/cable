@@ -1,0 +1,979 @@
+{
+  "item": [
+    {
+      "id": "5b4f65be-6294-4aa5-b427-10d91eb95808",
+      "name": "suspiciousActivities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb873c25-9ed0-4102-a986-7646aebbac2b",
+          "name": "Check if a transaction suspicious activity exists",
+          "request": {
+            "name": "Check if a transaction suspicious activity exists",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_suspicious_activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "suspicious_activity_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the transaction suspicious activity"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f26dfe5-8741-4265-8152-81ee17f5ccf9",
+              "name": "Transaction suspicious activity exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "suspicious_activity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suspicious_activity_id\": \"string\",\n  \"first_seen\": \"1995-04-15T12:36:45.359Z\",\n  \"last_seen\": \"1990-09-25T07:51:20.146Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a71e8c9-095f-4901-94ff-49b98e6893d2",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "suspicious_activity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4f1763f-60d5-4355-a2e3-f24fed02a4c7",
+              "name": "Transaction suspicious activity does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "suspicious_activity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abe773d0-cca6-4f5c-ab4b-62774532f997",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "suspicious_activity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5db38ef-cf21-407f-8ae6-c47875971f63",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "suspicious_activity_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "559a59fc-af18-4b25-8485-19d692e2f268",
+          "name": "Add new transaction suspicious activities",
+          "request": {
+            "name": "Add new transaction suspicious activities",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_suspicious_activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"suspicious_activity_id\": \"<string>\",\n    \"detection_date\": \"<dateTime>\",\n    \"timestamp\": \"<dateTime>\",\n    \"report_id\": \"<string>\",\n    \"report_filed_at\": \"<dateTime>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"related_alert_id\": \"<string>\",\n    \"additional_properties\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"<string>\",\n    \"detection_date\": \"<dateTime>\",\n    \"timestamp\": \"<dateTime>\",\n    \"report_id\": \"<string>\",\n    \"report_filed_at\": \"<dateTime>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"related_alert_id\": \"<string>\",\n    \"additional_properties\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\",\n        \"type\": \"<string>\",\n        \"description\": \"<string>\"\n      }\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aca4d895-7bdd-42c0-9fdb-405e6d712fb5",
+              "name": "Transaction suspicious activity added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suspicious_activity_id\": \"string\",\n  \"timestamp\": \"1962-12-26T15:11:18.643Z\",\n  \"detection_date\": \"1974-09-24T11:54:23.088Z\",\n  \"report_id\": \"string\",\n  \"report_filed_at\": \"2015-01-10T03:34:14.395Z\",\n  \"related_tx_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"related_alert_id\": \"string\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "493cb252-4e42-42d5-81d3-4ea141f95033",
+              "name": "Invalid transaction suspicious activity data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7629949c-93c8-4e55-b30f-3491db6d5c87",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ead0ab1f-0204-46f3-be1d-d8392270cc9b",
+              "name": "Transaction suspicious activity already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd6ed32d-ea79-4e95-bfb6-94da76ec84fe",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8573b4-754d-45e8-8d67-b58ad10c4f3e",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1985-08-16T00:57:56.654Z\",\n    \"timestamp\": \"1962-12-23T18:49:31.775Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"1964-03-10T08:46:42.384Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"BOOLEAN\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  },\n  {\n    \"suspicious_activity_id\": \"string\",\n    \"detection_date\": \"1969-06-14T06:28:46.717Z\",\n    \"timestamp\": \"2017-07-22T09:19:42.866Z\",\n    \"report_id\": \"string\",\n    \"report_filed_at\": \"2002-06-04T22:32:08.309Z\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"related_alert_id\": \"string\",\n    \"additional_properties\": [\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"NUMBER\",\n        \"description\": \"string\"\n      },\n      {\n        \"key\": \"string\",\n        \"value\": \"string\",\n        \"type\": \"ARRAY\",\n        \"description\": \"string\"\n      }\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df7e43b0-fc39-403a-8866-76a1ad6f43ce",
+          "name": "Update an existing transaction suspicious activity",
+          "request": {
+            "name": "Update an existing transaction suspicious activity",
+            "description": {},
+            "url": {
+              "path": [
+                "transaction_suspicious_activity"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9dd8c2e8-05ba-403e-bab4-d13de6320dc5",
+              "name": "Transaction suspicious activity updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"suspicious_activity_id\": \"string\",\n  \"timestamp\": \"1962-12-26T15:11:18.643Z\",\n  \"detection_date\": \"1974-09-24T11:54:23.088Z\",\n  \"report_id\": \"string\",\n  \"report_filed_at\": \"2015-01-10T03:34:14.395Z\",\n  \"related_tx_ids\": [\n    \"string\",\n    \"string\"\n  ],\n  \"related_alert_id\": \"string\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"OBJECT\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9e8558d-af81-4698-a80c-6d08ff440304",
+              "name": "Invalid transaction suspicious activity data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08d16424-bc07-4e41-b30d-6dd20076c045",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77c91770-8fda-4d12-9fbe-d2e080fb8dc4",
+              "name": "Transaction suspicious activity not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50d24c71-5546-4ef7-9e61-d0331be7397a",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4538989-96a6-4aa4-a6b5-119ce38dc880",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transaction_suspicious_activity"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"suspicious_activity_id\": \"<string>\",\n  \"timestamp\": \"<dateTime>\",\n  \"detection_date\": \"<dateTime>\",\n  \"report_id\": \"<string>\",\n  \"report_filed_at\": \"<dateTime>\",\n  \"related_tx_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"related_alert_id\": \"<string>\",\n  \"additional_properties\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"BOOLEAN\",\n      \"description\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\",\n      \"type\": \"ARRAY\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 2055,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c53ff422-6c3d-442d-80e0-1e3fbc48fe9a",
+    "name": "API Reference alerts suspiciousActivities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

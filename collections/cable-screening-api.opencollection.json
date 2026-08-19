@@ -1,0 +1,152 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts screening API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "screening",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a screening exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "screening_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the screening"
+              }
+            ]
+          },
+          "docs": "Check if a screening exists"
+        },
+        {
+          "info": {
+            "name": "Add new screening(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new screening(s)"
+        },
+        {
+          "info": {
+            "name": "Update screenings in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update screenings in batch"
+        },
+        {
+          "info": {
+            "name": "Check if a transaction screening exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/transaction_screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "screening_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the transaction screening"
+              }
+            ]
+          },
+          "docs": "Check if a transaction screening exists"
+        },
+        {
+          "info": {
+            "name": "Add new transaction screening(s)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/transaction_screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add new transaction screening(s)"
+        },
+        {
+          "info": {
+            "name": "Update an existing transaction screening",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/transaction_screening",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing transaction screening"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

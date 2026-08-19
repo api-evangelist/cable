@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts authentication API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Request a new access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/auth/token",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Cable API uses API keys to authenticate requests. Make sure never to share your API keys - don’t put them in\nrepositories or leave them as human-readable in code, and always use HTTPS.\n\nRequest a new access token to authenticate requests to the API. The token will expire after the specified time.\nTo request an access token you must use the refresh / auth token provided to you by Cable.\nYou cannot request a new token with an existing access token.\n"
+        },
+        {
+          "info": {
+            "name": "Request a new access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/auth/token",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Request a new access token to authenticate requests to the API. The token will expire after the specified time. To request an access token you must use the refresh / auth token provided to you by Cable. You cannot request a new token with an existing access token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

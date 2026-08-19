@@ -1,0 +1,995 @@
+{
+  "item": [
+    {
+      "id": "5d89721a-4a90-4666-b335-b01bb1ea80d2",
+      "name": "business",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7771ee4f-711f-4e45-af74-3fd77828d7d2",
+          "name": "Add screening check information",
+          "request": {
+            "name": "Add screening check information",
+            "description": {
+              "content": "Business endpoint for adding new screening check information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "screening_check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"screening_id\": \"<string>\",\n      \"screening_type\": \"<string>\",\n      \"screening_outcome\": \"<string>\",\n      \"screening_provider\": \"<string>\",\n      \"screening_lists\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"screening_id\": \"<string>\",\n      \"screening_type\": \"<string>\",\n      \"screening_outcome\": \"<string>\",\n      \"screening_provider\": \"<string>\",\n      \"screening_lists\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6ffb75f-fd60-47d4-ae6b-2c25d5ccdf00",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "screening_check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1976-12-14T10:31:54.904Z\",\n    \"data\": {\n      \"screening_id\": \"string\",\n      \"screening_type\": \"string\",\n      \"screening_outcome\": \"string\",\n      \"screening_provider\": \"string\",\n      \"screening_lists\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  },\n  {\n    \"timestamp\": \"1955-10-17T11:50:18.550Z\",\n    \"data\": {\n      \"screening_id\": \"string\",\n      \"screening_type\": \"string\",\n      \"screening_outcome\": \"string\",\n      \"screening_provider\": \"string\",\n      \"screening_lists\": [\n        \"string\",\n        \"string\"\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d1d24c5-ad72-4424-a8e3-ca8e77401843",
+          "name": "Add SAR information",
+          "request": {
+            "name": "Add SAR information",
+            "description": {
+              "content": "Business endpoint for adding new SAR (Suspicious Activity Report) information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "sar_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"status\": \"<string>\",\n      \"value\": \"<string>\",\n      \"cause\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"status\": \"<string>\",\n      \"value\": \"<string>\",\n      \"cause\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c0fb54f-d830-41e3-ba08-7f9d10fb96f8",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "sar_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1980-12-09T02:19:54.767Z\",\n    \"data\": {\n      \"status\": \"cancelled\",\n      \"value\": \"string\",\n      \"cause\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {},\n        \"key_4\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  },\n  {\n    \"timestamp\": \"1969-08-02T06:41:57.022Z\",\n    \"data\": {\n      \"status\": \"cancelled\",\n      \"value\": \"string\",\n      \"cause\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f0847bf-c287-4b2a-a519-fb12fd5bad57",
+          "name": "Add customer risk assessment information",
+          "request": {
+            "name": "Add customer risk assessment information",
+            "description": {
+              "content": "Business endpoint for adding new customer risk assessment information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "risk_assessment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"type\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"type\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6e746827-3c78-4296-aac9-95409cc1e12c",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "risk_assessment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"2013-06-30T11:55:33.253Z\",\n    \"data\": {\n      \"type\": \"string\",\n      \"outcome\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  },\n  {\n    \"timestamp\": \"2024-01-11T18:53:51.212Z\",\n    \"data\": {\n      \"type\": \"string\",\n      \"outcome\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93b29b2e-8e9f-499d-94a4-8fcaa0ff141e",
+          "name": "Add person information",
+          "request": {
+            "name": "Add person information",
+            "description": {
+              "content": "Business endpoint for adding new person information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "person_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_shareholder\": false,\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"county\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phone_number\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"nationality\": \"<string>\",\n      \"occupation\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"national_identification_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"product_type\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": \"<double>\",\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_shareholder\": false,\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"address\": {\n        \"lines\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"city\": \"<string>\",\n        \"state\": \"<string>\",\n        \"county\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phone_number\": \"<string>\",\n      \"date_of_birth\": \"<date>\",\n      \"nationality\": \"<string>\",\n      \"occupation\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"national_identification_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"product_type\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": \"<double>\",\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a59889e-588d-458e-b369-49126dab4e00",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "person_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"2004-08-14T04:15:24.063Z\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_shareholder\": false,\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"lines\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"county\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      },\n      \"phone_number\": \"string\",\n      \"date_of_birth\": \"1967-08-27\",\n      \"nationality\": \"string\",\n      \"occupation\": \"string\",\n      \"first_transaction_completed_at\": \"1981-03-06T20:54:45.210Z\",\n      \"national_identification_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"product_type\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 2631.784181361817,\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"2015-01-10T05:46:24.061Z\",\n    \"is_beneficial_owner\": false,\n    \"is_director\": false,\n    \"is_account_owner\": false,\n    \"is_shareholder\": false,\n    \"is_test_user\": false,\n    \"data\": {\n      \"name\": \"string\",\n      \"first_name\": \"string\",\n      \"last_name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"lines\": [\n          \"string\",\n          \"string\"\n        ],\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"county\": \"string\",\n        \"postal_code\": \"string\",\n        \"country\": \"string\"\n      },\n      \"phone_number\": \"string\",\n      \"date_of_birth\": \"1952-08-03\",\n      \"nationality\": \"string\",\n      \"occupation\": \"string\",\n      \"first_transaction_completed_at\": \"2017-04-21T13:24:15.153Z\",\n      \"national_identification_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"product_type\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"is_significant_control_person\": false,\n    \"ownership_percentage\": 1489.8799439159661,\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "121efadb-7873-4e08-bf23-7f770bb5c2c1",
+          "name": "Add onboarding flow information",
+          "request": {
+            "name": "Add onboarding flow information",
+            "description": {
+              "content": "Business endpoint for adding new Onboarding Flow information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "onboarding_flow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"flow_name\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"outcome_reason\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"flow_name\": \"<string>\",\n      \"outcome\": \"<string>\",\n      \"outcome_reason\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "887e288e-927a-4f67-8717-8048aea842bf",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "onboarding_flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1968-04-16T20:15:48.451Z\",\n    \"data\": {\n      \"flow_name\": \"string\",\n      \"outcome\": \"string\",\n      \"outcome_reason\": \"string\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  },\n  {\n    \"timestamp\": \"1962-11-03T07:22:58.557Z\",\n    \"data\": {\n      \"flow_name\": \"string\",\n      \"outcome\": \"string\",\n      \"outcome_reason\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eaa77065-b53c-4770-a709-c59fc66a662c",
+          "name": "Add IDV information",
+          "request": {
+            "name": "Add IDV information",
+            "description": {
+              "content": "Business endpoint for adding new IDV (Identity Verification) information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "idv_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"verification_type\": \"<string>\",\n      \"verification_outcome\": \"<string>\",\n      \"verification_provider\": \"<string>\",\n      \"document_type\": \"<string>\",\n      \"document_number\": \"<string>\",\n      \"document_expiry_date\": \"<dateTime>\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"is_live_selfie\": \"<boolean>\",\n      \"externally_verified_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"verification_type\": \"<string>\",\n      \"verification_outcome\": \"<string>\",\n      \"verification_provider\": \"<string>\",\n      \"document_type\": \"<string>\",\n      \"document_number\": \"<string>\",\n      \"document_expiry_date\": \"<dateTime>\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"is_live_selfie\": \"<boolean>\",\n      \"externally_verified_data\": [\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        },\n        {\n          \"type\": \"<string>\",\n          \"value\": \"<string>\",\n          \"is_externally_verified\": \"<boolean>\",\n          \"provider\": \"<string>\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74e01077-24e5-4636-aefb-61dff646fb66",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "idv_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1990-11-19T11:13:35.161Z\",\n    \"data\": {\n      \"verification_type\": \"string\",\n      \"verification_outcome\": \"string\",\n      \"verification_provider\": \"string\",\n      \"document_type\": \"string\",\n      \"document_number\": \"string\",\n      \"document_expiry_date\": \"1960-11-02T15:56:52.561Z\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"is_live_selfie\": true,\n      \"externally_verified_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": true,\n          \"provider\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": false,\n          \"provider\": \"string\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  },\n  {\n    \"timestamp\": \"2021-12-04T23:32:20.353Z\",\n    \"data\": {\n      \"verification_type\": \"string\",\n      \"verification_outcome\": \"string\",\n      \"verification_provider\": \"string\",\n      \"document_type\": \"string\",\n      \"document_number\": \"string\",\n      \"document_expiry_date\": \"2000-02-20T05:48:27.632Z\",\n      \"document_extracted_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"is_live_selfie\": false,\n      \"externally_verified_data\": [\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": false,\n          \"provider\": \"string\"\n        },\n        {\n          \"type\": \"string\",\n          \"value\": \"string\",\n          \"is_externally_verified\": true,\n          \"provider\": \"string\"\n        }\n      ],\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7855d02a-91e4-4a42-a3c0-b997018f6dc2",
+          "name": "Add company information",
+          "request": {
+            "name": "Add company information",
+            "description": {
+              "content": "Business endpoint for adding new company information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "company_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"data\": {\n      \"legal_name\": \"<string>\",\n      \"trading_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"addresses\": [\n        {\n          \"type\": \"<string>\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"<string>\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"phone_number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"registration_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"incorporation_date\": \"<date>\",\n      \"incorporation_country\": \"<string>\",\n      \"incorporation_state\": \"<string>\",\n      \"primary_operation_country\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"industry_classification\": {\n        \"code_type\": \"<string>\",\n        \"code\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"description\": \"<string>\"\n      },\n      \"source_of_wealth\": \"<string>\",\n      \"source_of_funds\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"product_type\": \"<string>\",\n      \"registered_as_inactive\": \"<boolean>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test_company\": false,\n    \"data\": {\n      \"legal_name\": \"<string>\",\n      \"trading_name\": \"<string>\",\n      \"email\": \"<string>\",\n      \"addresses\": [\n        {\n          \"type\": \"<string>\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"<string>\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"phone_number\": \"<string>\",\n      \"type\": \"<string>\",\n      \"registration_number\": {\n        \"type\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"incorporation_date\": \"<date>\",\n      \"incorporation_country\": \"<string>\",\n      \"incorporation_state\": \"<string>\",\n      \"primary_operation_country\": \"<string>\",\n      \"industry\": \"<string>\",\n      \"industry_classification\": {\n        \"code_type\": \"<string>\",\n        \"code\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"description\": \"<string>\"\n      },\n      \"source_of_wealth\": \"<string>\",\n      \"source_of_funds\": \"<string>\",\n      \"first_transaction_completed_at\": \"<dateTime>\",\n      \"product_type\": \"<string>\",\n      \"registered_as_inactive\": \"<boolean>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c46ce3c4-d783-414c-a354-b161a28c7d6d",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "company_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"1988-03-25T03:20:32.925Z\",\n    \"is_test_company\": false,\n    \"data\": {\n      \"legal_name\": \"string\",\n      \"trading_name\": \"string\",\n      \"email\": \"string\",\n      \"addresses\": [\n        {\n          \"type\": \"string\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"string\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"phone_number\": \"string\",\n      \"type\": \"string\",\n      \"registration_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"incorporation_date\": \"1992-04-07\",\n      \"incorporation_country\": \"string\",\n      \"incorporation_state\": \"string\",\n      \"primary_operation_country\": \"string\",\n      \"industry\": \"string\",\n      \"industry_classification\": {\n        \"code_type\": \"string\",\n        \"code\": [\n          \"string\",\n          \"string\"\n        ],\n        \"description\": \"string\"\n      },\n      \"source_of_wealth\": \"string\",\n      \"source_of_funds\": \"string\",\n      \"first_transaction_completed_at\": \"1971-10-19T00:21:50.181Z\",\n      \"product_type\": \"string\",\n      \"registered_as_inactive\": true,\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  },\n  {\n    \"id\": \"string\",\n    \"timestamp\": \"1953-09-02T08:12:59.328Z\",\n    \"is_test_company\": false,\n    \"data\": {\n      \"legal_name\": \"string\",\n      \"trading_name\": \"string\",\n      \"email\": \"string\",\n      \"addresses\": [\n        {\n          \"type\": \"string\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"type\": \"string\",\n          \"address\": {\n            \"lines\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"city\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"state\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"county\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"postal_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"country\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"phone_number\": \"string\",\n      \"type\": \"string\",\n      \"registration_number\": {\n        \"type\": \"string\",\n        \"value\": \"string\"\n      },\n      \"incorporation_date\": \"1960-12-10\",\n      \"incorporation_country\": \"string\",\n      \"incorporation_state\": \"string\",\n      \"primary_operation_country\": \"string\",\n      \"industry\": \"string\",\n      \"industry_classification\": {\n        \"code_type\": \"string\",\n        \"code\": [\n          \"string\",\n          \"string\"\n        ],\n        \"description\": \"string\"\n      },\n      \"source_of_wealth\": \"string\",\n      \"source_of_funds\": \"string\",\n      \"first_transaction_completed_at\": \"1970-03-01T08:39:08.799Z\",\n      \"product_type\": \"string\",\n      \"registered_as_inactive\": false,\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"person\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80785897-a7b5-4876-9c79-e15cdea63591",
+          "name": "Add account status information",
+          "request": {
+            "name": "Add account status information",
+            "description": {
+              "content": "Business endpoint for adding new account status information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "account_status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"account_status\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"account_status\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "200734a9-ec0e-4d6d-8084-0bea814415c3",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "account_status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1968-04-02T08:42:01.208Z\",\n    \"data\": {\n      \"account_status\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {},\n        \"key_3\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  },\n  {\n    \"timestamp\": \"2012-09-08T01:57:42.326Z\",\n    \"data\": {\n      \"account_status\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e410a1d-7e55-4957-9b53-2ffa736485cb",
+          "name": "Add access information",
+          "request": {
+            "name": "Add access information",
+            "description": {
+              "content": "Business endpoint for adding new access information",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "business",
+                "access_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "x-api-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"ip\": \"<string>\",\n      \"device_id\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"data\": {\n      \"ip\": \"<string>\",\n      \"device_id\": \"<string>\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a532da57-ade5-4f21-a5a0-05cc1da414d1",
+              "name": "Operation success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "business",
+                    "access_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "x-api-key",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"timestamp\": \"1948-10-05T04:18:37.484Z\",\n    \"data\": {\n      \"ip\": \"string\",\n      \"device_id\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  },\n  {\n    \"timestamp\": \"1953-03-21T15:08:47.159Z\",\n    \"data\": {\n      \"ip\": \"string\",\n      \"device_id\": \"string\",\n      \"custom\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      }\n    },\n    \"parent\": {\n      \"id\": \"string\",\n      \"type\": \"company\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "33789a3b-ad80-4faa-9895-e1f9f51a2b8f",
+    "name": "API Reference alerts business API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

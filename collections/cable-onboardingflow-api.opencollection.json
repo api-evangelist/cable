@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts onboardingFlow API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "onboardingFlow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if an onboarding flow exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/onboarding_flow",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "onboarding_flow_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the onboarding flow"
+              }
+            ]
+          },
+          "docs": "Check if an onboarding flow exists"
+        },
+        {
+          "info": {
+            "name": "Add onboarding flow information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/onboarding_flow",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint for adding new Onboarding Flow information"
+        },
+        {
+          "info": {
+            "name": "Update onboarding flow in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/onboarding_flow",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update onboarding flow in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

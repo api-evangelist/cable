@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "API Reference alerts riskAssessment API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "riskAssessment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check if a risk assessment exists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cable.tech/v2/risk_assessment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "assessment_id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the risk assessment"
+              }
+            ]
+          },
+          "docs": "Check if a risk assessment exists"
+        },
+        {
+          "info": {
+            "name": "Add risk assessment information",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cable.tech/v2/risk_assessment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Endpoint for adding new customer risk assessment information"
+        },
+        {
+          "info": {
+            "name": "Update risk assessment in batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cable.tech/v2/risk_assessment",
+            "headers": [
+              {
+                "name": "Authorization",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update risk assessment in batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

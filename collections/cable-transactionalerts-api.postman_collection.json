@@ -1,0 +1,999 @@
+{
+  "item": [
+    {
+      "id": "7097e39c-d7ae-41c1-94ff-28a7e2a07727",
+      "name": "transactionAlerts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "71ac77a1-3db1-4b40-a630-b33d179bc888",
+          "name": "Check if a transaction alert exists",
+          "request": {
+            "name": "Check if a transaction alert exists",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction_alert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "alert_id",
+                  "value": "<string>",
+                  "description": "(Required) The unique identifier of the transaction alert"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0d35c0f-e013-4a36-8103-a20272f448d8",
+              "name": "Transaction alert exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alert_id\": \"string\",\n  \"first_seen\": \"1984-03-05T21:17:54.741Z\",\n  \"last_seen\": \"1994-02-05T06:09:55.195Z\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aee61b9b-05cc-4c97-ac64-ac51e15c43a1",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "364e5599-ca40-40a3-961d-9b9ee405017b",
+              "name": "Transaction alert does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "042d0a9f-65a7-42f9-9caa-7417932a03fa",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13a3db94-cebc-43cd-a0e5-f60d25a6ca40",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "alert_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52c06da1-afd0-494c-8c18-aad27e05659b",
+          "name": "Add new transaction alert(s)",
+          "request": {
+            "name": "Add new transaction alert(s)",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction_alert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"alert_id\": \"<string>\",\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test\": false,\n    \"check_type\": \"<string>\",\n    \"related_check_id\": \"<string>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"alert_id\": \"<string>\",\n    \"status\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test\": false,\n    \"check_type\": \"<string>\",\n    \"related_check_id\": \"<string>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f746c109-53aa-43bc-a444-b80ac85f6704",
+              "name": "Transaction alert added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 7121,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d62ca90c-f554-4a67-94e2-67176168caeb",
+              "name": "Invalid transaction alert data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5d2450bf-c229-4ee1-93bb-c89149508194",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c80004fc-ac80-48bb-921f-9df51bda8806",
+              "name": "Transaction alert already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6916fb03-806d-4a2a-8f61-d3d7a325c3ae",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91981279-b877-4609-93fc-bbfb04a99c82",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"CLOSED\",\n    \"timestamp\": \"2011-11-30T14:48:11.591Z\",\n    \"is_test\": false,\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"status\": \"PENDING\",\n    \"timestamp\": \"1991-02-03T20:43:50.561Z\",\n    \"is_test\": false,\n    \"check_type\": \"DELAYED_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddb138f2-6ed4-4e6d-b5d7-76cf407cab20",
+          "name": "Update transaction alerts in batch",
+          "request": {
+            "name": "Update transaction alerts in batch",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "transaction_alert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"alert_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test\": false,\n    \"status\": \"<string>\",\n    \"check_type\": \"<string>\",\n    \"related_check_id\": \"<string>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"alert_id\": \"<string>\",\n    \"timestamp\": \"<dateTime>\",\n    \"is_test\": false,\n    \"status\": \"<string>\",\n    \"check_type\": \"<string>\",\n    \"related_check_id\": \"<string>\",\n    \"related_tx_ids\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "91871bc2-b76b-4187-b9ae-c19883d294ee",
+              "name": "Transaction alert updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"write_count\": 7121,\n  \"message\": \"string\",\n  \"organization_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "709135f7-f08b-4181-8215-dcc1d57de4e4",
+              "name": "Invalid transaction alert data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf284618-fcdd-49a5-8281-63474cfe8fc9",
+              "name": "Unauthorized request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adc3f481-65ba-4b37-9803-ab506c024ea1",
+              "name": "Transaction alert not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e4149f7-93b0-4703-920b-2e68c7804e21",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "651f0340-5920-4420-b5ea-b3c3b5ecefa6",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "transaction_alert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) Bearer authentication",
+                    "key": "Authorization",
+                    "value": "string"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1970-02-11T05:14:39.314Z\",\n    \"is_test\": false,\n    \"status\": \"PENDING\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"alert_id\": \"string\",\n    \"timestamp\": \"1959-12-11T14:28:08.914Z\",\n    \"is_test\": false,\n    \"status\": \"CREATED\",\n    \"check_type\": \"INLINE_MONITORING\",\n    \"related_check_id\": \"string\",\n    \"related_tx_ids\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 9810,\n  \"message\": \"string\",\n  \"errors\": [\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cable.tech",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e17a3b13-eb57-4de8-96c7-6e676d5e9cb5",
+    "name": "API Reference alerts transactionAlerts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
