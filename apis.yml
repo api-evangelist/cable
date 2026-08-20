@@ -57,6 +57,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Alerts
+  tags_raw:
   - alerts
   properties:
   - type: OpenAPI
@@ -67,6 +69,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Authentication
+  tags_raw:
   - authentication
   properties:
   - type: OpenAPI
@@ -77,6 +81,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Business
+  tags_raw:
   - business
   properties:
   - type: OpenAPI
@@ -87,6 +93,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Checks
+  tags_raw:
   - checks
   properties:
   - type: OpenAPI
@@ -97,6 +105,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Company
+  tags_raw:
   - company
   properties:
   - type: OpenAPI
@@ -106,7 +116,8 @@ apis:
   description: The customerSar API from Cable — 1 operation(s) for customersar.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - customerSar
   properties:
   - type: OpenAPI
@@ -117,6 +128,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Helper
+  tags_raw:
   - helper
   properties:
   - type: OpenAPI
@@ -127,6 +140,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Identity Verification
+  tags_raw:
   - identityVerification
   properties:
   - type: OpenAPI
@@ -136,7 +151,8 @@ apis:
   description: The onboardingFlow API from Cable — 1 operation(s) for onboardingflow.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - onboardingFlow
   properties:
   - type: OpenAPI
@@ -147,6 +163,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Persons
+  tags_raw:
   - person
   properties:
   - type: OpenAPI
@@ -157,6 +175,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Retail
+  tags_raw:
   - retail
   properties:
   - type: OpenAPI
@@ -167,6 +187,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Risk Assessment
+  tags_raw:
   - riskAssessment
   properties:
   - type: OpenAPI
@@ -177,6 +199,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Screening
+  tags_raw:
   - screening
   properties:
   - type: OpenAPI
@@ -186,7 +210,8 @@ apis:
   description: The suspiciousActivities API from Cable — 1 operation(s) for suspiciousactivities.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - suspiciousActivities
   properties:
   - type: OpenAPI
@@ -196,7 +221,8 @@ apis:
   description: The transactionAlerts API from Cable — 1 operation(s) for transactionalerts.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - transactionAlerts
   properties:
   - type: OpenAPI
@@ -206,7 +232,8 @@ apis:
   description: The transactionChecks API from Cable — 1 operation(s) for transactionchecks.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - transactionChecks
   properties:
   - type: OpenAPI
@@ -217,6 +244,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Transaction
+  tags_raw:
   - transactions
   properties:
   - type: OpenAPI
@@ -227,7 +256,8 @@ apis:
     The transactionSuspiciousActivities API from Cable — 1 operation(s) for transactionsuspiciousactivities.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
+  tags: []
+  tags_raw:
   - transactionSuspiciousActivities
   properties:
   - type: OpenAPI
@@ -238,6 +268,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Upload
+  tags_raw:
   - upload
   properties:
   - type: OpenAPI
@@ -248,6 +280,8 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
+  - Utilities
+  tags_raw:
   - utilities
   properties:
   - type: OpenAPI
