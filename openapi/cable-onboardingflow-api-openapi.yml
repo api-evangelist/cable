@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts onboardingFlow API
+  title: Reference Onboarding Flow API
   version: 1.0.0
 servers:
 - url: https://api.cable.tech
@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Onboarding Flow_checkOnboardingFLow_Response_200'
+                $ref: '#/components/schemas/Onboarding_Flow_checkOnboardingFLow_Response_200'
         '401':
           description: Unauthorized request
           content:
@@ -170,6 +170,39 @@ paths:
               $ref: '#/components/schemas/UpdateOnboardingFlowRequest'
 components:
   schemas:
+    OnboardingFlowOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: OnboardingFlowOutcomeReason
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdateOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: UpdateOnboardingFlowRequest
     OnboardingFlow:
       type: object
       properties:
@@ -201,44 +234,6 @@ components:
       - outcome
       description: Request body for adding Onboarding Flow information for a parent entity, applicable to both retail and business contexts
       title: OnboardingFlow
-    Onboarding Flow_checkOnboardingFLow_Response_200:
-      type: object
-      properties:
-        onboarding_flow_id:
-          type: string
-          description: The unique identifier of the onboarding flow
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the onboarding flow
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the onboarding flow
-        organization_id:
-          type: string
-          description: The organization ID for which the onboarding flow was found
-      title: Onboarding Flow_checkOnboardingFLow_Response_200
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    OnboardingFlowOutcomeReason:
-      oneOf:
-      - type: string
-      - type: object
-        additionalProperties:
-          description: Any type
-      title: OnboardingFlowOutcomeReason
-    UpdateOnboardingFlowRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/OnboardingFlow'
-      title: UpdateOnboardingFlowRequest
     NewOnboardingFlowRequest:
       type: array
       items:
@@ -260,27 +255,32 @@ components:
       - code
       - message
       title: GeneralError
-    WriteOperationResponse:
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
+        field:
+          type: string
         message:
           type: string
-          description: Provides additional information about the operation result.
+      title: GeneralErrorErrorsItems
+    Onboarding_Flow_checkOnboardingFLow_Response_200:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: The unique identifier of the onboarding flow
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the onboarding flow
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the onboarding flow
         organization_id:
           type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
+          description: The organization ID for which the onboarding flow was found
+      title: Onboarding Flow_checkOnboardingFLow_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

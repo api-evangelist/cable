@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts transactionChecks API
+  title: Reference Transaction Checks API
   version: 1.0.0
 servers:
 - url: https://api.cable.tech
@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Transaction Checks_checkTransactionCheck_Response_200'
+                $ref: '#/components/schemas/Transaction_Checks_checkTransactionCheck_Response_200'
         '401':
           description: Unauthorized request
           content:
@@ -170,6 +170,73 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionChecksRequest'
 components:
   schemas:
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    NewTransactionCheckRequestItemsStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: NewTransactionCheckRequestItemsStatus
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    NewTransactionCheckRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
+      description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
+      title: NewTransactionCheckRequest
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
     NewTransactionCheckRequestItems:
       type: object
       properties:
@@ -203,21 +270,15 @@ components:
       - type
       - timestamp
       title: NewTransactionCheckRequestItems
-    NewTransactionCheckRequestItemsType:
+    TransactionCheckStatus:
       type: string
       enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: NewTransactionCheckRequestItemsType
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: TransactionCheckStatus
     TransactionCheck:
       type: object
       properties:
@@ -249,7 +310,20 @@ components:
       - check_id
       - timestamp
       title: TransactionCheck
-    Transaction Checks_checkTransactionCheck_Response_200:
+    TransactionCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    UpdateTransactionChecksRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionCheck'
+      description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionChecksRequest
+    Transaction_Checks_checkTransactionCheck_Response_200:
       type: object
       properties:
         check_id:
@@ -267,80 +341,6 @@ components:
           type: string
           description: The organization ID for which the transaction check was found
       title: Transaction Checks_checkTransactionCheck_Response_200
-    NewTransactionCheckRequestItemsStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: NewTransactionCheckRequestItemsStatus
-    UpdateTransactionChecksRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/TransactionCheck'
-      description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateTransactionChecksRequest
-    TransactionCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: TransactionCheckType
-    TransactionCheckStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: TransactionCheckStatus
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    NewTransactionCheckRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
-      description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
-      title: NewTransactionCheckRequest
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts company API
+  title: Reference Company API
   version: 1.0.0
 servers:
 - url: https://api.cable.tech
@@ -269,6 +269,90 @@ components:
           type: string
       description: Legal/contact address for the entity
       title: Address
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    CompanyIndustryClassification:
+      type: object
+      properties:
+        code_type:
+          type: string
+          description: Type of industry classification code
+        code:
+          type: array
+          items:
+            type: string
+          description: Industry classification codes
+        description:
+          type: string
+          description: Description of the industry classification code
+      required:
+      - code_type
+      - code
+      title: CompanyIndustryClassification
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
+    CompanyAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: CompanyAccountStatus
+    CompanyAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     GeneralErrorErrorsItems:
       type: object
       properties:
@@ -277,21 +361,6 @@ components:
         message:
           type: string
       title: GeneralErrorErrorsItems
-    Company_deleteCompany_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Company_deleteCompany_Response_200
-    NewCompanyRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: NewCompanyRequest
     Company_checkCompanyInfo_Response_200:
       type: object
       properties:
@@ -310,15 +379,6 @@ components:
           type: string
           description: The organization ID for which the company was found
       title: Company_checkCompanyInfo_Response_200
-    CompanyAddressesItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of address. eg. Registered, Trading, Legal
-        address:
-          $ref: '#/components/schemas/Address'
-      title: CompanyAddressesItems
     CompanyRegistrationNumber:
       type: object
       properties:
@@ -409,76 +469,16 @@ components:
       - is_test_company
       description: Request body for adding information about companies
       title: Company
-    GeneralError:
+    Company_deleteCompany_Response_200:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        company_id:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    UpdateCompaniesRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: UpdateCompaniesRequest
-    CompanyIndustryClassification:
-      type: object
-      properties:
-        code_type:
+          description: The unique identifier of the company
+        deletion_request_id:
           type: string
-          description: Type of industry classification code
-        code:
-          type: array
-          items:
-            type: string
-          description: Industry classification codes
-        description:
-          type: string
-          description: Description of the industry classification code
-      required:
-      - code_type
-      - code
-      title: CompanyIndustryClassification
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    CompanyAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: CompanyAccountStatus
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

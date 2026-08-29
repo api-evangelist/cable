@@ -1,10 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts authentication API
+  title: Cable Authentication API
   version: 1.0.0
+  description: 'Operations tagged authentication across 2 of this provider''s published API definitions: cable-api-reference-openapi-original.yml, cable-transaction-data-api-openapi-original.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.cable.tech
   description: Production
+- url: https://transaction-api.cable.tech
+  description: Production server
 tags:
 - name: authentication
 paths:
@@ -63,6 +66,9 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NewAccessTokenRequest'
+    servers:
+    - url: https://api.cable.tech
+      description: Production
   /auth/token:
     post:
       operationId: request-token
@@ -107,54 +113,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NewAccessTokenRequest'
+    servers:
+    - url: https://transaction-api.cable.tech
+      description: Production server
 components:
   schemas:
-    AccessTokenScope:
-      type: object
-      properties:
-        organization_id:
-          type: string
-          description: The organization ID for which the token is requested. This is required.
-        scopes:
-          type: array
-          items:
-            type: string
-          description: The list of scopes that the token should have. For transaction data, the scope should be 'transactions:write'.
-      required:
-      - organization_id
-      - scopes
-      title: AccessTokenScope
-    NewAccessTokenResponse:
-      type: object
-      properties:
-        token:
-          type: string
-        expiry:
-          type: integer
-          format: int64
-          description: The expiration time in Unix time format.
-        organization_id:
-          type: string
-          description: The organization ID for which the token was requested.
-        organization_name:
-          type: string
-          description: The name of the organization for which the token was requested.
-        scopes:
-          $ref: '#/components/schemas/AccessTokenScope'
-      required:
-      - token
-      - expiry
-      - organization_id
-      - organization_name
-      title: NewAccessTokenResponse
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     NewAccessTokenRequest:
       type: object
       properties:
@@ -184,6 +147,52 @@ components:
       - code
       - message
       title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    NewAccessTokenResponse:
+      type: object
+      properties:
+        token:
+          type: string
+        expiry:
+          type: integer
+          format: int64
+          description: The expiration time in Unix time format.
+        organization_id:
+          type: string
+          description: The organization ID for which the token was requested.
+        organization_name:
+          type: string
+          description: The name of the organization for which the token was requested.
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+      - token
+      - expiry
+      - organization_id
+      - organization_name
+      title: NewAccessTokenResponse
+    AccessTokenScope:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The organization ID for which the token is requested. This is required.
+        scopes:
+          type: array
+          items:
+            type: string
+          description: The list of scopes that the token should have. For transaction data, the scope should be 'transactions:write'.
+      required:
+      - organization_id
+      - scopes
+      title: AccessTokenScope
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
@@ -192,3 +201,6 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
+x-refined-from:
+- cable-api-reference-openapi-original.yml
+- cable-transaction-data-api-openapi-original.yml

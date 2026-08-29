@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts business API
+  title: Customer Data Business API
   version: 1.0.0
 servers:
 - url: https://api.cable.tech
-  description: Production
+  description: Placeholder server
 tags:
 - name: business
 paths:
@@ -262,6 +262,113 @@ paths:
                 $ref: '#/components/schemas/V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItems'
 components:
   schemas:
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataIndustryClassification:
+      type: object
+      properties:
+        code_type:
+          type: string
+          description: Type of industry classification code
+        code:
+          type: array
+          items:
+            type: string
+          description: Industry classification codes
+        description:
+          type: string
+          description: Description of the industry classification code
+      required:
+      - code_type
+      - code
+      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataIndustryClassification
+    Business_v1_business_onboarding_flow_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Business_v1_business_onboarding_flow_Response_200
+    V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this access information creation/change
+        data:
+          $ref: '#/components/schemas/V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItems
+    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this onboarding flow information creation/change
+        data:
+          $ref: '#/components/schemas/V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems
+    V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The ID linking the initial/reviewed result
+        screening_type:
+          type: string
+          description: 'The type of screening check that was performed. One of: SANCTION, PEP, ADVERSE_MEDIA'
+        screening_lists:
+          type: array
+          items:
+            type: string
+          description: The lists that were screened against. E.g. OFAC, ComplyAdvantage Watchlists...
+        screening_outcome:
+          type: string
+          description: 'The outcome of the screening check. One of: POSITIVE, NEGATIVE, TRUE_POSITIVE, TRUE_NEGATIVE, FALSE_POSITIVE, FALSE_NEGATIVE'
+        screening_provider:
+          type: string
+          description: The provider that performed the screening check
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - screening_id
+      - screening_type
+      - screening_outcome
+      - screening_provider
+      title: V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData
     V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -322,19 +429,7 @@ components:
         custom:
           $ref: '#/components/schemas/CustomData'
       title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        ip:
-          type: string
-          description: IP address of the connecting client
-        device_id:
-          type: string
-          description: Device identifier. eg. SSAID / Android ID / Device Fingerprint
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      title: V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    Business_v1_business_onboarding_flow_Response_200:
+    Business_v1_business_access_info_Response_200:
       type: object
       properties:
         success:
@@ -343,109 +438,61 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Business_v1_business_onboarding_flow_Response_200
-    BusinessEntityParent:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique external identifier of the parent entity, ID stored in your database / back-office
-        type:
-          $ref: '#/components/schemas/BusinessEntityParentType'
-          description: Type of the parent entity
-      required:
-      - id
-      - type
-      title: BusinessEntityParent
-    Business_v1_business_account_status_info_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Business_v1_business_account_status_info_Response_200
-    V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: The ID linking the initial/reviewed result
-        screening_type:
-          type: string
-          description: 'The type of screening check that was performed. One of: SANCTION, PEP, ADVERSE_MEDIA'
-        screening_lists:
-          type: array
-          items:
-            type: string
-          description: The lists that were screened against. E.g. OFAC, ComplyAdvantage Watchlists...
-        screening_outcome:
-          type: string
-          description: 'The outcome of the screening check. One of: POSITIVE, NEGATIVE, TRUE_POSITIVE, TRUE_NEGATIVE, FALSE_POSITIVE, FALSE_NEGATIVE'
-        screening_provider:
-          type: string
-          description: The provider that performed the screening check
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - screening_id
-      - screening_type
-      - screening_outcome
-      - screening_provider
-      title: V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData
-    Business_v1_business_person_info_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Business_v1_business_person_info_Response_200
-    V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        account_status:
-          type: string
-          description: 'Latest account status for the related entity. One of the following: APPROVED, BLOCKED, CLOSED, PENDING, REJECTED'
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - account_status
-      title: V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems:
+      title: Business_v1_business_access_info_Response_200
+    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber:
       type: object
       properties:
         type:
           type: string
-          description: Type of data extracted from the document
+          description: Type of national identification number
         value:
           type: string
-          description: Value of the data extracted from the document
+          description: National identification number
       required:
       - type
       - value
-      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems
-    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData:
+      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber
+    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType:
+      type: string
+      enum:
+      - company
+      description: Type of the parent entity
+      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType
+    V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
-        flow_name:
+        timestamp:
           type: string
-          description: Latest onboarding flow that this entity has gone through, e.g. manual KYC, automated onboarding, Simplified Due Diligence, Enhanced Due Diligence
-        outcome:
-          type: string
-          description: Outcome for the latest onboarding flow that this entity has gone through, e.g. automated approval, manual approval, automated rejection, manual rejection, EDD required
-        outcome_reason:
-          $ref: '#/components/schemas/V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason'
-        custom:
-          $ref: '#/components/schemas/CustomData'
+          format: date-time
+          description: Original timestamp relating to this screening check information creation/change
+        data:
+          $ref: '#/components/schemas/V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
       required:
-      - flow_name
-      - outcome
-      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData
+      - timestamp
+      - data
+      - parent
+      title: V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems
+    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataAddressesItems
+    Business_v1_business_sar_info_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Business_v1_business_sar_info_Response_200
     V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataRegistrationNumber:
       type: object
       properties:
@@ -459,31 +506,7 @@ components:
       - type
       - value
       title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataRegistrationNumber
-    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataIndustryClassification:
-      type: object
-      properties:
-        code_type:
-          type: string
-          description: Type of industry classification code
-        code:
-          type: array
-          items:
-            type: string
-          description: Industry classification codes
-        description:
-          type: string
-          description: Description of the industry classification code
-      required:
-      - code_type
-      - code
-      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataIndustryClassification
-    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType:
-      type: string
-      enum:
-      - company
-      description: Type of the parent entity
-      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType
-    Business_v1_business_risk_assessment_Response_200:
+    Business_v1_business_company_info_Response_200:
       type: object
       properties:
         success:
@@ -492,54 +515,47 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Business_v1_business_risk_assessment_Response_200
-    V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems:
+      title: Business_v1_business_company_info_Response_200
+    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems:
       type: object
       properties:
-        timestamp:
+        type:
           type: string
-          format: date-time
-          description: Original timestamp relating to this risk assessment information creation/change
-        data:
-          $ref: '#/components/schemas/V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
+          description: Type of data externally verified
+        value:
+          type: string
+          description: Value of the data externally verified
+        is_externally_verified:
+          type: boolean
+          description: Whether the data was externally verified
+        provider:
+          type: string
+          description: Name of the provider that externally verified the data
       required:
-      - timestamp
-      - data
-      - parent
-      title: V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems
-    V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus:
-      type: string
-      enum:
-      - raised
-      - cancelled
-      - submitted
-      title: V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus
-    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItems:
+      - type
+      - value
+      - is_externally_verified
+      - provider
+      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems
+    CustomData:
+      type: object
+      additionalProperties:
+        description: Any type
+      description: Custom data that is relevant. This can be any JSON object. Please include any details and data points that our schema does not capture.
+      title: CustomData
+    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParent:
       type: object
       properties:
         id:
           type: string
-          description: Unique external identifier of the company entity, ID stored in your database / back-office
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to when this company's information was received
-        is_test_company:
-          type: boolean
-          default: false
-          description: If the company is a test company, this should be set to true
-        data:
-          $ref: '#/components/schemas/V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
+          description: Unique external identifier of the parent entity, ID stored in your database / back-office
+        type:
+          $ref: '#/components/schemas/V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType'
+          description: Type of the parent entity
       required:
       - id
-      - timestamp
-      - is_test_company
-      - data
-      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItems
+      - type
+      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParent
     V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
@@ -556,38 +572,7 @@ components:
       - data
       - parent
       title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItems
-    V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this access information creation/change
-        data:
-          $ref: '#/components/schemas/V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItems
-    V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of risk assessment eg. pre-onboarding risk rating, risk band, risk engine score
-        outcome:
-          type: string
-          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - type
-      - outcome
-      title: V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData
-    Business_v1_business_screening_check_Response_200:
+    Business_v1_business_idv_info_Response_200:
       type: object
       properties:
         success:
@@ -596,47 +581,47 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Business_v1_business_screening_check_Response_200
-    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
+      title: Business_v1_business_idv_info_Response_200
+    Business_v1_business_account_status_info_Response_200:
       type: object
       properties:
-        verification_type:
-          type: string
-          description: Type of verification performed
-        verification_outcome:
-          type: string
-          description: Result of IDV screening returned from provider
-        verification_provider:
-          type: string
-          description: Name of the IDV screening provider
-        document_type:
-          type: string
-          description: Type of document used in the screening
-        document_number:
-          type: string
-          description: The number of the document used in the screening
-        document_expiry_date:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Business_v1_business_account_status_info_Response_200
+    V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus:
+      type: string
+      enum:
+      - raised
+      - cancelled
+      - submitted
+      title: V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus
+    V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
           type: string
           format: date-time
-          description: The expiration date of the document used in the screening
-        document_extracted_data:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems'
-        is_live_selfie:
-          type: boolean
-          description: Whether a live selfie was used in the IDV screening
-        externally_verified_data:
-          type: array
-          items:
-            $ref: '#/components/schemas/V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems'
-        custom:
-          $ref: '#/components/schemas/CustomData'
+          description: Original timestamp relating to this account status information creation/change
+        data:
+          $ref: '#/components/schemas/V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
       required:
-      - verification_type
-      - verification_outcome
-      - verification_provider
-      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData
+      - timestamp
+      - data
+      - parent
+      title: V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItems
+    BusinessEntityParentType:
+      type: string
+      enum:
+      - company
+      - person
+      description: Type of the parent entity
+      title: BusinessEntityParentType
     V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -677,6 +662,99 @@ components:
         custom:
           $ref: '#/components/schemas/CustomData'
       title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this risk assessment information creation/change
+        data:
+          $ref: '#/components/schemas/V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems
+    BusinessEntityParent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique external identifier of the parent entity, ID stored in your database / back-office
+        type:
+          $ref: '#/components/schemas/BusinessEntityParentType'
+          description: Type of the parent entity
+      required:
+      - id
+      - type
+      title: BusinessEntityParent
+    Business_v1_business_screening_check_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Business_v1_business_screening_check_Response_200
+    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        flow_name:
+          type: string
+          description: Latest onboarding flow that this entity has gone through, e.g. manual KYC, automated onboarding, Simplified Due Diligence, Enhanced Due Diligence
+        outcome:
+          type: string
+          description: Outcome for the latest onboarding flow that this entity has gone through, e.g. automated approval, manual approval, automated rejection, manual rejection, EDD required
+        outcome_reason:
+          $ref: '#/components/schemas/V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason'
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - flow_name
+      - outcome
+      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique external identifier of the company entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to when this company's information was received
+        is_test_company:
+          type: boolean
+          default: false
+          description: If the company is a test company, this should be set to true
+        data:
+          $ref: '#/components/schemas/V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/BusinessEntityParent'
+      required:
+      - id
+      - timestamp
+      - is_test_company
+      - data
+      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItems
+    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of data extracted from the document
+        value:
+          type: string
+          description: Value of the data extracted from the document
+      required:
+      - type
+      - value
+      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems
     V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
@@ -693,7 +771,25 @@ components:
       - data
       - parent
       title: V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItems
-    Business_v1_business_idv_info_Response_200:
+    V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        account_status:
+          type: string
+          description: 'Latest account status for the related entity. One of the following: APPROVED, BLOCKED, CLOSED, PENDING, REJECTED'
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - account_status
+      title: V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason
+    Business_v1_business_person_info_Response_200:
       type: object
       properties:
         success:
@@ -702,49 +798,22 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Business_v1_business_idv_info_Response_200
-    Address:
+      title: Business_v1_business_person_info_Response_200
+    V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
+        type:
           type: string
-        state:
+          description: Type of risk assessment eg. pre-onboarding risk rating, risk band, risk engine score
+        outcome:
           type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason:
-      oneOf:
-      - type: string
-      - type: object
-        additionalProperties:
-          description: Any type
-      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason
-    V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this onboarding flow information creation/change
-        data:
-          $ref: '#/components/schemas/V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
+          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
+        custom:
+          $ref: '#/components/schemas/CustomData'
       required:
-      - timestamp
-      - data
-      - parent
-      title: V1BusinessOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems
+      - type
+      - outcome
+      title: V1BusinessRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData
     V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
@@ -797,137 +866,18 @@ components:
       - is_test_user
       - data
       title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItems
-    Business_v1_business_access_info_Response_200:
+    V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Business_v1_business_access_info_Response_200
-    V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
+        ip:
           type: string
-          format: date-time
-          description: Original timestamp relating to this account status information creation/change
-        data:
-          $ref: '#/components/schemas/V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1BusinessAccountStatusPostRequestBodyContentApplicationJsonSchemaItems
-    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems:
-      type: object
-      properties:
-        type:
+          description: IP address of the connecting client
+        device_id:
           type: string
-          description: Type of data externally verified
-        value:
-          type: string
-          description: Value of the data externally verified
-        is_externally_verified:
-          type: boolean
-          description: Whether the data was externally verified
-        provider:
-          type: string
-          description: Name of the provider that externally verified the data
-      required:
-      - type
-      - value
-      - is_externally_verified
-      - provider
-      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems
-    Business_v1_business_company_info_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Business_v1_business_company_info_Response_200
-    BusinessEntityParentType:
-      type: string
-      enum:
-      - company
-      - person
-      description: Type of the parent entity
-      title: BusinessEntityParentType
-    V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataAddressesItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of address. eg. Registered, Trading, Legal
-        address:
-          $ref: '#/components/schemas/Address'
-      title: V1BusinessCompanyInfoPostRequestBodyContentApplicationJsonSchemaItemsDataAddressesItems
-    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParent:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique external identifier of the parent entity, ID stored in your database / back-office
-        type:
-          $ref: '#/components/schemas/V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParentType'
-          description: Type of the parent entity
-      required:
-      - id
-      - type
-      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsParent
-    V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this screening check information creation/change
-        data:
-          $ref: '#/components/schemas/V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/BusinessEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1BusinessScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems
-    CustomData:
-      type: object
-      additionalProperties:
-        description: Any type
-      description: Custom data that is relevant. This can be any JSON object. Please include any details and data points that our schema does not capture.
-      title: CustomData
-    Business_v1_business_sar_info_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Business_v1_business_sar_info_Response_200
-    V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of national identification number
-        value:
-          type: string
-          description: National identification number
-      required:
-      - type
-      - value
-      title: V1BusinessPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber
+          description: Device identifier. eg. SSAID / Android ID / Device Fingerprint
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      title: V1BusinessAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData
     V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -942,11 +892,58 @@ components:
       required:
       - status
       title: V1BusinessSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData
+    Business_v1_business_risk_assessment_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Business_v1_business_risk_assessment_Response_200
+    V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        verification_type:
+          type: string
+          description: Type of verification performed
+        verification_outcome:
+          type: string
+          description: Result of IDV screening returned from provider
+        verification_provider:
+          type: string
+          description: Name of the IDV screening provider
+        document_type:
+          type: string
+          description: Type of document used in the screening
+        document_number:
+          type: string
+          description: The number of the document used in the screening
+        document_expiry_date:
+          type: string
+          format: date-time
+          description: The expiration date of the document used in the screening
+        document_extracted_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems'
+        is_live_selfie:
+          type: boolean
+          description: Whether a live selfie was used in the IDV screening
+        externally_verified_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems'
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - verification_type
+      - verification_outcome
+      - verification_provider
+      title: V1BusinessIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData
   securitySchemes:
-    ApiKeyAuth:
+    isValidAPIKey:
       type: apiKey
       in: header
-      name: Authorization
-    BearerAuth:
-      type: http
-      scheme: bearer
+      name: x-api-key

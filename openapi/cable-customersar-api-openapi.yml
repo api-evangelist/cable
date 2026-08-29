@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts customerSar API
+  title: Reference Customer Sar API
   version: 1.0.0
 servers:
 - url: https://api.cable.tech
@@ -170,6 +170,59 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerSARRequest'
 components:
   schemas:
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    CustomerSarStatus:
+      type: string
+      enum:
+      - PENDING
+      - FILED
+      - CANCELLED
+      description: The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it is not going to be filed.
+      title: CustomerSarStatus
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     CustomerSAR:
       type: object
       properties:
@@ -203,43 +256,11 @@ components:
       items:
         $ref: '#/components/schemas/CustomerSAR'
       title: NewCustomerSARRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     UpdateCustomerSARRequest:
       type: array
       items:
         $ref: '#/components/schemas/CustomerSAR'
       title: UpdateCustomerSARRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    CustomerSarStatus:
-      type: string
-      enum:
-      - PENDING
-      - FILED
-      - CANCELLED
-      description: The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it is not going to be filed.
-      title: CustomerSarStatus
     CustomerSAR_checkCustomerSAR_Response_200:
       type: object
       properties:
@@ -258,27 +279,6 @@ components:
           type: string
           description: The organization ID for which the customer SAR was found
       title: CustomerSAR_checkCustomerSAR_Response_200
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

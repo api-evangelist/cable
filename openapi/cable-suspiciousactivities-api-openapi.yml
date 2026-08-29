@@ -1,10 +1,10 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: API Reference alerts suspiciousActivities API
+  title: Transaction Data Suspicious Activities API
   version: 1.0.0
 servers:
-- url: https://api.cable.tech
-  description: Production
+- url: https://transaction-api.cable.tech
+  description: Production server
 tags:
 - name: suspiciousActivities
 paths:
@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Suspicious Activities_checkTransactionSuspiciousActivity_Response_200'
+                $ref: '#/components/schemas/Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200'
         '401':
           description: Unauthorized request
           content:
@@ -170,64 +170,45 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
 components:
   schemas:
-    AdditionalPropertiesType:
-      type: string
-      enum:
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      - OBJECT
-      - ARRAY
-      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-      title: AdditionalPropertiesType
-    Suspicious Activities_checkTransactionSuspiciousActivity_Response_200:
+    NewTransactionSuspiciousActivityItems:
       type: object
       properties:
         suspicious_activity_id:
           type: string
-          description: The unique identifier of the transaction suspicious activity
-        first_seen:
+          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
+        detection_date:
           type: string
           format: date-time
-          description: This represents the earliest timestamp associated with the transaction suspicious activity
-        last_seen:
+          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
+        report_id:
+          type: string
+          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
+        report_filed_at:
           type: string
           format: date-time
-          description: This represents the latest timestamp associated with the transaction suspicious activity
-        organization_id:
+          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions for which the suspicious activity relates to.
+        related_alert_id:
           type: string
-          description: The organization ID for which the transaction suspicious activity was found
-      title: Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
+          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction suspicious activity.
+        timestamp:
           type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    AdditionalProperties:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The key of the additional property. This should be unique within the additional properties array.
-        value:
-          type: string
-          description: The value of the additional property.
-        type:
-          $ref: '#/components/schemas/AdditionalPropertiesType'
-          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-        description:
-          type: string
-          description: A description of the additional property. This should provide context for the value.
+          format: date-time
+          description: The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new transaction suspicious activity, this field represents the detection time. When updating a transaction suspicious activity, this represents the time of the update.
       required:
-      - key
-      - value
-      - type
-      - description
-      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
-      title: AdditionalProperties
+      - suspicious_activity_id
+      - detection_date
+      - timestamp
+      title: NewTransactionSuspiciousActivityItems
     NewTransactionSuspiciousActivity:
       type: array
       items:
@@ -272,6 +253,48 @@ components:
       - suspicious_activity_id
       - timestamp
       title: TransactionSuspiciousActivity
+    Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     UpdateTransactionSuspiciousActivity:
       type: object
       properties:
@@ -311,61 +334,38 @@ components:
       - timestamp
       description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionSuspiciousActivity
-    NewTransactionSuspiciousActivityItems:
+    AdditionalProperties:
       type: object
       properties:
-        suspicious_activity_id:
+        key:
           type: string
-          description: Unique identifier for a suspicious activity belonging to a transaction. This is the primary key for a transaction suspicious activity and should be unique across all transaction suspicious activities. Updates to a transaction suspicious activity should be made using this identifier.
-        detection_date:
+          description: The key of the additional property. This should be unique within the additional properties array.
+        value:
           type: string
-          format: date-time
-          description: Timestamp at which suspicious activity was detected on a transaction. This should be in the ISO 8601 format.
-        report_id:
+          description: The value of the additional property.
+        type:
+          $ref: '#/components/schemas/AdditionalPropertiesType'
+          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+        description:
           type: string
-          description: Unique identifier for a transaction suspicious activity report for which the suspicious activity belongs to.
-        report_filed_at:
-          type: string
-          format: date-time
-          description: The time of the transaction suspicious activity report was filed. This should be in ISO 8601 format.
-        related_tx_ids:
-          type: array
-          items:
-            type: string
-          description: Unique identifiers for transactions for which the suspicious activity relates to.
-        related_alert_id:
-          type: string
-          description: Unique identifier for a transaction alert for which the suspicious activity relates to.
-        additional_properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdditionalProperties'
-          description: Additional metadata that relates to a transaction suspicious activity.
-        timestamp:
-          type: string
-          format: date-time
-          description: The time of the transaction suspicious activity. This should be in ISO 8601 format. When adding a new transaction suspicious activity, this field represents the detection time. When updating a transaction suspicious activity, this represents the time of the update.
+          description: A description of the additional property. This should provide context for the value.
       required:
-      - suspicious_activity_id
-      - detection_date
-      - timestamp
-      title: NewTransactionSuspiciousActivityItems
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
+      - key
+      - value
+      - type
+      - description
+      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
+      title: AdditionalProperties
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
