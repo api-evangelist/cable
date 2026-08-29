@@ -299,6 +299,9 @@ apis:
   - type: OpenAPI
     url: openapi/cable-utilities-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/cable-capability-edges.yml
+  name: Cable Business Capability Map
 - type: VulnerabilityDisclosure
   url: security/cable-vulnerability-disclosure.yml
 - type: DomainSecurity

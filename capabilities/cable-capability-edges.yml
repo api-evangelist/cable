@@ -1,0 +1,108 @@
+slug: cable
+provider: Cable
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 9
+edges:
+- tag: customerSar
+  spec_file: cable-customersar-api-openapi.yml
+  capability_id: BC-1400.40
+  capability_id_l1: BC-1400
+  capability_name: Suspicious Activity Reporting Management
+  confidence: 0.88
+  evidence: POST /v2/customer_sar 'Add customer sar information'; schemas CustomerSAR, CustomerSarStatus,
+    UpdateCustomerSARRequest
+  reason: Suspicious Activity Report records with status for customers — squarely Suspicious Activity
+    Reporting Management.
+- tag: transactionSuspiciousActivities
+  spec_file: cable-transactionsuspiciousactivities-api-openapi.yml
+  capability_id: BC-1400.40
+  capability_id_l1: BC-1400
+  capability_name: Suspicious Activity Reporting Management
+  confidence: 0.85
+  evidence: POST /v2/transaction_suspicious_activity add-transaction-suspicious-activity; schema TransactionSuspiciousActivity
+  reason: Records suspicious activity against transactions — the core of SAR/suspicious activity handling
+    in a financial-crime compliance platform.
+- tag: screening
+  spec_file: cable-screening-api-openapi.yml
+  capability_id: BC-1400.20
+  capability_id_l1: BC-1400
+  capability_name: Sanctions Screening Management
+  confidence: 0.82
+  evidence: POST /v2/screening 'Add new screening(s)'; POST /transaction_screening 'Add new transaction
+    screening(s)'; schemas ScreeningType, ScreeningOutcome
+  reason: Name and transaction screening records with outcomes in an AML/sanctions compliance platform
+    — Sanctions Screening Management (name and transaction screening, hit handling).
+- tag: suspiciousActivities
+  spec_file: cable-suspiciousactivities-api-openapi.yml
+  capability_id: BC-1400
+  capability_id_l1: BC-1400
+  capability_name: Financial Crime Management
+  confidence: 0.82
+  evidence: POST /transaction_suspicious_activity 'Add new transaction suspicious activities'; schema
+    TransactionSuspiciousActivity
+  reason: Suspicious activity records on transactions in an AML assurance platform. L1 Financial Crime
+    Management is clear; a separate customerSar tag handles filing, so the sub-capability (monitoring
+    vs reporting) is left unasserted.
+- tag: transactionAlerts
+  spec_file: cable-transactionalerts-api-openapi.yml
+  capability_id: BC-1400.10
+  capability_id_l1: BC-1400
+  capability_name: AML Transaction Monitoring Management
+  confidence: 0.78
+  evidence: POST /v2/transaction_alert 'Add new transaction alert(s)'; schemas TransactionAlert, TransactionAlertStatus,
+    TransactionAlertCheckType
+  reason: Transaction monitoring alerts with check type and status in an AML/BSA assurance platform —
+    AML Transaction Monitoring Management (alerts). Not observability alerting, given the vendor's financial-crime
+    domain.
+- tag: alerts
+  spec_file: cable-alerts-api-openapi.yml
+  capability_id: BC-1400.10
+  capability_id_l1: BC-1400
+  capability_name: AML Transaction Monitoring Management
+  confidence: 0.72
+  evidence: POST /transaction_alert  add-transaction-alert  Add new transaction alert(s) ... TransactionAlertStatus,
+    TransactionAlertCheckType
+  reason: Vendor is an 'automated compliance and financial-crime assurance platform'; the tag ingests
+    and updates transaction-level alerts used for AML monitoring assurance, so financial-crime AML transaction
+    monitoring fits rather than IT alerting.
+- tag: identityVerification
+  spec_file: cable-identityverification-api-openapi.yml
+  capability_id: BC-1300
+  capability_id_l1: BC-1300
+  capability_name: Banking Customer Management
+  confidence: 0.72
+  evidence: POST /v2/identity_verification 'Add identity verification'; schemas IdentityVerification,
+    IdentityVerificationVerificationType, IdentityVerificationVerifiedDataItems
+  reason: Identity verification records for banking customers. Sits at the boundary between onboarding
+    identity verification (BC-1300.10) and KYC/CDD (BC-1300.20), so only the L1 is asserted.
+- tag: onboardingFlow
+  spec_file: cable-onboardingflow-api-openapi.yml
+  capability_id: BC-1300.10
+  capability_id_l1: BC-1300
+  capability_name: Customer Onboarding Management
+  confidence: 0.7
+  evidence: POST /v2/onboarding_flow 'Add onboarding flow information'; schemas OnboardingFlow, OnboardingFlowOutcomeReason
+  reason: Records of customer onboarding flows and their outcome reasons for a banking/fintech customer
+    base — customer onboarding management.
+- tag: transactionChecks
+  spec_file: cable-transactionchecks-api-openapi.yml
+  capability_id: BC-1400.10
+  capability_id_l1: BC-1400
+  capability_name: AML Transaction Monitoring Management
+  confidence: 0.7
+  evidence: POST /v2/transaction_check add-transaction-check — vendor 'continuously tests 100% of activity
+    against your regulatory frameworks (US Bank Secrecy Act...)' with schemas TransactionCheck, TransactionCheckType,
+    TransactionCheckStatus
+  reason: Transaction checks are AML/compliance monitoring results attached to transactions in a financial-crime
+    assurance platform; closest fit is AML transaction monitoring, though it could equally be read as
+    broader regulatory compliance testing.
