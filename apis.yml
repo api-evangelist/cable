@@ -93,7 +93,7 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
-  - Business
+  - business
   tags_raw:
   - business
   properties:
@@ -105,7 +105,7 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
-  - Checks
+  - checks
   tags_raw:
   - checks
   properties:
@@ -117,7 +117,7 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
-  - Company
+  - company
   tags_raw:
   - company
   properties:
@@ -151,8 +151,7 @@ apis:
   description: The identityVerification API from Cable — 1 operation(s) for identityverification.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
-  - Identity Verification
+  tags: []
   tags_raw:
   - identityVerification
   properties:
@@ -175,7 +174,7 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
-  - Persons
+  - person
   tags_raw:
   - person
   properties:
@@ -198,8 +197,7 @@ apis:
   description: The riskAssessment API from Cable — 1 operation(s) for riskassessment.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
-  tags:
-  - Risk Assessment
+  tags: []
   tags_raw:
   - riskAssessment
   properties:
@@ -211,7 +209,7 @@ apis:
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
   tags:
-  - Screening
+  - screening
   tags_raw:
   - screening
   properties:
