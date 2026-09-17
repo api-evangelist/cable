@@ -147,18 +147,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cable-helper-api-openapi.yml
-- aid: cable:cable-identityverification-api
-  name: Cable identityVerification API
-  description: The identityVerification API from Cable — 1 operation(s) for identityverification.
-  humanURL: https://docs.cable.tech/api-documentation/api-reference
-  baseURL: https://api.cable.tech
-  tags:
-  - Identity Verification
-  tags_raw:
-  - identityVerification
-  properties:
-  - type: OpenAPI
-    url: openapi/cable-identityverification-api-openapi.yml
 - aid: cable:cable-onboardingflow-api
   name: Cable onboardingFlow API
   description: The onboardingFlow API from Cable — 1 operation(s) for onboardingflow.
@@ -194,18 +182,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cable-retail-api-openapi.yml
-- aid: cable:cable-riskassessment-api
-  name: Cable riskAssessment API
-  description: The riskAssessment API from Cable — 1 operation(s) for riskassessment.
-  humanURL: https://docs.cable.tech/api-documentation/api-reference
-  baseURL: https://api.cable.tech
-  tags:
-  - Risk Assessment
-  tags_raw:
-  - riskAssessment
-  properties:
-  - type: OpenAPI
-    url: openapi/cable-riskassessment-api-openapi.yml
 - aid: cable:cable-screening-api
   name: Cable screening API
   description: The screening API from Cable — 2 operation(s) for screening.
@@ -299,6 +275,26 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/cable-utilities-api-openapi.yml
+- aid: cable:cable-identity-verification-api
+  name: Cable Identity Verification API
+  description: The Identity Verification API from Cable — 1 operation(s) for identity verification.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - Identity Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-identity-verification-api-openapi.yml
+- aid: cable:cable-risk-assessment-api
+  name: Cable Risk Assessment API
+  description: The Risk Assessment API from Cable — 1 operation(s) for risk assessment.
+  humanURL: https://docs.cable.tech/api-documentation/api-reference
+  baseURL: https://api.cable.tech
+  tags:
+  - Risk Assessment
+  properties:
+  - type: OpenAPI
+    url: openapi/cable-risk-assessment-api-openapi.yml
 common:
 - type: CapabilityMap
   url: capabilities/cable-capability-edges.yml
