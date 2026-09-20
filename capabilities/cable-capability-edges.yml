@@ -76,7 +76,8 @@ edges:
     and updates transaction-level alerts used for AML monitoring assurance, so financial-crime AML transaction
     monitoring fits rather than IT alerting.
 - tag: identityVerification
-  spec_file: cable-identityverification-api-openapi.yml
+  spec_file: cable-identity-verification-api-openapi.yml
+  reanchored_from: cable-identityverification-api-openapi.yml
   capability_id: BC-1300
   capability_id_l1: BC-1300
   capability_name: Banking Customer Management
