@@ -9,7 +9,7 @@ servers:
 - url: https://transaction-api.cable.tech
   description: Production server
 tags:
-- name: authentication
+- name: Authentication
 paths:
   /v2/auth/token:
     post:
@@ -24,11 +24,9 @@ paths:
 
         To request an access token you must use the refresh / auth token provided to you by Cable.
 
-        You cannot request a new token with an existing access token.
-
-        '
+        You cannot request a new token with an existing access token.'
       tags:
-      - authentication
+      - Authentication
       parameters:
       - name: Authorization
         in: header
@@ -75,7 +73,7 @@ paths:
       summary: Request a new access token
       description: Request a new access token to authenticate requests to the API. The token will expire after the specified time. To request an access token you must use the refresh / auth token provided to you by Cable. You cannot request a new token with an existing access token.
       tags:
-      - authentication
+      - Authentication
       parameters:
       - name: Authorization
         in: header
@@ -118,19 +116,6 @@ paths:
       description: Production server
 components:
   schemas:
-    NewAccessTokenRequest:
-      type: object
-      properties:
-        expiry_seconds:
-          type: integer
-          format: int64
-          description: The requested expiration time in seconds for the token. Must be between 300 (5 minutes) and 86400 (24 hours).
-        scopes:
-          $ref: '#/components/schemas/AccessTokenScope'
-      required:
-      - expiry_seconds
-      - scopes
-      title: NewAccessTokenRequest
     GeneralError:
       type: object
       properties:
@@ -147,14 +132,6 @@ components:
       - code
       - message
       title: GeneralError
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     NewAccessTokenResponse:
       type: object
       properties:
@@ -178,6 +155,27 @@ components:
       - organization_id
       - organization_name
       title: NewAccessTokenResponse
+    NewAccessTokenRequest:
+      type: object
+      properties:
+        expiry_seconds:
+          type: integer
+          format: int64
+          description: The requested expiration time in seconds for the token. Must be between 300 (5 minutes) and 86400 (24 hours).
+        scopes:
+          $ref: '#/components/schemas/AccessTokenScope'
+      required:
+      - expiry_seconds
+      - scopes
+      title: NewAccessTokenRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     AccessTokenScope:
       type: object
       properties:

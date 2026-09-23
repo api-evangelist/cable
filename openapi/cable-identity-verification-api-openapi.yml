@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Production
 tags:
-- name: identityVerification
+- name: Identity Verification
 paths:
   /v2/identity_verification:
     get:
       operationId: check-identity-verification
       summary: Check if a identity verification exists
       tags:
-      - identityVerification
+      - Identity Verification
       parameters:
       - name: verification_id
         in: query
@@ -75,7 +75,7 @@ paths:
 
         - Re-verification after data update requires a new API call'
       tags:
-      - identityVerification
+      - Identity Verification
       parameters:
       - name: Authorization
         in: header
@@ -129,7 +129,7 @@ paths:
       operationId: update-identity-verifications
       summary: Update identity verification in batch
       tags:
-      - identityVerification
+      - Identity Verification
       parameters:
       - name: Authorization
         in: header
@@ -182,6 +182,34 @@ paths:
               $ref: '#/components/schemas/UpdateIdentityVerificationRequest'
 components:
   schemas:
+    NewIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: NewIdentityVerificationRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    IdentityVerificationVerificationType:
+      type: string
+      enum:
+      - DOCUMENT_MATCH
+      - DATABASE_MATCH
+      - MANUAL_VERIFICATION
+      title: IdentityVerificationVerificationType
     WriteOperationResponse:
       type: object
       properties:
@@ -203,11 +231,14 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    UpdateIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: UpdateIdentityVerificationRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     IdentityVerificationVerifiedDataItems:
       type: object
       properties:
@@ -230,6 +261,11 @@ components:
       - type
       - outcome
       title: IdentityVerificationVerifiedDataItems
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
     Identity_Verification_checkIdentityVerification_Response_200:
       type: object
       properties:
@@ -248,35 +284,6 @@ components:
           type: string
           description: The organization ID for which the identity verification was found
       title: Identity Verification_checkIdentityVerification_Response_200
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    NewIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: NewIdentityVerificationRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     IdentityVerification:
       type: object
       properties:
@@ -346,13 +353,6 @@ components:
 
         - Re-verification after data update requires a new API call'
       title: IdentityVerification
-    IdentityVerificationVerificationType:
-      type: string
-      enum:
-      - DOCUMENT_MATCH
-      - DATABASE_MATCH
-      - MANUAL_VERIFICATION
-      title: IdentityVerificationVerificationType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

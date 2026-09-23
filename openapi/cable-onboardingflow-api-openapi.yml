@@ -170,39 +170,22 @@ paths:
               $ref: '#/components/schemas/UpdateOnboardingFlowRequest'
 components:
   schemas:
-    OnboardingFlowOutcomeReason:
-      oneOf:
-      - type: string
-      - type: object
-        additionalProperties:
-          description: Any type
-      title: OnboardingFlowOutcomeReason
-    WriteOperationResponse:
+    GeneralError:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
+        code:
           type: integer
-          description: The number of records written to the database.
         message:
           type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
       required:
-      - success
-      - write_count
+      - code
       - message
-      - organization_id
-      title: WriteOperationResponse
-    UpdateOnboardingFlowRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/OnboardingFlow'
-      title: UpdateOnboardingFlowRequest
+      title: GeneralError
     OnboardingFlow:
       type: object
       properties:
@@ -234,27 +217,32 @@ components:
       - outcome
       description: Request body for adding Onboarding Flow information for a parent entity, applicable to both retail and business contexts
       title: OnboardingFlow
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     NewOnboardingFlowRequest:
       type: array
       items:
         $ref: '#/components/schemas/OnboardingFlow'
       title: NewOnboardingFlowRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     GeneralErrorErrorsItems:
       type: object
       properties:
@@ -263,6 +251,18 @@ components:
         message:
           type: string
       title: GeneralErrorErrorsItems
+    UpdateOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: UpdateOnboardingFlowRequest
+    OnboardingFlowOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: OnboardingFlowOutcomeReason
     Onboarding_Flow_checkOnboardingFLow_Response_200:
       type: object
       properties:

@@ -170,27 +170,6 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerSARRequest'
 components:
   schemas:
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
     CustomerSarStatus:
       type: string
       enum:
@@ -215,14 +194,45 @@ components:
       - code
       - message
       title: GeneralError
-    GeneralErrorErrorsItems:
+    CustomerSAR_checkCustomerSAR_Response_200:
       type: object
       properties:
-        field:
+        sar_id:
           type: string
+          description: The unique identifier of the customer SAR
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the customer SAR
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the customer SAR
+        organization_id:
+          type: string
+          description: The organization ID for which the customer SAR was found
+      title: CustomerSAR_checkCustomerSAR_Response_200
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
         message:
           type: string
-      title: GeneralErrorErrorsItems
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     CustomerSAR:
       type: object
       properties:
@@ -251,6 +261,14 @@ components:
       - status
       description: Request body for adding SAR (Suspicious Activity Report) information for a person or company
       title: CustomerSAR
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     NewCustomerSARRequest:
       type: array
       items:
@@ -261,24 +279,6 @@ components:
       items:
         $ref: '#/components/schemas/CustomerSAR'
       title: UpdateCustomerSARRequest
-    CustomerSAR_checkCustomerSAR_Response_200:
-      type: object
-      properties:
-        sar_id:
-          type: string
-          description: The unique identifier of the customer SAR
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the customer SAR
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the customer SAR
-        organization_id:
-          type: string
-          description: The organization ID for which the customer SAR was found
-      title: CustomerSAR_checkCustomerSAR_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

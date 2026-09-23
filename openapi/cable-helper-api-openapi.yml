@@ -6,7 +6,7 @@ servers:
 - url: https://api.cable.tech
   description: Placeholder server
 tags:
-- name: helper
+- name: Helper
 paths:
   /status:
     get:
@@ -14,7 +14,7 @@ paths:
       summary: Organization status check
       description: Endpoint for organization status check purposes
       tags:
-      - helper
+      - Helper
       parameters:
       - name: x-api-key
         in: header

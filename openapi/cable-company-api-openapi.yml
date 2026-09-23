@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Production
 tags:
-- name: company
+- name: Company
 paths:
   /v2/company:
     get:
       operationId: check-company-info
       summary: Check if a company exists
       tags:
-      - company
+      - Company
       parameters:
       - name: company_id
         in: query
@@ -63,7 +63,7 @@ paths:
       summary: Add company information
       description: Endpoint for adding new company information
       tags:
-      - company
+      - Company
       parameters:
       - name: Authorization
         in: header
@@ -117,7 +117,7 @@ paths:
       operationId: update-companies
       summary: Update companies in batch
       tags:
-      - company
+      - Company
       parameters:
       - name: Authorization
         in: header
@@ -190,11 +190,9 @@ paths:
         deletion request ID and the status endpoint.
 
 
-        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
-
-        '
+        This operation is not intended for regular use and should be used with caution.'
       tags:
-      - company
+      - Company
       parameters:
       - name: Authorization
         in: header
@@ -250,30 +248,6 @@ paths:
               - reason
 components:
   schemas:
-    Address:
-      type: object
-      properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    NewCompanyRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: NewCompanyRequest
     CompanyIndustryClassification:
       type: object
       properties:
@@ -292,6 +266,32 @@ components:
       - code_type
       - code
       title: CompanyIndustryClassification
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    Company_deleteCompany_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
     WriteOperationResponse:
       type: object
       properties:
@@ -313,11 +313,6 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    UpdateCompaniesRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: UpdateCompaniesRequest
     CompanyAccountStatus:
       type: string
       enum:
@@ -328,70 +323,11 @@ components:
       - REJECTED
       description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
       title: CompanyAccountStatus
-    CompanyAddressesItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of address. eg. Registered, Trading, Legal
-        address:
-          $ref: '#/components/schemas/Address'
-      title: CompanyAddressesItems
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    Company_checkCompanyInfo_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the company
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the company
-        organization_id:
-          type: string
-          description: The organization ID for which the company was found
-      title: Company_checkCompanyInfo_Response_200
-    CompanyRegistrationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
-        value:
-          type: string
-          description: The registration number
-      required:
-      - type
-      - value
-      title: CompanyRegistrationNumber
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
     Company:
       type: object
       properties:
@@ -469,16 +405,78 @@ components:
       - is_test_company
       description: Request body for adding information about companies
       title: Company
-    Company_deleteCompany_Response_200:
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Company_checkCompanyInfo_Response_200:
       type: object
       properties:
         company_id:
           type: string
           description: The unique identifier of the company
-        deletion_request_id:
+        first_seen:
           type: string
-          description: The unique identifier of the deletion request
-      title: Company_deleteCompany_Response_200
+          format: date-time
+          description: This represents the earliest timestamp associated with the company
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the company
+        organization_id:
+          type: string
+          description: The organization ID for which the company was found
+      title: Company_checkCompanyInfo_Response_200
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    CompanyAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
+    CompanyRegistrationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
+        value:
+          type: string
+          description: The registration number
+      required:
+      - type
+      - value
+      title: CompanyRegistrationNumber
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

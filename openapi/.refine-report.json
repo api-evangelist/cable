@@ -27,7 +27,9 @@
     "cable-checks-api-openapi.yml",
     "cable-suspiciousactivities-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 2 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -60,7 +62,9 @@
     "cable-transaction-data-api-openapi-original.yml: declared missing tag: transactions",
     "tag 'authentication' spans 2 source specs (cable-api-reference-openapi-original.yml, cable-transaction-data-api-openapi-original.yml): per-path servers applied",
     "tag 'screening' spans 2 source specs (cable-api-reference-openapi-original.yml, cable-transaction-data-api-openapi-original.yml): per-path servers applied",
-    "tag 'transactions' spans 2 source specs (cable-api-reference-openapi-original.yml, cable-transaction-data-api-openapi-original.yml): per-path servers applied"
+    "tag 'transactions' spans 2 source specs (cable-api-reference-openapi-original.yml, cable-transaction-data-api-openapi-original.yml): per-path servers applied",
+    "superseded outputs removed: cable-identity-verification-api-openapi.yml, cable-risk-assessment-api-openapi.yml",
+    "apis.yml register: written (+2 apis, 20 total)"
   ],
   "skipped": [
     "cable-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -70,11 +74,11 @@
     "cable-company-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-customersar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-helper-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "cable-identityverification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cable-identity-verification-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-onboardingflow-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-person-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-retail-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "cable-riskassessment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cable-risk-assessment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-screening-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-suspiciousactivities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "cable-transactionalerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",

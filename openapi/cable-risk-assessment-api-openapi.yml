@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Production
 tags:
-- name: riskAssessment
+- name: Risk Assessment
 paths:
   /v2/risk_assessment:
     get:
       operationId: check-risk-assessment
       summary: Check if a risk assessment exists
       tags:
-      - riskAssessment
+      - Risk Assessment
       parameters:
       - name: assessment_id
         in: query
@@ -63,7 +63,7 @@ paths:
       summary: Add risk assessment information
       description: Endpoint for adding new customer risk assessment information
       tags:
-      - riskAssessment
+      - Risk Assessment
       parameters:
       - name: Authorization
         in: header
@@ -118,7 +118,7 @@ paths:
       operationId: update-risk-assessments
       summary: Update risk assessment in batch
       tags:
-      - riskAssessment
+      - Risk Assessment
       parameters:
       - name: Authorization
         in: header
@@ -171,6 +171,22 @@ paths:
               $ref: '#/components/schemas/UpdateRiskAsssessmentRequest'
 components:
   schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     WriteOperationResponse:
       type: object
       properties:
@@ -192,6 +208,16 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
+    UpdateRiskAsssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: UpdateRiskAsssessmentRequest
+    NewRiskAssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: NewRiskAssessmentRequest
     RiskAssessment:
       type: object
       properties:
@@ -221,11 +247,14 @@ components:
       - outcome
       description: Request body for adding risk assessment information for a parent entity, applicable to both retail and business contexts
       title: RiskAssessment
-    UpdateRiskAsssessmentRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskAssessment'
-      title: UpdateRiskAsssessmentRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     Risk_Assessment_checkRiskAssessment_Response_200:
       type: object
       properties:
@@ -244,35 +273,6 @@ components:
           type: string
           description: The organization ID for which the risk assessment was found
       title: Risk Assessment_checkRiskAssessment_Response_200
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewRiskAssessmentRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskAssessment'
-      title: NewRiskAssessmentRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

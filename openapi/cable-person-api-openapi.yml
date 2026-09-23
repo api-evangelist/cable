@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Production
 tags:
-- name: person
+- name: Person
 paths:
   /v2/person:
     get:
       operationId: check-person
       summary: Check if a person exists
       tags:
-      - person
+      - Person
       parameters:
       - name: person_id
         in: query
@@ -63,7 +63,7 @@ paths:
       summary: Add person information
       description: Endpoint for adding new person information
       tags:
-      - person
+      - Person
       parameters:
       - name: Authorization
         in: header
@@ -117,7 +117,7 @@ paths:
       operationId: update-persons
       summary: Update person in batch
       tags:
-      - person
+      - Person
       parameters:
       - name: Authorization
         in: header
@@ -190,11 +190,9 @@ paths:
         deletion request ID and the status endpoint.
 
 
-        <Warning>This operation is not intended for regular use and should be used with caution.</Warning>
-
-        '
+        This operation is not intended for regular use and should be used with caution.'
       tags:
-      - person
+      - Person
       parameters:
       - name: Authorization
         in: header
@@ -250,35 +248,22 @@ paths:
               - reason
 components:
   schemas:
-    Address:
+    GeneralError:
       type: object
       properties:
-        lines:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
           type: array
           items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    PersonAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: PersonAccountStatus
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     Person:
       type: object
       properties:
@@ -386,53 +371,21 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
+    Person_deletePerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Person_deletePerson_Response_200
     UpdatePersonRequest:
       type: array
       items:
         $ref: '#/components/schemas/Person'
       title: UpdatePersonRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    PersonNationalIdentificationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of national identification number
-        value:
-          type: string
-          description: National identification number
-      required:
-      - type
-      - value
-      title: PersonNationalIdentificationNumber
-    NewPersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: NewPersonRequest
     Person_checkPerson_Response_200:
       type: object
       properties:
@@ -451,16 +404,61 @@ components:
           type: string
           description: The organization ID for which the person was found
       title: Person_checkPerson_Response_200
-    Person_deletePerson_Response_200:
+    PersonAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        person_id:
+        field:
           type: string
-          description: The unique identifier of the person
-        deletion_request_id:
+        message:
           type: string
-          description: The unique identifier of the deletion request
-      title: Person_deletePerson_Response_200
+      title: GeneralErrorErrorsItems
+    NewPersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: NewPersonRequest
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    PersonNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+      - type
+      - value
+      title: PersonNationalIdentificationNumber
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

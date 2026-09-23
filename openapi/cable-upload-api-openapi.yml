@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Placeholder server
 tags:
-- name: upload
+- name: Upload
 paths:
   /v1/upload/csv:
     post:
       operationId: upload-csv
       summary: CSV file upload
       tags:
-      - upload
+      - Upload
       parameters:
       - name: x-api-key
         in: header

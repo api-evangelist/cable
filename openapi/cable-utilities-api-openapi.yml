@@ -6,14 +6,14 @@ servers:
 - url: https://api.cable.tech
   description: Production
 tags:
-- name: utilities
+- name: Utilities
 paths:
   /v2/deletion_request:
     get:
       operationId: get-deletion-request
       summary: Check the status of a deletion request
       tags:
-      - utilities
+      - Utilities
       parameters:
       - name: deletion_request_id
         in: query
@@ -60,6 +60,22 @@ paths:
                 $ref: '#/components/schemas/GeneralError'
 components:
   schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     Utilities_getDeletionRequest_Response_200:
       type: object
       properties:
@@ -92,22 +108,6 @@ components:
       - completed
       description: The status of the deletion request
       title: V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
