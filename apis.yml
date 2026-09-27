@@ -56,6 +56,17 @@ tags:
 - Compliance
 - Financial Crime
 - RegTech
+- AML
+- Transaction Monitoring
+- Screening
+- Risk Assessment
+- Banking
+- Fintech
+tags_raw:
+- Company
+- Compliance
+- Financial Crime
+- RegTech
 - Anti-Money Laundering
 - Transaction Monitoring
 - Screening
@@ -69,7 +80,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: cable:cable-alerts-api
-  name: Cable alerts API
+  name: Cable Alerts API
   description: The alerts API from Cable — 1 operation(s) for alerts.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -81,7 +92,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-alerts-api-openapi.yml
 - aid: cable:cable-authentication-api
-  name: Cable authentication API
+  name: Cable Authentication API
   description: The authentication API from Cable — 2 operation(s) for authentication.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -93,7 +104,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-authentication-api-openapi.yml
 - aid: cable:cable-business-api
-  name: Cable business API
+  name: Cable Business API
   description: The business API from Cable — 9 operation(s) for business.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -105,7 +116,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-business-api-openapi.yml
 - aid: cable:cable-checks-api
-  name: Cable checks API
+  name: Cable Checks API
   description: The checks API from Cable — 1 operation(s) for checks.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -117,7 +128,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-checks-api-openapi.yml
 - aid: cable:cable-company-api
-  name: Cable company API
+  name: Cable Company API
   description: The company API from Cable — 1 operation(s) for company.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -129,7 +140,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-company-api-openapi.yml
 - aid: cable:cable-customersar-api
-  name: Cable customerSar API
+  name: Cable Customer Sar API
   description: The customerSar API from Cable — 1 operation(s) for customersar.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -140,7 +151,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-customersar-api-openapi.yml
 - aid: cable:cable-helper-api
-  name: Cable helper API
+  name: Cable Helper API
   description: The helper API from Cable — 1 operation(s) for helper.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -152,7 +163,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-helper-api-openapi.yml
 - aid: cable:cable-onboardingflow-api
-  name: Cable onboardingFlow API
+  name: Cable Onboarding Flow API
   description: The onboardingFlow API from Cable — 1 operation(s) for onboardingflow.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -163,7 +174,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-onboardingflow-api-openapi.yml
 - aid: cable:cable-person-api
-  name: Cable person API
+  name: Cable Person API
   description: The person API from Cable — 1 operation(s) for person.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -175,7 +186,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-person-api-openapi.yml
 - aid: cable:cable-retail-api
-  name: Cable retail API
+  name: Cable Retail API
   description: The retail API from Cable — 8 operation(s) for retail.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -187,7 +198,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-retail-api-openapi.yml
 - aid: cable:cable-screening-api
-  name: Cable screening API
+  name: Cable Screening API
   description: The screening API from Cable — 2 operation(s) for screening.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -199,7 +210,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-screening-api-openapi.yml
 - aid: cable:cable-suspiciousactivities-api
-  name: Cable suspiciousActivities API
+  name: Cable Suspicious Activities API
   description: The suspiciousActivities API from Cable — 1 operation(s) for suspiciousactivities.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -210,7 +221,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-suspiciousactivities-api-openapi.yml
 - aid: cable:cable-transactionalerts-api
-  name: Cable transactionAlerts API
+  name: Cable Transaction Alerts API
   description: The transactionAlerts API from Cable — 1 operation(s) for transactionalerts.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -221,7 +232,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-transactionalerts-api-openapi.yml
 - aid: cable:cable-transactionchecks-api
-  name: Cable transactionChecks API
+  name: Cable Transaction Checks API
   description: The transactionChecks API from Cable — 1 operation(s) for transactionchecks.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -232,7 +243,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-transactionchecks-api-openapi.yml
 - aid: cable:cable-transactions-api
-  name: Cable transactions API
+  name: Cable Transactions API
   description: The transactions API from Cable — 4 operation(s) for transactions.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -244,7 +255,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-transactions-api-openapi.yml
 - aid: cable:cable-transactionsuspiciousactivities-api
-  name: Cable transactionSuspiciousActivities API
+  name: Cable Transaction Suspicious Activities API
   description: >-
     The transactionSuspiciousActivities API from Cable — 1 operation(s) for transactionsuspiciousactivities.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
@@ -256,7 +267,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-transactionsuspiciousactivities-api-openapi.yml
 - aid: cable:cable-upload-api
-  name: Cable upload API
+  name: Cable Upload API
   description: The upload API from Cable — 1 operation(s) for upload.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech
@@ -268,7 +279,7 @@ apis:
   - type: OpenAPI
     url: openapi/cable-upload-api-openapi.yml
 - aid: cable:cable-utilities-api
-  name: Cable utilities API
+  name: Cable Utilities API
   description: The utilities API from Cable — 1 operation(s) for utilities.
   humanURL: https://docs.cable.tech/api-documentation/api-reference
   baseURL: https://api.cable.tech

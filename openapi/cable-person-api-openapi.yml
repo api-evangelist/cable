@@ -248,22 +248,34 @@ paths:
               - reason
 components:
   schemas:
-    GeneralError:
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+    Person_deletePerson_Response_200:
       type: object
       properties:
-        code:
-          type: integer
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Person_deletePerson_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
+      title: GeneralErrorErrorsItems
+    NewPersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: NewPersonRequest
     Person:
       type: object
       properties:
@@ -350,42 +362,6 @@ components:
       - is_retail_customer
       description: Request body for adding information about persons
       title: Person
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    Person_deletePerson_Response_200:
-      type: object
-      properties:
-        person_id:
-          type: string
-          description: The unique identifier of the person
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Person_deletePerson_Response_200
-    UpdatePersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: UpdatePersonRequest
     Person_checkPerson_Response_200:
       type: object
       properties:
@@ -414,19 +390,6 @@ components:
       - REJECTED
       description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
       title: PersonAccountStatus
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewPersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: NewPersonRequest
     Address:
       type: object
       properties:
@@ -446,6 +409,22 @@ components:
           type: string
       description: Legal/contact address for the entity
       title: Address
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     PersonNationalIdentificationNumber:
       type: object
       properties:
@@ -459,6 +438,27 @@ components:
       - type
       - value
       title: PersonNationalIdentificationNumber
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

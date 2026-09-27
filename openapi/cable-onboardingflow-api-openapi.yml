@@ -170,6 +170,37 @@ paths:
               $ref: '#/components/schemas/UpdateOnboardingFlowRequest'
 components:
   schemas:
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    UpdateOnboardingFlowRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/OnboardingFlow'
+      title: UpdateOnboardingFlowRequest
+    Onboarding_Flow_checkOnboardingFLow_Response_200:
+      type: object
+      properties:
+        onboarding_flow_id:
+          type: string
+          description: The unique identifier of the onboarding flow
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the onboarding flow
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the onboarding flow
+        organization_id:
+          type: string
+          description: The organization ID for which the onboarding flow was found
+      title: Onboarding Flow_checkOnboardingFLow_Response_200
     GeneralError:
       type: object
       properties:
@@ -217,6 +248,13 @@ components:
       - outcome
       description: Request body for adding Onboarding Flow information for a parent entity, applicable to both retail and business contexts
       title: OnboardingFlow
+    OnboardingFlowOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: OnboardingFlowOutcomeReason
     WriteOperationResponse:
       type: object
       properties:
@@ -243,44 +281,6 @@ components:
       items:
         $ref: '#/components/schemas/OnboardingFlow'
       title: NewOnboardingFlowRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    UpdateOnboardingFlowRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/OnboardingFlow'
-      title: UpdateOnboardingFlowRequest
-    OnboardingFlowOutcomeReason:
-      oneOf:
-      - type: string
-      - type: object
-        additionalProperties:
-          description: Any type
-      title: OnboardingFlowOutcomeReason
-    Onboarding_Flow_checkOnboardingFLow_Response_200:
-      type: object
-      properties:
-        onboarding_flow_id:
-          type: string
-          description: The unique identifier of the onboarding flow
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the onboarding flow
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the onboarding flow
-        organization_id:
-          type: string
-          description: The organization ID for which the onboarding flow was found
-      title: Onboarding Flow_checkOnboardingFLow_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

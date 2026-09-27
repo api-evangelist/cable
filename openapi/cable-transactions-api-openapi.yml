@@ -362,7 +362,7 @@ paths:
       description: Production
   /transaction:
     get:
-      operationId: check-transaction
+      operationId: getTransaction
       summary: Check if a transaction exists
       tags:
       - Transactions
@@ -410,8 +410,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GeneralError'
+      x-operation-id-source: normalized
+      x-operation-id-original: check-transaction
     post:
-      operationId: add-transaction
+      operationId: postTransaction
       summary: Add a new transaction
       tags:
       - Transactions
@@ -465,8 +467,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/NewTransactionRequest_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: add-transaction
     put:
-      operationId: update-transaction
+      operationId: putTransaction
       summary: Update an existing transaction
       tags:
       - Transactions
@@ -520,12 +524,14 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UpdateTransactionRequest_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: update-transaction
     servers:
     - url: https://transaction-api.cable.tech
       description: Production server
   /transactions/batch:
     post:
-      operationId: add-transactions-batch
+      operationId: postTransactionsBatch
       summary: Add transactions in batch
       tags:
       - Transactions
@@ -573,8 +579,10 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BatchNewTransactionRequest'
+      x-operation-id-source: normalized
+      x-operation-id-original: add-transactions-batch
     put:
-      operationId: update-transactions-batch
+      operationId: putTransactionsBatch
       summary: Update transactions in batch
       tags:
       - Transactions
@@ -628,22 +636,33 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/BatchUpdateTransactionRequest'
+      x-operation-id-source: normalized
+      x-operation-id-original: update-transactions-batch
     servers:
     - url: https://transaction-api.cable.tech
       description: Production server
 components:
   schemas:
-    NewTransactionRequestStatus:
+    NewTransactionRequestType:
       type: string
       enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestStatus
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    BatchNewTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
     UpdateTransactionRequestType:
       type: string
       enum:
@@ -651,22 +670,6 @@ components:
       - WITHDRAWAL
       description: Transaction type. Required when creating new transactions, optional for updates.
       title: UpdateTransactionRequestType
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     UpdateTransactionRequest:
       type: object
       properties:
@@ -727,13 +730,54 @@ components:
       - tx_id
       description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionRequest
-    NewTransactionRequestType:
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    NewTransactionRequestMethod:
       type: string
       enum:
-      - DEPOSIT
-      - WITHDRAWAL
-      description: Transaction type. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestType
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - GOOGLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - FEDNOW
+      - PROV_X_TRANSFER
+      - CARD
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
+    Transactions_deleteTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Transactions_deleteTransaction_Response_200
     WriteOperationResponse:
       type: object
       properties:
@@ -755,52 +799,6 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    Transactions_checkTransaction_Response_200:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: The unique identifier of the transaction
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction was found
-      title: Transactions_checkTransaction_Response_200
-    UpdateTransactionRequestMethod:
-      type: string
-      enum:
-      - WIRE
-      - ACH
-      - SWIFT
-      - SEPA
-      - APPLE_PAY
-      - GOOGLE_PAY
-      - CHECK_DEPOSIT
-      - INTERNAL_TRANSFER
-      - RTP
-      - FEDNOW
-      - PROV_X_TRANSFER
-      - CARD
-      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: UpdateTransactionRequestMethod
-    UpdateTransactionRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: UpdateTransactionRequestStatus
     NewTransactionRequest:
       type: object
       properties:
@@ -885,15 +883,47 @@ components:
 
         '
       title: NewTransactionRequest
-    GeneralErrorErrorsItems:
+    Transactions_checkTransaction_Response_200:
       type: object
       properties:
-        field:
+        tx_id:
           type: string
-        message:
+          description: The unique identifier of the transaction
+        first_seen:
           type: string
-      title: GeneralErrorErrorsItems
-    NewTransactionRequestMethod:
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction was found
+      title: Transactions_checkTransaction_Response_200
+    UpdateTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
+    UpdateTransactionRequestMethod:
       type: string
       enum:
       - WIRE
@@ -909,27 +939,7 @@ components:
       - PROV_X_TRANSFER
       - CARD
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: NewTransactionRequestMethod
-    BatchNewTransactionRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionRequest'
-      title: BatchNewTransactionRequest
-    BatchUpdateTransactionRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/UpdateTransactionRequest'
-      title: BatchUpdateTransactionRequest
-    Transactions_deleteTransaction_Response_200:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: The unique identifier of the transaction
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Transactions_deleteTransaction_Response_200
+      title: UpdateTransactionRequestMethod
     UpdateTransactionRequest_2:
       type: object
       properties:
@@ -980,7 +990,7 @@ components:
       - tx_id
       description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionRequest
-    UpdateTransactionRequestMethod_2:
+    NewTransactionRequestMethod_2:
       type: string
       enum:
       - WIRE
@@ -993,7 +1003,7 @@ components:
       - RTP
       - PROV_X_TRANSFER
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: UpdateTransactionRequestMethod
+      title: NewTransactionRequestMethod
     NewTransactionRequest_2:
       type: object
       properties:
@@ -1052,7 +1062,7 @@ components:
       - status
       description: Transaction data to add. All fields are required except for 'amount_usd', which will be calculated using the latest exchange rate if not provided. The 'timestamp' field represents the creation time.
       title: NewTransactionRequest
-    NewTransactionRequestMethod_2:
+    UpdateTransactionRequestMethod_2:
       type: string
       enum:
       - WIRE
@@ -1065,7 +1075,7 @@ components:
       - RTP
       - PROV_X_TRANSFER
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: NewTransactionRequestMethod
+      title: UpdateTransactionRequestMethod
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

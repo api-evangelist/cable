@@ -170,6 +170,49 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionAlertRequest'
 components:
   schemas:
+    TransactionAlertCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: TransactionAlertCheckType
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Alerts_checkTransactionAlert_Response_200:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: The unique identifier of the transaction alert
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction alert
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction alert
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction alert was found
+      title: Alerts_checkTransactionAlert_Response_200
     AdditionalProperties:
       type: object
       properties:
@@ -192,6 +235,34 @@ components:
       - description
       description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
       title: AdditionalProperties
+    TransactionAlertStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - CLOSED
+      title: TransactionAlertStatus
+    UpdateTransactionAlertRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - CLOSED
+      title: UpdateTransactionAlertRequestStatus
+    UpdateTransactionAlertRequestCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: UpdateTransactionAlertRequestCheckType
+    NewTransactionAlertRequestItemsCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: NewTransactionAlertRequestItemsCheckType
     GeneralError:
       type: object
       properties:
@@ -208,45 +279,6 @@ components:
       - code
       - message
       title: GeneralError
-    NewTransactionAlertRequestItemsCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that triggered the alert.
-      title: NewTransactionAlertRequestItemsCheckType
-    UpdateTransactionAlertRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - CLOSED
-      title: UpdateTransactionAlertRequestStatus
-    TransactionAlertStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - CLOSED
-      title: TransactionAlertStatus
-    Alerts_checkTransactionAlert_Response_200:
-      type: object
-      properties:
-        alert_id:
-          type: string
-          description: The unique identifier of the transaction alert
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction alert
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction alert
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction alert was found
-      title: Alerts_checkTransactionAlert_Response_200
     NewTransactionAlertRequestItems:
       type: object
       properties:
@@ -282,71 +314,6 @@ components:
       - PENDING
       - CLOSED
       title: NewTransactionAlertRequestItemsStatus
-    TransactionAlertCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that triggered the alert.
-      title: TransactionAlertCheckType
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewTransactionAlertRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
-      description: Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the transaction check.
-      title: NewTransactionAlertRequest
-    TransactionAlert:
-      type: object
-      properties:
-        alert_id:
-          type: string
-          description: Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert and should be unique across all transaction alerts. Updates to a transaction alert should be made using this identifier.
-        status:
-          $ref: '#/components/schemas/TransactionAlertStatus'
-        check_type:
-          $ref: '#/components/schemas/TransactionAlertCheckType'
-          description: The type of monitoring check that triggered the alert.
-        related_check_id:
-          type: string
-          description: Unique identifier for a transaction check for which the alert belongs to.
-        additional_properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdditionalProperties'
-          description: Additional metadata that relates to a transaction alert.
-        timestamp:
-          type: string
-          format: date-time
-          description: The time of the transaction alert. This should be in ISO 8601 format. When adding a new transaction alert, this field represents the creation time. When updating a transaction alert, this represents the time of the update.
-      required:
-      - alert_id
-      - timestamp
-      title: TransactionAlert
-    AdditionalPropertiesType:
-      type: string
-      enum:
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      - OBJECT
-      - ARRAY
-      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-      title: AdditionalPropertiesType
-    UpdateTransactionAlertRequestCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that triggered the alert.
-      title: UpdateTransactionAlertRequestCheckType
     UpdateTransactionAlertRequest:
       type: object
       properties:
@@ -375,6 +342,39 @@ components:
       - timestamp
       description: Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionAlertRequest
+    TransactionAlert:
+      type: object
+      properties:
+        alert_id:
+          type: string
+          description: Unique identifier for a alert belonging to a transaction. This is the primary key for a transaction alert and should be unique across all transaction alerts. Updates to a transaction alert should be made using this identifier.
+        status:
+          $ref: '#/components/schemas/TransactionAlertStatus'
+        check_type:
+          $ref: '#/components/schemas/TransactionAlertCheckType'
+          description: The type of monitoring check that triggered the alert.
+        related_check_id:
+          type: string
+          description: Unique identifier for a transaction check for which the alert belongs to.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction alert.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction alert. This should be in ISO 8601 format. When adding a new transaction alert, this field represents the creation time. When updating a transaction alert, this represents the time of the update.
+      required:
+      - alert_id
+      - timestamp
+      title: TransactionAlert
+    NewTransactionAlertRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
+      description: Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the transaction check.
+      title: NewTransactionAlertRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

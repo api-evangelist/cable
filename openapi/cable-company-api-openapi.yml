@@ -248,6 +248,82 @@ paths:
               - reason
 components:
   schemas:
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    CompanyRegistrationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
+        value:
+          type: string
+          description: The registration number
+      required:
+      - type
+      - value
+      title: CompanyRegistrationNumber
+    CompanyAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: CompanyAccountStatus
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     CompanyIndustryClassification:
       type: object
       properties:
@@ -266,22 +342,15 @@ components:
       - code_type
       - code
       title: CompanyIndustryClassification
-    GeneralError:
+    CompanyAddressesItems:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        type:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
     Company_deleteCompany_Response_200:
       type: object
       properties:
@@ -313,21 +382,24 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    CompanyAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: CompanyAccountStatus
-    UpdateCompaniesRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: UpdateCompaniesRequest
+    Company_checkCompanyInfo_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the company
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the company
+        organization_id:
+          type: string
+          description: The organization ID for which the company was found
+      title: Company_checkCompanyInfo_Response_200
     Company:
       type: object
       properties:
@@ -405,78 +477,6 @@ components:
       - is_test_company
       description: Request body for adding information about companies
       title: Company
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    Company_checkCompanyInfo_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the company
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the company
-        organization_id:
-          type: string
-          description: The organization ID for which the company was found
-      title: Company_checkCompanyInfo_Response_200
-    NewCompanyRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: NewCompanyRequest
-    Address:
-      type: object
-      properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    CompanyAddressesItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of address. eg. Registered, Trading, Legal
-        address:
-          $ref: '#/components/schemas/Address'
-      title: CompanyAddressesItems
-    CompanyRegistrationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
-        value:
-          type: string
-          description: The registration number
-      required:
-      - type
-      - value
-      title: CompanyRegistrationNumber
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

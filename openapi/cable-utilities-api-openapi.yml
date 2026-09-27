@@ -60,22 +60,6 @@ paths:
                 $ref: '#/components/schemas/GeneralError'
 components:
   schemas:
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     Utilities_getDeletionRequest_Response_200:
       type: object
       properties:
@@ -100,6 +84,22 @@ components:
         message:
           type: string
       title: GeneralErrorErrorsItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus:
       type: string
       enum:

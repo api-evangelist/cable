@@ -234,47 +234,6 @@ paths:
                 $ref: '#/components/schemas/V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItems'
 components:
   schemas:
-    V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of national identification number
-        value:
-          type: string
-          description: National identification number
-      required:
-      - type
-      - value
-      title: V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber
-    V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus:
-      type: string
-      enum:
-      - raised
-      - cancelled
-      - submitted
-      title: V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus
-    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of data externally verified
-        value:
-          type: string
-          description: Value of the data externally verified
-        is_externally_verified:
-          type: boolean
-          description: Whether the data was externally verified
-        provider:
-          type: string
-          description: Name of the provider that externally verified the data
-      required:
-      - type
-      - value
-      - is_externally_verified
-      - provider
-      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems
     V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -302,68 +261,41 @@ components:
       required:
       - success
       title: Retail_v1_retail_sar_info_Response_200
-    V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
+    V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
-        ip:
+        screening_id:
           type: string
-          description: IP address of the connecting client
-        device_id:
+          description: The ID linking the initial/reviewed result
+        screening_type:
           type: string
-          description: Device identifier. eg. SSAID / Android ID / Device Fingerprint
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      title: V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    Retail_v1_retail_onboarding_flow_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Retail_v1_retail_onboarding_flow_Response_200
-    Retail_v1_retail_risk_assessment_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Retail_v1_retail_risk_assessment_Response_200
-    V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        status:
-          $ref: '#/components/schemas/V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus'
-        value:
+          description: 'The type of screening check that was performed. One of: SANCTION, PEP, ADVERSE_MEDIA'
+        screening_lists:
+          type: array
+          items:
+            type: string
+          description: The lists that were screened against. E.g. OFAC, ComplyAdvantage Watchlists...
+        screening_outcome:
           type: string
-        cause:
+          description: 'The outcome of the screening check. One of: POSITIVE, NEGATIVE, TRUE_POSITIVE, TRUE_NEGATIVE, FALSE_POSITIVE, FALSE_NEGATIVE'
+        screening_provider:
           type: string
+          description: The provider that performed the screening check
         custom:
           $ref: '#/components/schemas/CustomData'
       required:
-      - status
-      title: V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this risk assessment information creation/change
-        data:
-          $ref: '#/components/schemas/V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/RetailEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems
+      - screening_id
+      - screening_type
+      - screening_outcome
+      - screening_provider
+      title: V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus:
+      type: string
+      enum:
+      - raised
+      - cancelled
+      - submitted
+      title: V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus
     Retail_v1_retail_person_info_Response_200:
       type: object
       properties:
@@ -374,7 +306,28 @@ components:
       required:
       - success
       title: Retail_v1_retail_person_info_Response_200
-    Retail_v1_retail_account_status_info_Response_200:
+    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of data externally verified
+        value:
+          type: string
+          description: Value of the data externally verified
+        is_externally_verified:
+          type: boolean
+          description: Whether the data was externally verified
+        provider:
+          type: string
+          description: Name of the provider that externally verified the data
+      required:
+      - type
+      - value
+      - is_externally_verified
+      - provider
+      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataExternallyVerifiedDataItems
+    Retail_v1_retail_onboarding_flow_Response_200:
       type: object
       properties:
         success:
@@ -383,84 +336,13 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Retail_v1_retail_account_status_info_Response_200
-    Address:
+      title: Retail_v1_retail_onboarding_flow_Response_200
+    CustomData:
       type: object
-      properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this onboarding flow information creation/change
-        data:
-          $ref: '#/components/schemas/V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/RetailEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems
-    V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of risk assessment eg. pre-onboarding risk rating, risk band, risk engine score
-        outcome:
-          type: string
-          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - type
-      - outcome
-      title: V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        account_status:
-          type: string
-          description: 'Latest account status for the related entity. One of the following: APPROVED, BLOCKED, CLOSED, PENDING, REJECTED'
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - account_status
-      title: V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this access information creation/change
-        data:
-          $ref: '#/components/schemas/V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/RetailEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItems
+      additionalProperties:
+        description: Any type
+      description: Custom data that is relevant. This can be any JSON object. Please include any details and data points that our schema does not capture.
+      title: CustomData
     V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -501,83 +383,6 @@ components:
         custom:
           $ref: '#/components/schemas/CustomData'
       title: V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this account status information creation/change
-        data:
-          $ref: '#/components/schemas/V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/RetailEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItems
-    Retail_v1_retail_idv_info_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Retail_v1_retail_idv_info_Response_200
-    V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason:
-      oneOf:
-      - type: string
-      - type: object
-        additionalProperties:
-          description: Any type
-      title: V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason
-    V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: Original timestamp relating to this screening check information creation/change
-        data:
-          $ref: '#/components/schemas/V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData'
-        parent:
-          $ref: '#/components/schemas/RetailEntityParent'
-      required:
-      - timestamp
-      - data
-      - parent
-      title: V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems
-    V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: The ID linking the initial/reviewed result
-        screening_type:
-          type: string
-          description: 'The type of screening check that was performed. One of: SANCTION, PEP, ADVERSE_MEDIA'
-        screening_lists:
-          type: array
-          items:
-            type: string
-          description: The lists that were screened against. E.g. OFAC, ComplyAdvantage Watchlists...
-        screening_outcome:
-          type: string
-          description: 'The outcome of the screening check. One of: POSITIVE, NEGATIVE, TRUE_POSITIVE, TRUE_NEGATIVE, FALSE_POSITIVE, FALSE_NEGATIVE'
-        screening_provider:
-          type: string
-          description: The provider that performed the screening check
-        custom:
-          $ref: '#/components/schemas/CustomData'
-      required:
-      - screening_id
-      - screening_type
-      - screening_outcome
-      - screening_provider
-      title: V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData
     V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
@@ -594,28 +399,233 @@ components:
       - data
       - parent
       title: V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItems
-    CustomData:
-      type: object
-      additionalProperties:
-        description: Any type
-      description: Custom data that is relevant. This can be any JSON object. Please include any details and data points that our schema does not capture.
-      title: CustomData
-    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItems:
+    V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
         timestamp:
           type: string
           format: date-time
-          description: Original timestamp relating to this IDV information creation/change
+          description: Original timestamp relating to this account status information creation/change
         data:
-          $ref: '#/components/schemas/V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+          $ref: '#/components/schemas/V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData'
         parent:
           $ref: '#/components/schemas/RetailEntityParent'
       required:
       - timestamp
       - data
       - parent
-      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItems
+      title: V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItems
+    Retail_v1_retail_screening_check_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Retail_v1_retail_screening_check_Response_200
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of data extracted from the document
+        value:
+          type: string
+          description: Value of the data extracted from the document
+      required:
+      - type
+      - value
+      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems
+    V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this access information creation/change
+        data:
+          $ref: '#/components/schemas/V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/RetailEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItems
+    V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of risk assessment eg. pre-onboarding risk rating, risk band, risk engine score
+        outcome:
+          type: string
+          description: 'The outcome of the assessment. One of: LOW, MEDIUM, HIGH, CRITICAL'
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - type
+      - outcome
+      title: V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        account_status:
+          type: string
+          description: 'Latest account status for the related entity. One of the following: APPROVED, BLOCKED, CLOSED, PENDING, REJECTED'
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - account_status
+      title: V1RetailAccountStatusPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique external identifier of the person entity, ID stored in your database / back-office
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this person entity creation/change
+        is_test_user:
+          type: boolean
+          default: false
+          description: If the person is a test user, this should be set to true
+        data:
+          $ref: '#/components/schemas/V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+      required:
+      - id
+      - timestamp
+      - is_test_user
+      - data
+      title: V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItems
+    RetailEntityParent:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique external identifier of the parent entity, ID stored in your database / back-office
+      required:
+      - id
+      title: RetailEntityParent
+    Retail_v1_retail_access_info_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Retail_v1_retail_access_info_Response_200
+    V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this onboarding flow information creation/change
+        data:
+          $ref: '#/components/schemas/V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/RetailEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItems
+    Retail_v1_retail_account_status_info_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Retail_v1_retail_account_status_info_Response_200
+    Retail_v1_retail_risk_assessment_Response_200:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: true
+          description: You probably did something wrong if you set this to false
+      required:
+      - success
+      title: Retail_v1_retail_risk_assessment_Response_200
+    V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this screening check information creation/change
+        data:
+          $ref: '#/components/schemas/V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/RetailEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1RetailScreeningCheckPostRequestBodyContentApplicationJsonSchemaItems
+    V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsDataStatus'
+        value:
+          type: string
+        cause:
+          type: string
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      required:
+      - status
+      title: V1RetailSarInfoPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+      - type
+      - value
+      title: V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsDataNationalIdentificationNumber
+    V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason:
+      oneOf:
+      - type: string
+      - type: object
+        additionalProperties:
+          description: Any type
+      title: V1RetailOnboardingFlowPostRequestBodyContentApplicationJsonSchemaItemsDataOutcomeReason
     V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
@@ -656,61 +666,35 @@ components:
       - verification_outcome
       - verification_provider
       title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData
-    RetailEntityParent:
+    V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData:
       type: object
       properties:
-        id:
+        ip:
           type: string
-          description: Unique external identifier of the parent entity, ID stored in your database / back-office
-      required:
-      - id
-      title: RetailEntityParent
-    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems:
+          description: IP address of the connecting client
+        device_id:
+          type: string
+          description: Device identifier. eg. SSAID / Android ID / Device Fingerprint
+        custom:
+          $ref: '#/components/schemas/CustomData'
+      title: V1RetailAccessInfoPostRequestBodyContentApplicationJsonSchemaItemsData
+    V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItems:
       type: object
       properties:
-        type:
-          type: string
-          description: Type of data extracted from the document
-        value:
-          type: string
-          description: Value of the data extracted from the document
-      required:
-      - type
-      - value
-      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsDataDocumentExtractedDataItems
-    Retail_v1_retail_screening_check_Response_200:
-      type: object
-      properties:
-        success:
-          type: boolean
-          default: true
-          description: You probably did something wrong if you set this to false
-      required:
-      - success
-      title: Retail_v1_retail_screening_check_Response_200
-    V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItems:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique external identifier of the person entity, ID stored in your database / back-office
         timestamp:
           type: string
           format: date-time
-          description: Original timestamp relating to this person entity creation/change
-        is_test_user:
-          type: boolean
-          default: false
-          description: If the person is a test user, this should be set to true
+          description: Original timestamp relating to this IDV information creation/change
         data:
-          $ref: '#/components/schemas/V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+          $ref: '#/components/schemas/V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/RetailEntityParent'
       required:
-      - id
       - timestamp
-      - is_test_user
       - data
-      title: V1RetailPersonInfoPostRequestBodyContentApplicationJsonSchemaItems
-    Retail_v1_retail_access_info_Response_200:
+      - parent
+      title: V1RetailIdvInfoPostRequestBodyContentApplicationJsonSchemaItems
+    Retail_v1_retail_idv_info_Response_200:
       type: object
       properties:
         success:
@@ -719,7 +703,23 @@ components:
           description: You probably did something wrong if you set this to false
       required:
       - success
-      title: Retail_v1_retail_access_info_Response_200
+      title: Retail_v1_retail_idv_info_Response_200
+    V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Original timestamp relating to this risk assessment information creation/change
+        data:
+          $ref: '#/components/schemas/V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItemsData'
+        parent:
+          $ref: '#/components/schemas/RetailEntityParent'
+      required:
+      - timestamp
+      - data
+      - parent
+      title: V1RetailRiskAssessmentPostRequestBodyContentApplicationJsonSchemaItems
   securitySchemes:
     isValidAPIKey:
       type: apiKey

@@ -170,22 +170,27 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionAlertsRequest'
 components:
   schemas:
-    GeneralError:
+    UpdateTransactionAlertsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionAlert'
+      description: Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionAlertsRequest
+    TransactionAlertCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: TransactionAlertCheckType
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        code:
-          type: integer
+        field:
+          type: string
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
+      title: GeneralErrorErrorsItems
     Transaction_Alerts_checkTransactionAlert_Response_200:
       type: object
       properties:
@@ -204,34 +209,6 @@ components:
           type: string
           description: The organization ID for which the transaction alert was found
       title: Transaction Alerts_checkTransactionAlert_Response_200
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    NewTransactionAlertRequestItemsCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that triggered the alert.
-      title: NewTransactionAlertRequestItemsCheckType
     TransactionAlertStatus:
       type: string
       enum:
@@ -239,6 +216,29 @@ components:
       - PENDING
       - CLOSED
       title: TransactionAlertStatus
+    NewTransactionAlertRequestItemsCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that triggered the alert.
+      title: NewTransactionAlertRequestItemsCheckType
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     NewTransactionAlertRequestItems:
       type: object
       properties:
@@ -278,33 +278,27 @@ components:
       - PENDING
       - CLOSED
       title: NewTransactionAlertRequestItemsStatus
-    TransactionAlertCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that triggered the alert.
-      title: TransactionAlertCheckType
-    GeneralErrorErrorsItems:
+    WriteOperationResponse:
       type: object
       properties:
-        field:
-          type: string
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
         message:
           type: string
-      title: GeneralErrorErrorsItems
-    NewTransactionAlertRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
-      description: Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the transaction check.
-      title: NewTransactionAlertRequest
-    UpdateTransactionAlertsRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/TransactionAlert'
-      description: Transaction alert data to update, referenced by 'alert_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateTransactionAlertsRequest
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     TransactionAlert:
       type: object
       properties:
@@ -336,6 +330,12 @@ components:
       - alert_id
       - timestamp
       title: TransactionAlert
+    NewTransactionAlertRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionAlertRequestItems'
+      description: Transaction alert data to add. 'check_id' is optional and can be updated later to associate the alert to the transaction check.
+      title: NewTransactionAlertRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -187,50 +187,6 @@ components:
       items:
         $ref: '#/components/schemas/IdentityVerification'
       title: NewIdentityVerificationRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    IdentityVerificationVerificationType:
-      type: string
-      enum:
-      - DOCUMENT_MATCH
-      - DATABASE_MATCH
-      - MANUAL_VERIFICATION
-      title: IdentityVerificationVerificationType
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
     GeneralErrorErrorsItems:
       type: object
       properties:
@@ -239,6 +195,11 @@ components:
         message:
           type: string
       title: GeneralErrorErrorsItems
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
     IdentityVerificationVerifiedDataItems:
       type: object
       properties:
@@ -261,11 +222,22 @@ components:
       - type
       - outcome
       title: IdentityVerificationVerifiedDataItems
-    UpdateIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: UpdateIdentityVerificationRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     Identity_Verification_checkIdentityVerification_Response_200:
       type: object
       properties:
@@ -284,6 +256,27 @@ components:
           type: string
           description: The organization ID for which the identity verification was found
       title: Identity Verification_checkIdentityVerification_Response_200
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     IdentityVerification:
       type: object
       properties:
@@ -353,6 +346,13 @@ components:
 
         - Re-verification after data update requires a new API call'
       title: IdentityVerification
+    IdentityVerificationVerificationType:
+      type: string
+      enum:
+      - DOCUMENT_MATCH
+      - DATABASE_MATCH
+      - MANUAL_VERIFICATION
+      title: IdentityVerificationVerificationType
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
