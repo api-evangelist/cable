@@ -171,37 +171,11 @@ paths:
               $ref: '#/components/schemas/UpdateRiskAsssessmentRequest'
 components:
   schemas:
-    UpdateRiskAsssessmentRequest:
+    NewRiskAssessmentRequest:
       type: array
       items:
         $ref: '#/components/schemas/RiskAssessment'
-      title: UpdateRiskAsssessmentRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    Risk_Assessment_checkRiskAssessment_Response_200:
-      type: object
-      properties:
-        assessment_id:
-          type: string
-          description: The unique identifier of the risk assessment
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the risk assessment
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the risk assessment
-        organization_id:
-          type: string
-          description: The organization ID for which the risk assessment was found
-      title: Risk Assessment_checkRiskAssessment_Response_200
+      title: NewRiskAssessmentRequest
     GeneralError:
       type: object
       properties:
@@ -218,27 +192,11 @@ components:
       - code
       - message
       title: GeneralError
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
+    UpdateRiskAsssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: UpdateRiskAsssessmentRequest
     RiskAssessment:
       type: object
       properties:
@@ -268,11 +226,53 @@ components:
       - outcome
       description: Request body for adding risk assessment information for a parent entity, applicable to both retail and business contexts
       title: RiskAssessment
-    NewRiskAssessmentRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskAssessment'
-      title: NewRiskAssessmentRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    Risk_Assessment_checkRiskAssessment_Response_200:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: The unique identifier of the risk assessment
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the risk assessment
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the risk assessment
+        organization_id:
+          type: string
+          description: The organization ID for which the risk assessment was found
+      title: Risk Assessment_checkRiskAssessment_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -170,6 +170,20 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionCheckRequest'
 components:
   schemas:
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    UpdateTransactionCheckRequestType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: UpdateTransactionCheckRequestType
     TransactionCheck:
       type: object
       properties:
@@ -197,6 +211,101 @@ components:
       - check_id
       - timestamp
       title: TransactionCheck
+    TransactionCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    NewTransactionCheckRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
+      description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
+      title: NewTransactionCheckRequest
+    Checks_checkTransactionCheck_Response_200:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The unique identifier of the transaction check
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction check
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction check
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction check was found
+      title: Checks_checkTransactionCheck_Response_200
+    TransactionCheckStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: TransactionCheckStatus
+    AdditionalProperties:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key of the additional property. This should be unique within the additional properties array.
+        value:
+          type: string
+          description: The value of the additional property.
+        type:
+          $ref: '#/components/schemas/AdditionalPropertiesType'
+          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+        description:
+          type: string
+          description: A description of the additional property. This should provide context for the value.
+      required:
+      - key
+      - value
+      - type
+      - description
+      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
+      title: AdditionalProperties
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    UpdateTransactionCheckRequestStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: UpdateTransactionCheckRequestStatus
     AdditionalPropertiesType:
       type: string
       enum:
@@ -207,14 +316,6 @@ components:
       - ARRAY
       description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
       title: AdditionalPropertiesType
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     NewTransactionCheckRequestItemsStatus:
       type: string
       enum:
@@ -252,73 +353,6 @@ components:
       - timestamp
       description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionCheckRequest
-    TransactionCheckStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: TransactionCheckStatus
-    TransactionCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: TransactionCheckType
-    AdditionalProperties:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The key of the additional property. This should be unique within the additional properties array.
-        value:
-          type: string
-          description: The value of the additional property.
-        type:
-          $ref: '#/components/schemas/AdditionalPropertiesType'
-          description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-        description:
-          type: string
-          description: A description of the additional property. This should provide context for the value.
-      required:
-      - key
-      - value
-      - type
-      - description
-      description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
-      title: AdditionalProperties
-    NewTransactionCheckRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionCheckRequestItems'
-      description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
-      title: NewTransactionCheckRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    NewTransactionCheckRequestItemsType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: NewTransactionCheckRequestItemsType
     NewTransactionCheckRequestItems:
       type: object
       properties:
@@ -348,40 +382,6 @@ components:
       - type
       - timestamp
       title: NewTransactionCheckRequestItems
-    Checks_checkTransactionCheck_Response_200:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: The unique identifier of the transaction check
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction check
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction check
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction check was found
-      title: Checks_checkTransactionCheck_Response_200
-    UpdateTransactionCheckRequestType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: UpdateTransactionCheckRequestType
-    UpdateTransactionCheckRequestStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: UpdateTransactionCheckRequestStatus
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

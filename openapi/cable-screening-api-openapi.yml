@@ -339,6 +339,21 @@ paths:
       description: Production server
 components:
   schemas:
+    NewScreeningRequestItemsType:
+      type: string
+      enum:
+      - ADVERSE_MEDIA
+      - AML
+      - PEP
+      - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: NewScreeningRequestItemsType
+    UpdateScreeningsRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Screening'
+      description: Screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateScreeningsRequest
     NewScreeningRequest:
       type: array
       items:
@@ -389,6 +404,84 @@ components:
       - lists
       - timestamp
       title: NewScreeningRequestItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    NewScreeningRequestItemsOutcome:
+      type: string
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - FALSE_NEGATIVE
+      - FALSE_POSITIVE
+      - TRUE_NEGATIVE
+      - TRUE_POSITIVE
+      - SCREENED
+      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: NewScreeningRequestItemsOutcome
+    ScreeningOutcome:
+      type: string
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - FALSE_NEGATIVE
+      - FALSE_POSITIVE
+      - TRUE_NEGATIVE
+      - TRUE_POSITIVE
+      - SCREENED
+      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: ScreeningOutcome
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    ScreeningType:
+      type: string
+      enum:
+      - ADVERSE_MEDIA
+      - AML
+      - PEP
+      - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: ScreeningType
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     Screening:
       type: object
       properties:
@@ -430,63 +523,6 @@ components:
       - outcome
       - timestamp
       title: Screening
-    NewScreeningRequestItemsOutcome:
-      type: string
-      enum:
-      - POSITIVE
-      - NEGATIVE
-      - FALSE_NEGATIVE
-      - FALSE_POSITIVE
-      - TRUE_NEGATIVE
-      - TRUE_POSITIVE
-      - SCREENED
-      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
-      title: NewScreeningRequestItemsOutcome
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewScreeningRequestItemsType:
-      type: string
-      enum:
-      - ADVERSE_MEDIA
-      - AML
-      - PEP
-      - SANCTION
-      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
-      title: NewScreeningRequestItemsType
-    ScreeningOutcome:
-      type: string
-      enum:
-      - POSITIVE
-      - NEGATIVE
-      - FALSE_NEGATIVE
-      - FALSE_POSITIVE
-      - TRUE_NEGATIVE
-      - TRUE_POSITIVE
-      - SCREENED
-      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
-      title: ScreeningOutcome
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     Screening_checkScreening_Response_200:
       type: object
       properties:
@@ -505,42 +541,12 @@ components:
           type: string
           description: The organization ID for which the screening was found
       title: Screening_checkScreening_Response_200
-    ScreeningType:
-      type: string
-      enum:
-      - ADVERSE_MEDIA
-      - AML
-      - PEP
-      - SANCTION
-      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
-      title: ScreeningType
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    UpdateScreeningsRequest:
+    NewTransactionScreeningRequest:
       type: array
       items:
-        $ref: '#/components/schemas/Screening'
-      description: Screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateScreeningsRequest
+        $ref: '#/components/schemas/NewTransactionScreeningRequestItems'
+      description: Transaction screening data to add.
+      title: NewTransactionScreeningRequest
     TransactionScreening:
       type: object
       properties:
@@ -577,16 +583,6 @@ components:
       - screening_id
       - timestamp
       title: TransactionScreening
-    AdditionalPropertiesType:
-      type: string
-      enum:
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      - OBJECT
-      - ARRAY
-      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-      title: AdditionalPropertiesType
     NewTransactionScreeningRequestItems:
       type: object
       properties:
@@ -627,6 +623,24 @@ components:
       - lists
       - timestamp
       title: NewTransactionScreeningRequestItems
+    Screening_checkTransactionScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the transaction screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction screening
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction screening was found
+      title: Screening_checkTransactionScreening_Response_200
     AdditionalProperties:
       type: object
       properties:
@@ -649,6 +663,16 @@ components:
       - description
       description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
       title: AdditionalProperties
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
     UpdateTransactionScreeningRequest:
       type: object
       properties:
@@ -686,30 +710,6 @@ components:
       - timestamp
       description: Transaction screening data to update, referenced by 'sar_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionScreeningRequest
-    NewTransactionScreeningRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionScreeningRequestItems'
-      description: Transaction screening data to add.
-      title: NewTransactionScreeningRequest
-    Screening_checkTransactionScreening_Response_200:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: The unique identifier of the transaction screening
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction screening
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction screening
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction screening was found
-      title: Screening_checkTransactionScreening_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

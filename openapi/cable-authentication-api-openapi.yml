@@ -118,14 +118,6 @@ paths:
       description: Production server
 components:
   schemas:
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     NewAccessTokenResponse:
       type: object
       properties:
@@ -165,6 +157,14 @@ components:
       - code
       - message
       title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     AccessTokenScope:
       type: object
       properties:

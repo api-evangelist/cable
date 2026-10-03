@@ -182,101 +182,13 @@ paths:
               $ref: '#/components/schemas/UpdateIdentityVerificationRequest'
 components:
   schemas:
-    NewIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: NewIdentityVerificationRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    UpdateIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: UpdateIdentityVerificationRequest
-    IdentityVerificationVerifiedDataItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: The type of data being verified for the person or company
-        outcome:
-          type: string
-          description: The result of the verification for this data being verified
-        value:
-          type: string
-          description: The actual data that was verified, such as a name or ID number.
-        is_matched_externally:
-          type: boolean
-          description: Specifies whether the data was verified by comparing it with an external source, such as a third-party verification provider, external database, or through documentary verification (e.g., matching documents against regulatory standards).
-        is_manually_verified:
-          type: boolean
-          description: Indicates whether the data was manually verified by an internal team or trusted individual. This is true when the verification process involves human intervention rather than an automated system, for example when verifying a document.
-      required:
-      - type
-      - outcome
-      title: IdentityVerificationVerifiedDataItems
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    Identity_Verification_checkIdentityVerification_Response_200:
-      type: object
-      properties:
-        verification_id:
-          type: string
-          description: The unique identifier of the identity verification
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the identity verification
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the identity verification
-        organization_id:
-          type: string
-          description: The organization ID for which the identity verification was found
-      title: Identity Verification_checkIdentityVerification_Response_200
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
+    IdentityVerificationVerificationType:
+      type: string
+      enum:
+      - DOCUMENT_MATCH
+      - DATABASE_MATCH
+      - MANUAL_VERIFICATION
+      title: IdentityVerificationVerificationType
     IdentityVerification:
       type: object
       properties:
@@ -346,13 +258,101 @@ components:
 
         - Re-verification after data update requires a new API call'
       title: IdentityVerification
-    IdentityVerificationVerificationType:
-      type: string
-      enum:
-      - DOCUMENT_MATCH
-      - DATABASE_MATCH
-      - MANUAL_VERIFICATION
-      title: IdentityVerificationVerificationType
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    IdentityVerificationVerifiedDataItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: The type of data being verified for the person or company
+        outcome:
+          type: string
+          description: The result of the verification for this data being verified
+        value:
+          type: string
+          description: The actual data that was verified, such as a name or ID number.
+        is_matched_externally:
+          type: boolean
+          description: Specifies whether the data was verified by comparing it with an external source, such as a third-party verification provider, external database, or through documentary verification (e.g., matching documents against regulatory standards).
+        is_manually_verified:
+          type: boolean
+          description: Indicates whether the data was manually verified by an internal team or trusted individual. This is true when the verification process involves human intervention rather than an automated system, for example when verifying a document.
+      required:
+      - type
+      - outcome
+      title: IdentityVerificationVerifiedDataItems
+    NewIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: NewIdentityVerificationRequest
+    Identity_Verification_checkIdentityVerification_Response_200:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: The unique identifier of the identity verification
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the identity verification
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the identity verification
+        organization_id:
+          type: string
+          description: The organization ID for which the identity verification was found
+      title: Identity Verification_checkIdentityVerification_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

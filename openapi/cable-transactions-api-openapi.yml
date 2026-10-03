@@ -643,33 +643,17 @@ paths:
       description: Production server
 components:
   schemas:
-    NewTransactionRequestType:
+    UpdateTransactionRequestStatus:
       type: string
       enum:
-      - DEPOSIT
-      - WITHDRAWAL
-      description: Transaction type. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestType
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    BatchNewTransactionRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionRequest'
-      title: BatchNewTransactionRequest
-    UpdateTransactionRequestType:
-      type: string
-      enum:
-      - DEPOSIT
-      - WITHDRAWAL
-      description: Transaction type. Required when creating new transactions, optional for updates.
-      title: UpdateTransactionRequestType
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
     UpdateTransactionRequest:
       type: object
       properties:
@@ -730,11 +714,18 @@ components:
       - tx_id
       description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionRequest
-    BatchUpdateTransactionRequest:
+    BatchNewTransactionRequest:
       type: array
       items:
-        $ref: '#/components/schemas/UpdateTransactionRequest'
-      title: BatchUpdateTransactionRequest
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
+    NewTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
     GeneralError:
       type: object
       properties:
@@ -751,54 +742,6 @@ components:
       - code
       - message
       title: GeneralError
-    NewTransactionRequestMethod:
-      type: string
-      enum:
-      - WIRE
-      - ACH
-      - SWIFT
-      - SEPA
-      - APPLE_PAY
-      - GOOGLE_PAY
-      - CHECK_DEPOSIT
-      - INTERNAL_TRANSFER
-      - RTP
-      - FEDNOW
-      - PROV_X_TRANSFER
-      - CARD
-      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: NewTransactionRequestMethod
-    Transactions_deleteTransaction_Response_200:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: The unique identifier of the transaction
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Transactions_deleteTransaction_Response_200
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
     NewTransactionRequest:
       type: object
       properties:
@@ -883,6 +826,56 @@ components:
 
         '
       title: NewTransactionRequest
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    Transactions_deleteTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Transactions_deleteTransaction_Response_200
+    UpdateTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestType
+    UpdateTransactionRequestMethod:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - GOOGLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - FEDNOW
+      - PROV_X_TRANSFER
+      - CARD
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
     Transactions_checkTransaction_Response_200:
       type: object
       properties:
@@ -901,29 +894,36 @@ components:
           type: string
           description: The organization ID for which the transaction was found
       title: Transactions_checkTransaction_Response_200
-    UpdateTransactionRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: UpdateTransactionRequestStatus
-    NewTransactionRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestStatus
-    UpdateTransactionRequestMethod:
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    NewTransactionRequestMethod:
       type: string
       enum:
       - WIRE
@@ -939,7 +939,7 @@ components:
       - PROV_X_TRANSFER
       - CARD
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: UpdateTransactionRequestMethod
+      title: NewTransactionRequestMethod
     UpdateTransactionRequest_2:
       type: object
       properties:
@@ -990,20 +990,6 @@ components:
       - tx_id
       description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionRequest
-    NewTransactionRequestMethod_2:
-      type: string
-      enum:
-      - WIRE
-      - ACH
-      - SWIFT
-      - SEPA
-      - APPLE_PAY
-      - CHECK_DEPOSIT
-      - INTERNAL_TRANSFER
-      - RTP
-      - PROV_X_TRANSFER
-      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: NewTransactionRequestMethod
     NewTransactionRequest_2:
       type: object
       properties:
@@ -1076,6 +1062,20 @@ components:
       - PROV_X_TRANSFER
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
       title: UpdateTransactionRequestMethod
+    NewTransactionRequestMethod_2:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - PROV_X_TRANSFER
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: NewTransactionRequestMethod
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

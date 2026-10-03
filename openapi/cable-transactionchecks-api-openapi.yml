@@ -170,6 +170,22 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionChecksRequest'
 components:
   schemas:
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    TransactionCheckStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: TransactionCheckStatus
     TransactionCheck:
       type: object
       properties:
@@ -208,32 +224,6 @@ components:
       - DELAYED_MONITORING
       description: The type of monitoring check that is being performed.
       title: TransactionCheckType
-    TransactionCheckStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: TransactionCheckStatus
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewTransactionCheckRequestItemsStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: NewTransactionCheckRequestItemsStatus
     NewTransactionCheckRequest:
       type: array
       items:
@@ -256,12 +246,38 @@ components:
       - code
       - message
       title: GeneralError
+    Transaction_Checks_checkTransactionCheck_Response_200:
+      type: object
+      properties:
+        check_id:
+          type: string
+          description: The unique identifier of the transaction check
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction check
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction check
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction check was found
+      title: Transaction Checks_checkTransactionCheck_Response_200
     UpdateTransactionChecksRequest:
       type: array
       items:
         $ref: '#/components/schemas/TransactionCheck'
       description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionChecksRequest
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     WriteOperationResponse:
       type: object
       properties:
@@ -283,13 +299,15 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    NewTransactionCheckRequestItemsType:
+    NewTransactionCheckRequestItemsStatus:
       type: string
       enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: NewTransactionCheckRequestItemsType
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: NewTransactionCheckRequestItemsStatus
     NewTransactionCheckRequestItems:
       type: object
       properties:
@@ -323,24 +341,6 @@ components:
       - type
       - timestamp
       title: NewTransactionCheckRequestItems
-    Transaction_Checks_checkTransactionCheck_Response_200:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: The unique identifier of the transaction check
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction check
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction check
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction check was found
-      title: Transaction Checks_checkTransactionCheck_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

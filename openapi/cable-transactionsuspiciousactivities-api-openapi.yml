@@ -170,20 +170,40 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
 components:
   schemas:
-    GeneralErrorErrorsItems:
+    GeneralError:
       type: object
       properties:
-        field:
-          type: string
+        code:
+          type: integer
         message:
           type: string
-      title: GeneralErrorErrorsItems
-    NewTransactionSuspiciousActivity:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
-      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
-      title: NewTransactionSuspiciousActivity
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    Transaction_Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
     NewTransactionSuspiciousActivityItems:
       type: object
       properties:
@@ -228,22 +248,41 @@ components:
         $ref: '#/components/schemas/TransactionSuspiciousActivity'
       description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionSuspiciousActivity
-    GeneralError:
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        code:
-          type: integer
+        field:
+          type: string
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
+      title: GeneralErrorErrorsItems
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
+      title: NewTransactionSuspiciousActivity
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
       required:
-      - code
+      - success
+      - write_count
       - message
-      title: GeneralError
+      - organization_id
+      title: WriteOperationResponse
     TransactionSuspiciousActivity:
       type: object
       properties:
@@ -281,45 +320,6 @@ components:
       - suspicious_activity_id
       - timestamp
       title: TransactionSuspiciousActivity
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    Transaction_Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200:
-      type: object
-      properties:
-        suspicious_activity_id:
-          type: string
-          description: The unique identifier of the transaction suspicious activity
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction suspicious activity
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction suspicious activity
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction suspicious activity was found
-      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

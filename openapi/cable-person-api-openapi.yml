@@ -248,34 +248,92 @@ paths:
               - reason
 components:
   schemas:
-    UpdatePersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: UpdatePersonRequest
-    Person_deletePerson_Response_200:
+    Person_checkPerson_Response_200:
       type: object
       properties:
         person_id:
           type: string
           description: The unique identifier of the person
-        deletion_request_id:
+        first_seen:
           type: string
-          description: The unique identifier of the deletion request
-      title: Person_deletePerson_Response_200
-    GeneralErrorErrorsItems:
+          format: date-time
+          description: This represents the earliest timestamp associated with the person
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the person
+        organization_id:
+          type: string
+          description: The organization ID for which the person was found
+      title: Person_checkPerson_Response_200
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+    GeneralError:
       type: object
       properties:
-        field:
-          type: string
+        code:
+          type: integer
         message:
           type: string
-      title: GeneralErrorErrorsItems
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
     NewPersonRequest:
       type: array
       items:
         $ref: '#/components/schemas/Person'
       title: NewPersonRequest
+    PersonAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
+    PersonNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+      - type
+      - value
+      title: PersonNationalIdentificationNumber
     Person:
       type: object
       properties:
@@ -362,82 +420,14 @@ components:
       - is_retail_customer
       description: Request body for adding information about persons
       title: Person
-    Person_checkPerson_Response_200:
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        person_id:
+        field:
           type: string
-          description: The unique identifier of the person
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the person
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the person
-        organization_id:
-          type: string
-          description: The organization ID for which the person was found
-      title: Person_checkPerson_Response_200
-    PersonAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: PersonAccountStatus
-    Address:
-      type: object
-      properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    PersonNationalIdentificationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of national identification number
-        value:
-          type: string
-          description: National identification number
-      required:
-      - type
-      - value
-      title: PersonNationalIdentificationNumber
+      title: GeneralErrorErrorsItems
     WriteOperationResponse:
       type: object
       properties:
@@ -459,6 +449,16 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
+    Person_deletePerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Person_deletePerson_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
