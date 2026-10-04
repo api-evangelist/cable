@@ -157,14 +157,6 @@ components:
       - code
       - message
       title: GeneralError
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     AccessTokenScope:
       type: object
       properties:
@@ -180,6 +172,14 @@ components:
       - organization_id
       - scopes
       title: AccessTokenScope
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     NewAccessTokenRequest:
       type: object
       properties:

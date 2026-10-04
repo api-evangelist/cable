@@ -248,45 +248,27 @@ paths:
               - reason
 components:
   schemas:
-    Person_checkPerson_Response_200:
+    WriteOperationResponse:
       type: object
       properties:
-        person_id:
-          type: string
-          description: The unique identifier of the person
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the person
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the person
-        organization_id:
-          type: string
-          description: The organization ID for which the person was found
-      title: Person_checkPerson_Response_200
-    UpdatePersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: UpdatePersonRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
           type: integer
+          description: The number of records written to the database.
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
       required:
-      - code
+      - success
+      - write_count
       - message
-      title: GeneralError
+      - organization_id
+      title: WriteOperationResponse
     Address:
       type: object
       properties:
@@ -306,21 +288,35 @@ components:
           type: string
       description: Legal/contact address for the entity
       title: Address
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     NewPersonRequest:
       type: array
       items:
         $ref: '#/components/schemas/Person'
       title: NewPersonRequest
-    PersonAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: PersonAccountStatus
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     PersonNationalIdentificationNumber:
       type: object
       properties:
@@ -420,35 +416,21 @@ components:
       - is_retail_customer
       description: Request body for adding information about persons
       title: Person
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+    PersonAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
     Person_deletePerson_Response_200:
       type: object
       properties:
@@ -459,6 +441,24 @@ components:
           type: string
           description: The unique identifier of the deletion request
       title: Person_deletePerson_Response_200
+    Person_checkPerson_Response_200:
+      type: object
+      properties:
+        person_id:
+          type: string
+          description: The unique identifier of the person
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the person
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the person
+        organization_id:
+          type: string
+          description: The organization ID for which the person was found
+      title: Person_checkPerson_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

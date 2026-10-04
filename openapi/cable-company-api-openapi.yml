@@ -248,29 +248,40 @@ paths:
               - reason
 components:
   schemas:
-    NewCompanyRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: NewCompanyRequest
-    CompanyIndustryClassification:
+    CompanyRegistrationNumber:
       type: object
       properties:
-        code_type:
+        type:
           type: string
-          description: Type of industry classification code
-        code:
-          type: array
-          items:
-            type: string
-          description: Industry classification codes
-        description:
+          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
+        value:
           type: string
-          description: Description of the industry classification code
+          description: The registration number
       required:
-      - code_type
-      - code
-      title: CompanyIndustryClassification
+      - type
+      - value
+      title: CompanyRegistrationNumber
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
     CompanyAddressesItems:
       type: object
       properties:
@@ -280,32 +291,6 @@ components:
         address:
           $ref: '#/components/schemas/Address'
       title: CompanyAddressesItems
-    Company_deleteCompany_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Company_deleteCompany_Response_200
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     Address:
       type: object
       properties:
@@ -325,11 +310,6 @@ components:
           type: string
       description: Legal/contact address for the entity
       title: Address
-    UpdateCompaniesRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: UpdateCompaniesRequest
     Company:
       type: object
       properties:
@@ -407,6 +387,27 @@ components:
       - is_test_company
       description: Request body for adding information about companies
       title: Company
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     Company_checkCompanyInfo_Response_200:
       type: object
       properties:
@@ -425,14 +426,6 @@ components:
           type: string
           description: The organization ID for which the company was found
       title: Company_checkCompanyInfo_Response_200
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     CompanyAccountStatus:
       type: string
       enum:
@@ -443,40 +436,47 @@ components:
       - REJECTED
       description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
       title: CompanyAccountStatus
-    WriteOperationResponse:
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
+        field:
+          type: string
         message:
           type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    CompanyRegistrationNumber:
+      title: GeneralErrorErrorsItems
+    Company_deleteCompany_Response_200:
       type: object
       properties:
-        type:
+        company_id:
           type: string
-          description: Type of registration number, e.g. Companies House number (UK), EIN number (US) etc.
-        value:
+          description: The unique identifier of the company
+        deletion_request_id:
           type: string
-          description: The registration number
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
+    CompanyIndustryClassification:
+      type: object
+      properties:
+        code_type:
+          type: string
+          description: Type of industry classification code
+        code:
+          type: array
+          items:
+            type: string
+          description: Industry classification codes
+        description:
+          type: string
+          description: Description of the industry classification code
       required:
-      - type
-      - value
-      title: CompanyRegistrationNumber
+      - code_type
+      - code
+      title: CompanyIndustryClassification
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

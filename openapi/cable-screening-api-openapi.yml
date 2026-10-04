@@ -339,6 +339,35 @@ paths:
       description: Production server
 components:
   schemas:
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     NewScreeningRequestItemsType:
       type: string
       enum:
@@ -348,18 +377,108 @@ components:
       - SANCTION
       description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
       title: NewScreeningRequestItemsType
+    Screening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for the screening. This is the primary key for a screening and should be unique across screenings.
+        type:
+          $ref: '#/components/schemas/ScreeningType'
+          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+        outcome:
+          $ref: '#/components/schemas/ScreeningOutcome'
+          description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+        outcome_details:
+          type: string
+          description: Further details on the reason of the screening outcome. For a transaction screening, it could be due to many reasons, so it could be relevant to include further details.
+        provider:
+          type: string
+          description: The provider that performed the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
+        timestamp:
+          type: string
+          format: date-time
+          description: When the screening was performed in your system, in ISO 8601 format.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the related transaction in case of a transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_person_id:
+          type: string
+          description: Unique identifier for the related person in case of a person and/or transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+        related_company_id:
+          type: string
+          description: Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
+      required:
+      - screening_id
+      - outcome
+      - timestamp
+      title: Screening
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    ScreeningType:
+      type: string
+      enum:
+      - ADVERSE_MEDIA
+      - AML
+      - PEP
+      - SANCTION
+      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
+      title: ScreeningType
+    Screening_checkScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the screening
+        organization_id:
+          type: string
+          description: The organization ID for which the screening was found
+      title: Screening_checkScreening_Response_200
     UpdateScreeningsRequest:
       type: array
       items:
         $ref: '#/components/schemas/Screening'
       description: Screening data to update, referenced by 'screening_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateScreeningsRequest
-    NewScreeningRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewScreeningRequestItems'
-      description: Screening data to add.
-      title: NewScreeningRequest
+    NewScreeningRequestItemsOutcome:
+      type: string
+      enum:
+      - POSITIVE
+      - NEGATIVE
+      - FALSE_NEGATIVE
+      - FALSE_POSITIVE
+      - TRUE_NEGATIVE
+      - TRUE_POSITIVE
+      - SCREENED
+      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
+      title: NewScreeningRequestItemsOutcome
     NewScreeningRequestItems:
       type: object
       properties:
@@ -404,34 +523,6 @@ components:
       - lists
       - timestamp
       title: NewScreeningRequestItems
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    NewScreeningRequestItemsOutcome:
-      type: string
-      enum:
-      - POSITIVE
-      - NEGATIVE
-      - FALSE_NEGATIVE
-      - FALSE_POSITIVE
-      - TRUE_NEGATIVE
-      - TRUE_POSITIVE
-      - SCREENED
-      description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
-      title: NewScreeningRequestItemsOutcome
     ScreeningOutcome:
       type: string
       enum:
@@ -444,145 +535,18 @@ components:
       - SCREENED
       description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
       title: ScreeningOutcome
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    ScreeningType:
-      type: string
-      enum:
-      - ADVERSE_MEDIA
-      - AML
-      - PEP
-      - SANCTION
-      description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
-      title: ScreeningType
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    Screening:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: Unique identifier for the screening. This is the primary key for a screening and should be unique across screenings.
-        type:
-          $ref: '#/components/schemas/ScreeningType'
-          description: The type of screening check performed (e.g., SANCTION, PEP, ADVERSE_MEDIA, etc.).
-        outcome:
-          $ref: '#/components/schemas/ScreeningOutcome'
-          description: The outcome of the screening check (e.g., POSITIVE, NEGATIVE, TRUE_POSITIVE, etc.). The value "SCREENED" should only be used when the outcome is not available but there is the confirmation that the screening has been done.
-        outcome_details:
-          type: string
-          description: Further details on the reason of the screening outcome. For a transaction screening, it could be due to many reasons, so it could be relevant to include further details.
-        provider:
-          type: string
-          description: The provider that performed the screening check.
-        lists:
-          type: array
-          items:
-            type: string
-          description: The list(s) that the transaction was screened against. E.g. OFAC, ComplyAdvantage, Watchlists...
-        timestamp:
-          type: string
-          format: date-time
-          description: When the screening was performed in your system, in ISO 8601 format.
-        related_tx_id:
-          type: string
-          description: Unique identifier for the related transaction in case of a transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
-        related_person_id:
-          type: string
-          description: Unique identifier for the related person in case of a person and/or transaction screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
-        related_company_id:
-          type: string
-          description: Unique identifier for the related company in case of a company screening. Only one of `related_tx_id`, `related_person_id` or `related_company_id` should be provided.
-      required:
-      - screening_id
-      - outcome
-      - timestamp
-      title: Screening
-    Screening_checkScreening_Response_200:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: The unique identifier of the screening
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the screening
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the screening
-        organization_id:
-          type: string
-          description: The organization ID for which the screening was found
-      title: Screening_checkScreening_Response_200
+    NewScreeningRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewScreeningRequestItems'
+      description: Screening data to add.
+      title: NewScreeningRequest
     NewTransactionScreeningRequest:
       type: array
       items:
         $ref: '#/components/schemas/NewTransactionScreeningRequestItems'
       description: Transaction screening data to add.
       title: NewTransactionScreeningRequest
-    TransactionScreening:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: Unique identifier for a transaction screening. This is the primary key for a screening and should be unique across all transaction screenings. Updates to a transaction screening should be made using this identifier.
-        type:
-          type: string
-          description: The type of screening check performed.
-        outcome:
-          type: string
-          description: The outcome of the screening check.
-        provider:
-          type: string
-          description: The provider that provided the screening check.
-        lists:
-          type: array
-          items:
-            type: string
-          description: The list(s) that the transaction was screened against.
-        related_tx_id:
-          type: string
-          description: Unique identifier for a transaction as it relates to the transaction screening.
-        additional_properties:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdditionalProperties'
-          description: Additional metadata that relates to a transaction screening.
-        timestamp:
-          type: string
-          format: date-time
-          description: The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction screening, this field represents the creation time. When updating a transaction screening, this represents the time of the update.
-      required:
-      - screening_id
-      - timestamp
-      title: TransactionScreening
     NewTransactionScreeningRequestItems:
       type: object
       properties:
@@ -623,24 +587,6 @@ components:
       - lists
       - timestamp
       title: NewTransactionScreeningRequestItems
-    Screening_checkTransactionScreening_Response_200:
-      type: object
-      properties:
-        screening_id:
-          type: string
-          description: The unique identifier of the transaction screening
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction screening
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction screening
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction screening was found
-      title: Screening_checkTransactionScreening_Response_200
     AdditionalProperties:
       type: object
       properties:
@@ -663,16 +609,6 @@ components:
       - description
       description: Additional metadata that can be added to a payload, such as transaction checks, alerts, and suspicious activities.
       title: AdditionalProperties
-    AdditionalPropertiesType:
-      type: string
-      enum:
-      - STRING
-      - NUMBER
-      - BOOLEAN
-      - OBJECT
-      - ARRAY
-      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
-      title: AdditionalPropertiesType
     UpdateTransactionScreeningRequest:
       type: object
       properties:
@@ -710,6 +646,70 @@ components:
       - timestamp
       description: Transaction screening data to update, referenced by 'sar_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionScreeningRequest
+    TransactionScreening:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: Unique identifier for a transaction screening. This is the primary key for a screening and should be unique across all transaction screenings. Updates to a transaction screening should be made using this identifier.
+        type:
+          type: string
+          description: The type of screening check performed.
+        outcome:
+          type: string
+          description: The outcome of the screening check.
+        provider:
+          type: string
+          description: The provider that provided the screening check.
+        lists:
+          type: array
+          items:
+            type: string
+          description: The list(s) that the transaction was screened against.
+        related_tx_id:
+          type: string
+          description: Unique identifier for a transaction as it relates to the transaction screening.
+        additional_properties:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdditionalProperties'
+          description: Additional metadata that relates to a transaction screening.
+        timestamp:
+          type: string
+          format: date-time
+          description: The time of the transaction screening. This should be in ISO 8601 format. When adding a new transaction screening, this field represents the creation time. When updating a transaction screening, this represents the time of the update.
+      required:
+      - screening_id
+      - timestamp
+      title: TransactionScreening
+    AdditionalPropertiesType:
+      type: string
+      enum:
+      - STRING
+      - NUMBER
+      - BOOLEAN
+      - OBJECT
+      - ARRAY
+      description: The type of the additional property value, for example "string", "number", "boolean", "object", "array".
+      title: AdditionalPropertiesType
+    Screening_checkTransactionScreening_Response_200:
+      type: object
+      properties:
+        screening_id:
+          type: string
+          description: The unique identifier of the transaction screening
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction screening
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction screening
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction screening was found
+      title: Screening_checkTransactionScreening_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

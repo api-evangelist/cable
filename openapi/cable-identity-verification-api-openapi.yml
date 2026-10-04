@@ -182,6 +182,48 @@ paths:
               $ref: '#/components/schemas/UpdateIdentityVerificationRequest'
 components:
   schemas:
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    NewIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: NewIdentityVerificationRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     IdentityVerificationVerificationType:
       type: string
       enum:
@@ -258,22 +300,37 @@ components:
 
         - Re-verification after data update requires a new API call'
       title: IdentityVerification
-    GeneralError:
+    GeneralErrorErrorsItems:
       type: object
       properties:
-        code:
-          type: integer
+        field:
+          type: string
         message:
           type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
+      title: GeneralErrorErrorsItems
+    Identity_Verification_checkIdentityVerification_Response_200:
+      type: object
+      properties:
+        verification_id:
+          type: string
+          description: The unique identifier of the identity verification
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the identity verification
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the identity verification
+        organization_id:
+          type: string
+          description: The organization ID for which the identity verification was found
+      title: Identity Verification_checkIdentityVerification_Response_200
+    UpdateIdentityVerificationRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/IdentityVerification'
+      title: UpdateIdentityVerificationRequest
     IdentityVerificationVerifiedDataItems:
       type: object
       properties:
@@ -296,63 +353,6 @@ components:
       - type
       - outcome
       title: IdentityVerificationVerifiedDataItems
-    NewIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: NewIdentityVerificationRequest
-    Identity_Verification_checkIdentityVerification_Response_200:
-      type: object
-      properties:
-        verification_id:
-          type: string
-          description: The unique identifier of the identity verification
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the identity verification
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the identity verification
-        organization_id:
-          type: string
-          description: The organization ID for which the identity verification was found
-      title: Identity Verification_checkIdentityVerification_Response_200
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    UpdateIdentityVerificationRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/IdentityVerification'
-      title: UpdateIdentityVerificationRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

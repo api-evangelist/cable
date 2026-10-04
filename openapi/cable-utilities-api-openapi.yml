@@ -76,6 +76,14 @@ components:
       - code
       - message
       title: GeneralError
+    V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus:
+      type: string
+      enum:
+      - pending
+      - processing
+      - completed
+      description: The status of the deletion request
+      title: V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus
     Utilities_getDeletionRequest_Response_200:
       type: object
       properties:
@@ -100,14 +108,6 @@ components:
         message:
           type: string
       title: GeneralErrorErrorsItems
-    V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus:
-      type: string
-      enum:
-      - pending
-      - processing
-      - completed
-      description: The status of the deletion request
-      title: V2DeletionRequestGetResponsesContentApplicationJsonSchemaStatus
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
