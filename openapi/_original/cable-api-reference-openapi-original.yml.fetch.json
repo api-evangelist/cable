@@ -1,0 +1,12 @@
+{
+ "url": "https://api.cable.tech/swagger.json",
+ "requested_url": "https://api.cable.tech/swagger.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 88909,
+ "sha256": "3222cd28dba5d76439d64127392981b8ccca810c6d873017e049755e20af9e5d",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

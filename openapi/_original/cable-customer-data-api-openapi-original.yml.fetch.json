@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.cable.tech/openapi/customer-data-api.yaml",
+ "requested_url": "https://docs.cable.tech/openapi/customer-data-api.yaml",
+ "status": 200,
+ "content_type": "application/x-yaml; charset=utf-8",
+ "bytes": 61805,
+ "sha256": "027a731bf03e5a993084ed6b157ad67131b21581bf38644b37ecde4cefe3c122",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
