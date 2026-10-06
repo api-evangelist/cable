@@ -45,7 +45,7 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-10-06'
 image: https://cable.tech/favicon.ico
 x-docs-platform: fern
 x-docs-platform-confidence: medium
@@ -311,6 +311,8 @@ apis:
   - type: OpenAPI
     url: openapi/cable-risk-assessment-api-openapi.yml
 common:
+- url: https://cable.tech/resources/rss.xml
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/cable-capability-edges.yml
   name: Cable Business Capability Map
