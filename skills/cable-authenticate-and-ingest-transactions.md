@@ -2,7 +2,7 @@
 name: Authenticate and ingest transactions
 description: Obtain a scoped Cable access token, then push single and batch transactions into Cable for automated compliance testing.
 api: openapi/cable-api-reference-openapi-original.yml
-operations: [request-token, add-transaction, add-transactions-batch, check-transaction, update-transaction]
+operations: [postAuthToken, postTransaction, postTransactionsBatch, getTransaction, putTransaction]
 ---
 
 # Authenticate and ingest transactions into Cable
