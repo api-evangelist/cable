@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/cable/integrations
+- https://n8n.io/integrations/cable/
+- https://composio.dev/toolkits/cable
+- https://monid.ai/tools/cable
+checked:
+- https://composio.dev/toolkits/cable
+- https://monid.ai/tools/cable
+- https://n8n.io/integrations/cable/
+- https://zapier.com/apps/cable/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
