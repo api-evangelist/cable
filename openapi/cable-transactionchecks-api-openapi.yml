@@ -170,50 +170,45 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionChecksRequest'
 components:
   schemas:
-    TransactionCheckType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: TransactionCheckType
-    NewTransactionCheckRequestItemsStatus:
-      type: string
-      enum:
-      - PENDING
-      - COMPLETED
-      - REQUESTED
-      - ASSIGNED
-      - FAILED
-      title: NewTransactionCheckRequestItemsStatus
-    WriteOperationResponse:
+    TransactionCheck:
       type: object
       properties:
-        success:
+        check_id:
+          type: string
+          description: Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a transaction check and should be unique across all transaction checks. Updates to a transaction check should be made using this identifier.
+        is_test:
           type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
+          default: false
+          description: If the transaction check is test data, this should be set to true
+        status:
+          $ref: '#/components/schemas/TransactionCheckStatus'
+        type:
+          $ref: '#/components/schemas/TransactionCheckType'
+          description: The type of monitoring check that is being performed.
+        related_tx_id:
+          type: string
+          description: Unique identifier for the transaction which the check is related to.
+        related_tx_ids:
+          type: array
+          items:
+            type: string
+          description: Unique identifiers for transactions which the check relates to.
+        timestamp:
+          type: string
+          format: date-time
+          description: When this transaction check was performed in your system, in ISO 8601 format.
+      required:
+      - check_id
+      - timestamp
+      title: TransactionCheck
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
         message:
           type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    NewTransactionCheckRequestItemsType:
-      type: string
-      enum:
-      - INLINE_MONITORING
-      - DELAYED_MONITORING
-      description: The type of monitoring check that is being performed.
-      title: NewTransactionCheckRequestItemsType
+      title: GeneralErrorErrorsItems
     NewTransactionCheckRequestItems:
       type: object
       properties:
@@ -247,43 +242,6 @@ components:
       - type
       - timestamp
       title: NewTransactionCheckRequestItems
-    UpdateTransactionChecksRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/TransactionCheck'
-      description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateTransactionChecksRequest
-    TransactionCheck:
-      type: object
-      properties:
-        check_id:
-          type: string
-          description: Unique identifier for a monitoring check belonging to a transaction. This is the primary key for a transaction check and should be unique across all transaction checks. Updates to a transaction check should be made using this identifier.
-        is_test:
-          type: boolean
-          default: false
-          description: If the transaction check is test data, this should be set to true
-        status:
-          $ref: '#/components/schemas/TransactionCheckStatus'
-        type:
-          $ref: '#/components/schemas/TransactionCheckType'
-          description: The type of monitoring check that is being performed.
-        related_tx_id:
-          type: string
-          description: Unique identifier for the transaction which the check is related to.
-        related_tx_ids:
-          type: array
-          items:
-            type: string
-          description: Unique identifiers for transactions which the check relates to.
-        timestamp:
-          type: string
-          format: date-time
-          description: When this transaction check was performed in your system, in ISO 8601 format.
-      required:
-      - check_id
-      - timestamp
-      title: TransactionCheck
     TransactionCheckStatus:
       type: string
       enum:
@@ -293,22 +251,6 @@ components:
       - ASSIGNED
       - FAILED
       title: TransactionCheckStatus
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
     Transaction_Checks_checkTransactionCheck_Response_200:
       type: object
       properties:
@@ -327,20 +269,78 @@ components:
           type: string
           description: The organization ID for which the transaction check was found
       title: Transaction Checks_checkTransactionCheck_Response_200
-    GeneralErrorErrorsItems:
+    WriteOperationResponse:
       type: object
       properties:
-        field:
-          type: string
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
         message:
           type: string
-      title: GeneralErrorErrorsItems
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    TransactionCheckType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: TransactionCheckType
+    NewTransactionCheckRequestItemsType:
+      type: string
+      enum:
+      - INLINE_MONITORING
+      - DELAYED_MONITORING
+      description: The type of monitoring check that is being performed.
+      title: NewTransactionCheckRequestItemsType
+    NewTransactionCheckRequestItemsStatus:
+      type: string
+      enum:
+      - PENDING
+      - COMPLETED
+      - REQUESTED
+      - ASSIGNED
+      - FAILED
+      title: NewTransactionCheckRequestItemsStatus
     NewTransactionCheckRequest:
       type: array
       items:
         $ref: '#/components/schemas/NewTransactionCheckRequestItems'
       description: Transaction monitoring check data to add. related_tx_id is optional and can be updated later to associate the monitoring check to a transaction.
       title: NewTransactionCheckRequest
+    UpdateTransactionChecksRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionCheck'
+      description: Transaction monitoring check data to update, referenced by 'check_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionChecksRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

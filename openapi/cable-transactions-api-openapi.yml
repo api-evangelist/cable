@@ -643,6 +643,176 @@ paths:
       description: Production server
 components:
   schemas:
+    NewTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestType
+    UpdateTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestStatus
+    BatchUpdateTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/UpdateTransactionRequest'
+      title: BatchUpdateTransactionRequest
+    NewTransactionRequestStatus:
+      type: string
+      enum:
+      - CREATED
+      - PENDING
+      - SETTLED
+      - FAILED
+      - REJECTED
+      - REFUNDED
+      description: Transaction status. Required when creating new transactions, optional for updates.
+      title: NewTransactionRequestStatus
+    UpdateTransactionRequest:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
+        tx_id:
+          type: string
+          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
+        is_test:
+          type: boolean
+          default: false
+          description: If the transaction is test data, this should be set to true
+        type:
+          $ref: '#/components/schemas/UpdateTransactionRequestType'
+          description: Transaction type. Required when creating new transactions, optional for updates.
+        method:
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod'
+          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+        amount:
+          type:
+          - number
+          - 'null'
+          format: double
+          description: Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are allowed for auth-only, declined, and pre-authorization transactions. Required when creating new transactions, optional for updates.
+        currency:
+          type: string
+          format: iso-4217
+          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
+        amount_usd:
+          type: number
+          format: double
+          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
+        sender_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in your customer data sent to Cable. Required if receiver_id is not provided.
+        sender_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+        receiver_id:
+          type:
+          - string
+          - 'null'
+          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+        receiver_country:
+          type: string
+          format: iso-3166-1
+          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+        status:
+          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
+          description: Transaction status. Required when creating new transactions, optional for updates.
+      required:
+      - timestamp
+      - tx_id
+      description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionRequest
+    Transactions_checkTransaction_Response_200:
+      type: object
+      properties:
+        tx_id:
+          type: string
+          description: The unique identifier of the transaction
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction was found
+      title: Transactions_checkTransaction_Response_200
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    UpdateTransactionRequestMethod:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - GOOGLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - FEDNOW
+      - PROV_X_TRANSFER
+      - CARD
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    UpdateTransactionRequestType:
+      type: string
+      enum:
+      - DEPOSIT
+      - WITHDRAWAL
+      description: Transaction type. Required when creating new transactions, optional for updates.
+      title: UpdateTransactionRequestType
+    BatchNewTransactionRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionRequest'
+      title: BatchNewTransactionRequest
     NewTransactionRequest:
       type: object
       properties:
@@ -727,6 +897,22 @@ components:
 
         '
       title: NewTransactionRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     NewTransactionRequestMethod:
       type: string
       enum:
@@ -744,32 +930,6 @@ components:
       - CARD
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
       title: NewTransactionRequestMethod
-    BatchUpdateTransactionRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/UpdateTransactionRequest'
-      title: BatchUpdateTransactionRequest
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
     Transactions_deleteTransaction_Response_200:
       type: object
       properties:
@@ -780,107 +940,7 @@ components:
           type: string
           description: The unique identifier of the deletion request
       title: Transactions_deleteTransaction_Response_200
-    BatchNewTransactionRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionRequest'
-      title: BatchNewTransactionRequest
-    NewTransactionRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestStatus
-    UpdateTransactionRequestMethod:
-      type: string
-      enum:
-      - WIRE
-      - ACH
-      - SWIFT
-      - SEPA
-      - APPLE_PAY
-      - GOOGLE_PAY
-      - CHECK_DEPOSIT
-      - INTERNAL_TRANSFER
-      - RTP
-      - FEDNOW
-      - PROV_X_TRANSFER
-      - CARD
-      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: UpdateTransactionRequestMethod
-    UpdateTransactionRequestType:
-      type: string
-      enum:
-      - DEPOSIT
-      - WITHDRAWAL
-      description: Transaction type. Required when creating new transactions, optional for updates.
-      title: UpdateTransactionRequestType
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    Transactions_checkTransaction_Response_200:
-      type: object
-      properties:
-        tx_id:
-          type: string
-          description: The unique identifier of the transaction
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction was found
-      title: Transactions_checkTransaction_Response_200
-    NewTransactionRequestType:
-      type: string
-      enum:
-      - DEPOSIT
-      - WITHDRAWAL
-      description: Transaction type. Required when creating new transactions, optional for updates.
-      title: NewTransactionRequestType
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    UpdateTransactionRequestStatus:
-      type: string
-      enum:
-      - CREATED
-      - PENDING
-      - SETTLED
-      - FAILED
-      - REJECTED
-      - REFUNDED
-      description: Transaction status. Required when creating new transactions, optional for updates.
-      title: UpdateTransactionRequestStatus
-    UpdateTransactionRequest:
+    UpdateTransactionRequest_2:
       type: object
       properties:
         timestamp:
@@ -890,22 +950,16 @@ components:
         tx_id:
           type: string
           description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
-        is_test:
-          type: boolean
-          default: false
-          description: If the transaction is test data, this should be set to true
         type:
           $ref: '#/components/schemas/UpdateTransactionRequestType'
           description: Transaction type. Required when creating new transactions, optional for updates.
         method:
-          $ref: '#/components/schemas/UpdateTransactionRequestMethod'
+          $ref: '#/components/schemas/UpdateTransactionRequestMethod_2'
           description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
         amount:
-          type:
-          - number
-          - 'null'
+          type: number
           format: double
-          description: Transaction amount. Negative amounts are allowed for refunds, chargebacks, and credits. Zero amounts are allowed for auth-only, declined, and pre-authorization transactions. Required when creating new transactions, optional for updates.
+          description: Transaction amount. Required when creating new transactions, optional for updates.
         currency:
           type: string
           format: iso-4217
@@ -915,23 +969,19 @@ components:
           format: double
           description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
         sender_id:
-          type:
-          - string
-          - 'null'
-          description: Identifier of the sender (e.g., account number, customer ID). This ID should match the identifier used in your customer data sent to Cable. Required if receiver_id is not provided.
+          type: string
+          description: Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
         sender_country:
           type: string
           format: iso-3166-1
-          description: ISO 3166-1 alpha-2 country code of the sender. Required when sender_id is provided.
+          description: ISO 3166-1 alpha-2 country code
         receiver_id:
-          type:
-          - string
-          - 'null'
-          description: Identifier of the receiver (e.g., account number, customer ID). Required if sender_id is not provided.
+          type: string
+          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
         receiver_country:
           type: string
           format: iso-3166-1
-          description: ISO 3166-1 alpha-2 country code of the receiver. Required when receiver_id is provided.
+          description: ISO 3166-1 alpha-2 country code
         status:
           $ref: '#/components/schemas/UpdateTransactionRequestStatus'
           description: Transaction status. Required when creating new transactions, optional for updates.
@@ -940,6 +990,20 @@ components:
       - tx_id
       description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
       title: UpdateTransactionRequest
+    UpdateTransactionRequestMethod_2:
+      type: string
+      enum:
+      - WIRE
+      - ACH
+      - SWIFT
+      - SEPA
+      - APPLE_PAY
+      - CHECK_DEPOSIT
+      - INTERNAL_TRANSFER
+      - RTP
+      - PROV_X_TRANSFER
+      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
+      title: UpdateTransactionRequestMethod
     NewTransactionRequest_2:
       type: object
       properties:
@@ -1012,70 +1076,6 @@ components:
       - PROV_X_TRANSFER
       description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
       title: NewTransactionRequestMethod
-    UpdateTransactionRequestMethod_2:
-      type: string
-      enum:
-      - WIRE
-      - ACH
-      - SWIFT
-      - SEPA
-      - APPLE_PAY
-      - CHECK_DEPOSIT
-      - INTERNAL_TRANSFER
-      - RTP
-      - PROV_X_TRANSFER
-      description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-      title: UpdateTransactionRequestMethod
-    UpdateTransactionRequest_2:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-          description: When the transaction was processed in your system, in ISO 8601 format. For updates, use when the event occurred, not when you're reporting it.
-        tx_id:
-          type: string
-          description: Unique identifier for the transaction. This is the primary key for the transaction record and should be unique across all transactions. Updates to a transaction should be made using this identifier.
-        type:
-          $ref: '#/components/schemas/UpdateTransactionRequestType'
-          description: Transaction type. Required when creating new transactions, optional for updates.
-        method:
-          $ref: '#/components/schemas/UpdateTransactionRequestMethod_2'
-          description: Payment method used for the transaction. Required when creating new transactions, optional for updates. Each method may have different processing times, fees, and regulatory requirements.
-        amount:
-          type: number
-          format: double
-          description: Transaction amount. Required when creating new transactions, optional for updates.
-        currency:
-          type: string
-          format: iso-4217
-          description: ISO 4217 currency code. Required when creating new transactions, optional for updates.
-        amount_usd:
-          type: number
-          format: double
-          description: Amount in USD, if not provided will be calculated using the latest exchange rate using data from Open Exchange Rates (https://openexchangerates.org)
-        sender_id:
-          type: string
-          description: Identifier of the sender, this could be an account number, customer id, or any other unique identifier. If you are sending customer data to Cable, this ID should be able to be referenced in that dataset.
-        sender_country:
-          type: string
-          format: iso-3166-1
-          description: ISO 3166-1 alpha-2 country code
-        receiver_id:
-          type: string
-          description: Identifier of the receiver, this could be an account number, customer id, or any other unique identifier.
-        receiver_country:
-          type: string
-          format: iso-3166-1
-          description: ISO 3166-1 alpha-2 country code
-        status:
-          $ref: '#/components/schemas/UpdateTransactionRequestStatus'
-          description: Transaction status. Required when creating new transactions, optional for updates.
-      required:
-      - timestamp
-      - tx_id
-      description: Transaction data to update, referenced by 'tx_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateTransactionRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

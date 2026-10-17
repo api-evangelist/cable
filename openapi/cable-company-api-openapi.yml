@@ -248,6 +248,26 @@ paths:
               - reason
 components:
   schemas:
+    CompanyAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: CompanyAccountStatus
+    NewCompanyRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: NewCompanyRequest
+    UpdateCompaniesRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Company'
+      title: UpdateCompaniesRequest
     CompanyRegistrationNumber:
       type: object
       properties:
@@ -261,6 +281,49 @@ components:
       - type
       - value
       title: CompanyRegistrationNumber
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Company_deleteCompany_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        deletion_request_id:
+          type: string
+          description: The unique identifier of the deletion request
+      title: Company_deleteCompany_Response_200
+    CompanyAddressesItems:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of address. eg. Registered, Trading, Legal
+        address:
+          $ref: '#/components/schemas/Address'
+      title: CompanyAddressesItems
     WriteOperationResponse:
       type: object
       properties:
@@ -282,15 +345,6 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    CompanyAddressesItems:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of address. eg. Registered, Trading, Legal
-        address:
-          $ref: '#/components/schemas/Address'
-      title: CompanyAddressesItems
     Address:
       type: object
       properties:
@@ -387,78 +441,6 @@ components:
       - is_test_company
       description: Request body for adding information about companies
       title: Company
-    NewCompanyRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: NewCompanyRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    Company_checkCompanyInfo_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the company
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the company
-        organization_id:
-          type: string
-          description: The organization ID for which the company was found
-      title: Company_checkCompanyInfo_Response_200
-    CompanyAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person at that timestamp. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: CompanyAccountStatus
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    Company_deleteCompany_Response_200:
-      type: object
-      properties:
-        company_id:
-          type: string
-          description: The unique identifier of the company
-        deletion_request_id:
-          type: string
-          description: The unique identifier of the deletion request
-      title: Company_deleteCompany_Response_200
-    UpdateCompaniesRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Company'
-      title: UpdateCompaniesRequest
     CompanyIndustryClassification:
       type: object
       properties:
@@ -477,6 +459,24 @@ components:
       - code_type
       - code
       title: CompanyIndustryClassification
+    Company_checkCompanyInfo_Response_200:
+      type: object
+      properties:
+        company_id:
+          type: string
+          description: The unique identifier of the company
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the company
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the company
+        organization_id:
+          type: string
+          description: The organization ID for which the company was found
+      title: Company_checkCompanyInfo_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

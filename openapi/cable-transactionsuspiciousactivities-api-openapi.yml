@@ -170,6 +170,38 @@ paths:
               $ref: '#/components/schemas/UpdateTransactionSuspiciousActivity'
 components:
   schemas:
+    NewTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
+      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
+      title: NewTransactionSuspiciousActivity
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
+    Transaction_Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200:
+      type: object
+      properties:
+        suspicious_activity_id:
+          type: string
+          description: The unique identifier of the transaction suspicious activity
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the transaction suspicious activity
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the transaction suspicious activity
+        organization_id:
+          type: string
+          description: The organization ID for which the transaction suspicious activity was found
+      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
     TransactionSuspiciousActivity:
       type: object
       properties:
@@ -207,24 +239,6 @@ components:
       - suspicious_activity_id
       - timestamp
       title: TransactionSuspiciousActivity
-    Transaction_Suspicious_Activities_checkTransactionSuspiciousActivity_Response_200:
-      type: object
-      properties:
-        suspicious_activity_id:
-          type: string
-          description: The unique identifier of the transaction suspicious activity
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the transaction suspicious activity
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the transaction suspicious activity
-        organization_id:
-          type: string
-          description: The organization ID for which the transaction suspicious activity was found
-      title: Transaction Suspicious Activities_checkTransactionSuspiciousActivity_Response_200
     WriteOperationResponse:
       type: object
       properties:
@@ -246,42 +260,6 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    NewTransactionSuspiciousActivity:
-      type: array
-      items:
-        $ref: '#/components/schemas/NewTransactionSuspiciousActivityItems'
-      description: 'Transaction suspicious activity data to add. sar_id is optional and can be updated later to associate the suspicious activity to the transaction suspicious activity report. Note: not all suspicious activity will be associated with a report.'
-      title: NewTransactionSuspiciousActivity
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    UpdateTransactionSuspiciousActivity:
-      type: array
-      items:
-        $ref: '#/components/schemas/TransactionSuspiciousActivity'
-      description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
-      title: UpdateTransactionSuspiciousActivity
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
     NewTransactionSuspiciousActivityItems:
       type: object
       properties:
@@ -320,6 +298,28 @@ components:
       - detection_date
       - timestamp
       title: NewTransactionSuspiciousActivityItems
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    UpdateTransactionSuspiciousActivity:
+      type: array
+      items:
+        $ref: '#/components/schemas/TransactionSuspiciousActivity'
+      description: Transaction suspicious activity data to update, referenced by 'suspicious_activity_id'. The 'timestamp' field represents the update time. Only the fields to be updated need to be included.
+      title: UpdateTransactionSuspiciousActivity
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

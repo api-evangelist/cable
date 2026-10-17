@@ -248,88 +248,6 @@ paths:
               - reason
 components:
   schemas:
-    WriteOperationResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Indicates if the write operation was successful.
-        write_count:
-          type: integer
-          description: The number of records written to the database.
-        message:
-          type: string
-          description: Provides additional information about the operation result.
-        organization_id:
-          type: string
-          description: The organization ID for which the operation was performed.
-      required:
-      - success
-      - write_count
-      - message
-      - organization_id
-      title: WriteOperationResponse
-    Address:
-      type: object
-      properties:
-        lines:
-          type: array
-          items:
-            type: string
-        city:
-          type: string
-        state:
-          type: string
-        county:
-          type: string
-        postal_code:
-          type: string
-        country:
-          type: string
-      description: Legal/contact address for the entity
-      title: Address
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    NewPersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: NewPersonRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    PersonNationalIdentificationNumber:
-      type: object
-      properties:
-        type:
-          type: string
-          description: Type of national identification number
-        value:
-          type: string
-          description: National identification number
-      required:
-      - type
-      - value
-      title: PersonNationalIdentificationNumber
     Person:
       type: object
       properties:
@@ -416,21 +334,14 @@ components:
       - is_retail_customer
       description: Request body for adding information about persons
       title: Person
-    UpdatePersonRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/Person'
-      title: UpdatePersonRequest
-    PersonAccountStatus:
-      type: string
-      enum:
-      - APPROVED
-      - BLOCKED
-      - CLOSED
-      - PENDING
-      - REJECTED
-      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
-      title: PersonAccountStatus
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     Person_deletePerson_Response_200:
       type: object
       properties:
@@ -459,6 +370,95 @@ components:
           type: string
           description: The organization ID for which the person was found
       title: Person_checkPerson_Response_200
+    WriteOperationResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Indicates if the write operation was successful.
+        write_count:
+          type: integer
+          description: The number of records written to the database.
+        message:
+          type: string
+          description: Provides additional information about the operation result.
+        organization_id:
+          type: string
+          description: The organization ID for which the operation was performed.
+      required:
+      - success
+      - write_count
+      - message
+      - organization_id
+      title: WriteOperationResponse
+    Address:
+      type: object
+      properties:
+        lines:
+          type: array
+          items:
+            type: string
+        city:
+          type: string
+        state:
+          type: string
+        county:
+          type: string
+        postal_code:
+          type: string
+        country:
+          type: string
+      description: Legal/contact address for the entity
+      title: Address
+    NewPersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: NewPersonRequest
+    UpdatePersonRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/Person'
+      title: UpdatePersonRequest
+    PersonNationalIdentificationNumber:
+      type: object
+      properties:
+        type:
+          type: string
+          description: Type of national identification number
+        value:
+          type: string
+          description: National identification number
+      required:
+      - type
+      - value
+      title: PersonNationalIdentificationNumber
+    PersonAccountStatus:
+      type: string
+      enum:
+      - APPROVED
+      - BLOCKED
+      - CLOSED
+      - PENDING
+      - REJECTED
+      description: The account status for the related person. Refer to the Developer Guide "Entity Account Statuses" to understand what account statuses mean at Cable, and how to use them
+      title: PersonAccountStatus
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

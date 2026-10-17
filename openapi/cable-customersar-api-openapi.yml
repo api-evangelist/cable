@@ -170,6 +170,11 @@ paths:
               $ref: '#/components/schemas/UpdateCustomerSARRequest'
 components:
   schemas:
+    UpdateCustomerSARRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/CustomerSAR'
+      title: UpdateCustomerSARRequest
     CustomerSarStatus:
       type: string
       enum:
@@ -178,6 +183,14 @@ components:
       - CANCELLED
       description: The status of the Suspicious Activity Report (SAR). FILED means that it has been officially filed with the appropriate regulatory agency. PENDING means that it is in the process of being filed. CANCELLED means that it is not going to be filed.
       title: CustomerSarStatus
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     WriteOperationResponse:
       type: object
       properties:
@@ -199,19 +212,29 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
-    GeneralErrorErrorsItems:
+    CustomerSAR_checkCustomerSAR_Response_200:
       type: object
       properties:
-        field:
+        sar_id:
           type: string
-        message:
+          description: The unique identifier of the customer SAR
+        first_seen:
           type: string
-      title: GeneralErrorErrorsItems
-    UpdateCustomerSARRequest:
+          format: date-time
+          description: This represents the earliest timestamp associated with the customer SAR
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the customer SAR
+        organization_id:
+          type: string
+          description: The organization ID for which the customer SAR was found
+      title: CustomerSAR_checkCustomerSAR_Response_200
+    NewCustomerSARRequest:
       type: array
       items:
         $ref: '#/components/schemas/CustomerSAR'
-      title: UpdateCustomerSARRequest
+      title: NewCustomerSARRequest
     GeneralError:
       type: object
       properties:
@@ -256,29 +279,6 @@ components:
       - status
       description: Request body for adding SAR (Suspicious Activity Report) information for a person or company
       title: CustomerSAR
-    CustomerSAR_checkCustomerSAR_Response_200:
-      type: object
-      properties:
-        sar_id:
-          type: string
-          description: The unique identifier of the customer SAR
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the customer SAR
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the customer SAR
-        organization_id:
-          type: string
-          description: The organization ID for which the customer SAR was found
-      title: CustomerSAR_checkCustomerSAR_Response_200
-    NewCustomerSARRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/CustomerSAR'
-      title: NewCustomerSARRequest
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

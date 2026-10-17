@@ -118,6 +118,22 @@ paths:
       description: Production server
 components:
   schemas:
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
     NewAccessTokenResponse:
       type: object
       properties:
@@ -141,37 +157,6 @@ components:
       - organization_id
       - organization_name
       title: NewAccessTokenResponse
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    AccessTokenScope:
-      type: object
-      properties:
-        organization_id:
-          type: string
-          description: The organization ID for which the token is requested. This is required.
-        scopes:
-          type: array
-          items:
-            type: string
-          description: The list of scopes that the token should have. For transaction data, the scope should be 'transactions:write'.
-      required:
-      - organization_id
-      - scopes
-      title: AccessTokenScope
     GeneralErrorErrorsItems:
       type: object
       properties:
@@ -193,6 +178,21 @@ components:
       - expiry_seconds
       - scopes
       title: NewAccessTokenRequest
+    AccessTokenScope:
+      type: object
+      properties:
+        organization_id:
+          type: string
+          description: The organization ID for which the token is requested. This is required.
+        scopes:
+          type: array
+          items:
+            type: string
+          description: The list of scopes that the token should have. For transaction data, the scope should be 'transactions:write'.
+      required:
+      - organization_id
+      - scopes
+      title: AccessTokenScope
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

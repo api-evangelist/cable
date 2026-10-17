@@ -171,6 +171,35 @@ paths:
               $ref: '#/components/schemas/UpdateRiskAsssessmentRequest'
 components:
   schemas:
+    NewRiskAssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: NewRiskAssessmentRequest
+    GeneralError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeneralErrorErrorsItems'
+          description: Detailed information about errors in specific fields.
+      required:
+      - code
+      - message
+      title: GeneralError
+    GeneralErrorErrorsItems:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string
+      title: GeneralErrorErrorsItems
     WriteOperationResponse:
       type: object
       properties:
@@ -192,6 +221,29 @@ components:
       - message
       - organization_id
       title: WriteOperationResponse
+    Risk_Assessment_checkRiskAssessment_Response_200:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+          description: The unique identifier of the risk assessment
+        first_seen:
+          type: string
+          format: date-time
+          description: This represents the earliest timestamp associated with the risk assessment
+        last_seen:
+          type: string
+          format: date-time
+          description: This represents the latest timestamp associated with the risk assessment
+        organization_id:
+          type: string
+          description: The organization ID for which the risk assessment was found
+      title: Risk Assessment_checkRiskAssessment_Response_200
+    UpdateRiskAsssessmentRequest:
+      type: array
+      items:
+        $ref: '#/components/schemas/RiskAssessment'
+      title: UpdateRiskAsssessmentRequest
     RiskAssessment:
       type: object
       properties:
@@ -221,58 +273,6 @@ components:
       - outcome
       description: Request body for adding risk assessment information for a parent entity, applicable to both retail and business contexts
       title: RiskAssessment
-    NewRiskAssessmentRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskAssessment'
-      title: NewRiskAssessmentRequest
-    GeneralError:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GeneralErrorErrorsItems'
-          description: Detailed information about errors in specific fields.
-      required:
-      - code
-      - message
-      title: GeneralError
-    UpdateRiskAsssessmentRequest:
-      type: array
-      items:
-        $ref: '#/components/schemas/RiskAssessment'
-      title: UpdateRiskAsssessmentRequest
-    GeneralErrorErrorsItems:
-      type: object
-      properties:
-        field:
-          type: string
-        message:
-          type: string
-      title: GeneralErrorErrorsItems
-    Risk_Assessment_checkRiskAssessment_Response_200:
-      type: object
-      properties:
-        assessment_id:
-          type: string
-          description: The unique identifier of the risk assessment
-        first_seen:
-          type: string
-          format: date-time
-          description: This represents the earliest timestamp associated with the risk assessment
-        last_seen:
-          type: string
-          format: date-time
-          description: This represents the latest timestamp associated with the risk assessment
-        organization_id:
-          type: string
-          description: The organization ID for which the risk assessment was found
-      title: Risk Assessment_checkRiskAssessment_Response_200
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
