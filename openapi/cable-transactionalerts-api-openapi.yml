@@ -344,3 +344,9 @@ components:
     BearerAuth:
       type: http
       scheme: bearer
+x-provenance:
+  method: harvested
+  publisher: Cable
+  source: https://api.cable.tech/swagger.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
