@@ -64,6 +64,160 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Cable is a company surfaced as a portfolio company of anthemis, crv and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Cable is an automated compliance and financial-crime assurance platform for banks, fintechs, and crypto companies. Based on transaction, customer, screening, risk-assessment, and onboarding data you send it, Cable continuously tests 100% of activity against your regulatory frameworks (US Bank Secrecy Act, UK Money Laundering Regulations, Reg E/B/Z, UDAAP, and others) to detect any single instance of control failure or regulatory breach, replacing manual dip-sampling. The Cable API is primarily a data-ingestion surface: a REST entry point for transferring raw data from your systems into Cable's analysis environment, with resource-oriented URLs, JSON request/response bodies, token-based authentication, and standard HTTP verbs and status codes. Cable is backed by Anthemis and CRV.
 
-Backed by: anthemis, crv — https://cable.tech/
+**Areas:** Company · Compliance · Financial Crime · RegTech · AML · Transaction Monitoring · Screening · Risk Assessment · Banking · Fintech
+
+## Cable on APIs.io
+
+Everything profiled for Cable is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cable/](https://apis.io/providers/cable/)** — or go straight to one of the APIs or properties below.
+
+### APIs (20)
+
+- [Cable Alerts API](https://apis.io/apis/cable/cable-alerts-api/) — The alerts API from Cable — 1 operation(s) for alerts.
+- [Cable Authentication API](https://apis.io/apis/cable/cable-authentication-api/) — The authentication API from Cable — 2 operation(s) for authentication.
+- [Cable Business API](https://apis.io/apis/cable/cable-business-api/) — The business API from Cable — 9 operation(s) for business.
+- [Cable Checks API](https://apis.io/apis/cable/cable-checks-api/) — The checks API from Cable — 1 operation(s) for checks.
+- [Cable Company API](https://apis.io/apis/cable/cable-company-api/) — The company API from Cable — 1 operation(s) for company.
+- [Cable Customer Sar API](https://apis.io/apis/cable/cable-customersar-api/) — The customerSar API from Cable — 1 operation(s) for customersar.
+- [Cable Helper API](https://apis.io/apis/cable/cable-helper-api/) — The helper API from Cable — 1 operation(s) for helper.
+- [Cable Onboarding Flow API](https://apis.io/apis/cable/cable-onboardingflow-api/) — The onboardingFlow API from Cable — 1 operation(s) for onboardingflow.
+- [Cable Person API](https://apis.io/apis/cable/cable-person-api/) — The person API from Cable — 1 operation(s) for person.
+- [Cable Retail API](https://apis.io/apis/cable/cable-retail-api/) — The retail API from Cable — 8 operation(s) for retail.
+- [Cable Screening API](https://apis.io/apis/cable/cable-screening-api/) — The screening API from Cable — 2 operation(s) for screening.
+- [Cable Suspicious Activities API](https://apis.io/apis/cable/cable-suspiciousactivities-api/) — The suspiciousActivities API from Cable — 1 operation(s) for suspiciousactivities.
+- [Cable Transaction Alerts API](https://apis.io/apis/cable/cable-transactionalerts-api/) — The transactionAlerts API from Cable — 1 operation(s) for transactionalerts.
+- [Cable Transaction Checks API](https://apis.io/apis/cable/cable-transactionchecks-api/) — The transactionChecks API from Cable — 1 operation(s) for transactionchecks.
+- [Cable Transactions API](https://apis.io/apis/cable/cable-transactions-api/) — The transactions API from Cable — 4 operation(s) for transactions.
+- [Cable Transaction Suspicious Activities API](https://apis.io/apis/cable/cable-transactionsuspiciousactivities-api/) — The transactionSuspiciousActivities API from Cable — 1 operation(s) for transactionsuspiciousactivities.
+- [Cable Upload API](https://apis.io/apis/cable/cable-upload-api/) — The upload API from Cable — 1 operation(s) for upload.
+- [Cable Utilities API](https://apis.io/apis/cable/cable-utilities-api/) — The utilities API from Cable — 1 operation(s) for utilities.
+- [Cable Identity Verification API](https://apis.io/apis/cable/cable-identity-verification-api/) — The Identity Verification API from Cable — 1 operation(s) for identity verification.
+- [Cable Risk Assessment API](https://apis.io/apis/cable/cable-risk-assessment-api/) — The Risk Assessment API from Cable — 1 operation(s) for risk assessment.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [cable-docs](https://apis.io/servers/cable/cable-docs/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Cable Agentic Access](https://apis.io/agentic-access/cable/cable-agentic-access/)
+
+#### Collections (20)
+
+Postman and Open Collection request collections.
+
+- [API Reference alerts API](https://apis.io/collections/cable/open-cable-alerts-api/)
+- [API Reference alerts authentication API](https://apis.io/collections/cable/open-cable-authentication-api/)
+- [API Reference alerts business API](https://apis.io/collections/cable/open-cable-business-api/)
+- [API Reference alerts checks API](https://apis.io/collections/cable/open-cable-checks-api/)
+- [API Reference alerts company API](https://apis.io/collections/cable/open-cable-company-api/)
+- [API Reference alerts customerSar API](https://apis.io/collections/cable/open-cable-customersar-api/)
+- [API Reference alerts helper API](https://apis.io/collections/cable/open-cable-helper-api/)
+- [API Reference alerts identityVerification API](https://apis.io/collections/cable/open-cable-identityverification-api/)
+- [API Reference alerts onboardingFlow API](https://apis.io/collections/cable/open-cable-onboardingflow-api/)
+- [API Reference alerts person API](https://apis.io/collections/cable/open-cable-person-api/)
+- [API Reference alerts retail API](https://apis.io/collections/cable/open-cable-retail-api/)
+- [API Reference alerts riskAssessment API](https://apis.io/collections/cable/open-cable-riskassessment-api/)
+- [API Reference alerts screening API](https://apis.io/collections/cable/open-cable-screening-api/)
+- [API Reference alerts suspiciousActivities API](https://apis.io/collections/cable/open-cable-suspiciousactivities-api/)
+- [API Reference alerts transactionAlerts API](https://apis.io/collections/cable/open-cable-transactionalerts-api/)
+- [API Reference alerts transactionChecks API](https://apis.io/collections/cable/open-cable-transactionchecks-api/)
+- [API Reference alerts transactions API](https://apis.io/collections/cable/open-cable-transactions-api/)
+- [API Reference alerts transactionSuspiciousActivities API](https://apis.io/collections/cable/open-cable-transactionsuspiciousactivities-api/)
+- [API Reference alerts upload API](https://apis.io/collections/cable/open-cable-upload-api/)
+- [API Reference alerts utilities API](https://apis.io/collections/cable/open-cable-utilities-api/)
+
+#### Overlays (3)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Cable Api Reference Overlay](https://apis.io/overlays/cable/cable-api-reference-overlay/)
+- [Cable Customer Data Api Overlay](https://apis.io/overlays/cable/cable-customer-data-api-overlay/)
+- [Cable Transaction Data Api Overlay](https://apis.io/overlays/cable/cable-transaction-data-api-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cable Authentication](https://apis.io/security/cable/cable-authentication/)
+- [Cable Domain Security](https://apis.io/security/cable/cable-domain-security/)
+- [Cable Trust Center](https://apis.io/security/cable/cable-trust-center/)
+- [Cable Vulnerability Disclosure](https://apis.io/security/cable/cable-vulnerability-disclosure/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://cable.tech/)
+- [Documentation](https://docs.cable.tech/)
+- [Getting started](https://docs.cable.tech/api-documentation/getting-started)
+- [API reference](https://docs.cable.tech/api-documentation/api-reference)
+- [Changelog](https://docs.cable.tech/product-updates)
+- [Blog](https://cable.tech/resources)
+- [Security](https://cable.tech/responsible-disclosure-policy)
+- [Terms of service](https://cable.tech/terms-of-service)
+- [Privacy policy](https://cable.tech/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 43.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 76.7 |
+| Contract quality | 46.1 |
+| Contract governance | 4.5 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 55.4 |
+| Access clarity | 43.4 |
+
+**Agent readiness 26.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | — |
+
+**Regulatory alignment 28.3** — Banking & Open Finance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cable/](https://apis.io/providers/cable/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Cable: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cable/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
